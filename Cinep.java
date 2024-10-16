@@ -4,7 +4,7 @@ public class Cinep {
 	Scanner sc= new Scanner(System.in);
 	private String pelicula;
 	private double  total,igv, subtotal, vuelto, pago, resto,costo2d=10,costo3d=18, costoniños2d=8,costoviejos=8,costoniños3d=15,costoviejos3d=15,costopromo2d=8,costopromo3d=12,costosocio2d =6,costosocio3d = 12;
-	private int opcion;
+	private int opcion, tiempo;
 	public double total(){
 		igv = total * 0.18;
 		subtotal = total - igv;
@@ -44,27 +44,15 @@ public class Cinep {
 		System.out.println("""
                 |-----------------------|
                 |        Sinopsis       |
-                |""" + pelicula+ """  
-                    |
-                |asdassd                |
-                
-                |      asdfasdffs       |
-                |asfdasdfsdafa          |
+                |""" +"       "+ pelicula+ """  
+                      |
+                |Lorem ip               |
+                |      Lorem ipsu       |
+                |            Lorem Ipsum|
                 |                       |
                 |                       |
                 |-----------------------|
                 """);
-
-		switch (opcion){
-			case 1:
-				this.ElPlanDelAsesino();
-				break;
-			case 2:
-				break;
-			default:
-		}
-
-
 	}
 	public void menuprincipal(){
 		System.out.println("""
@@ -284,14 +272,13 @@ public class Cinep {
 		}while (cine!=0);
 	}
 	public void peliculas() {
-
 		int cine;
 		do {
 			System.out.println("""
                     Seleccionar Ciudad
                     1) Lima
                     2) Puno
-                    3) Arequipa
+                    3) Juliaca
                     4) etc...
                     Ingrese una opcion:""");
 			cine = sc.nextInt();
@@ -303,7 +290,7 @@ public class Cinep {
 					ciuPelPuno();
 					break;
 				case 3:
-					ciuPelArequipa();
+					ciuPelJuliaca();
 					break;
 				case 0:
 					System.out.println("Saliendo del apartado...");
@@ -315,8 +302,7 @@ public class Cinep {
 	}
 	public void ciuPelLima() {}
 	public void ciuPelPuno() {}
-	public void ciuPelArequipa() {
-
+	public void ciuPelJuliaca() {
 		int cine;
 		do {
 			System.out.println("""
@@ -353,7 +339,8 @@ public class Cinep {
 			cine = sc.nextInt();
 			switch (cine) {
 				case 1:
-					ElPlanDelAsesino ();
+					pelicula = "El Plan del Asesino";
+					this.ElPlanDelAsesino();
 					break;
 				case 2:
 					break;
@@ -365,75 +352,67 @@ public class Cinep {
 				default:
 			}
 		}while (cine!=0);
-
 	}
 	public void ElPlanDelAsesino() {
-
-		int tiempo;
+		System.out.println("""
+					El Plan Del Asesino
+					Ingresar Tiempo de ocupacion
+					1) 05:20 pm
+					2) 10:20 pm
+					0) para regresar
+					Ingresar una opcion:""");
+		tiempo = sc.nextInt();
 		do {
-			this.contenido();
-			System.out.println("""
-                            El Plan Del Asesino
-                            Ingresar Tiempo de ocupacion
-                            1) 05:20 pm
-                            2) 10:20 pm
-                            0) para regresar
-                            Ingresar una opcion:""");
-			tiempo = sc.nextInt();
 			switch (tiempo) {
 				case 1:
-					sc.nextLine();
 					System.out.println("""
-                        Sitios Libres
-                        siendo x Ocupado
-                        y 0 Libre:
-                           a b c d e
-                        1  x x x x x
-                        2  O x O x x
-                        3  0 x 0 0 0
-                        4  0 0 0 0 0
-                        5  x x x x 0
-                        Ingrese un sitio (Ejm"e5"):""");
+							Sitios Libres
+							siendo x Ocupado
+							y 0 Libre:
+							   a b c d e
+							1  x x x x x
+							2  O x O x x
+							3  0 x 0 0 0
+							4  0 0 0 0 0
+							5  x x x x 0
+							Ingrese un sitio (Ejm"e5"):""");
 					String Car1 = sc.nextLine();
-					//insertar login e usar lo de abajo para un add array
 					System.out.println("""
-                                        Usted esta reservando
-                                        Asiento:"""+Car1+"""
-                                         Tiempo: 05:20 pm
-                                        Lugar:arequipa Mall Plaza
-                                        """);
+							Usted esta reservando
+							Asiento: """ + Car1 + """
+							Tiempo: 05:20 pm
+							Lugar: Juliaca
+							""");
 					break;
 				case 2:
 					System.out.println("""
-                        Sitios Libres
-                        siendo x Ocupado
-                        y 0 Libre:
-                           a b c d e
-                        1  x x x x x
-                        2  O x O x x
-                        3  0 x 0 0 0
-                        4  0 0 0 0 0
-                        5  x x x x 0
-                        Ingrese un sitio (Ejm"e5"):""");
+							Sitios Libres
+							siendo x Ocupado
+							y 0 Libre:
+							   a b c d e
+							1  x x x x x
+							2  O x O x x
+							3  0 x 0 0 0
+							4  0 0 0 0 0
+							5  x x x x 0
+							Ingrese un sitio (Ejm"e5"):""");
 					String Car2 = sc.nextLine();
-					//insertar login e usar lo de abajo para un add array
 					System.out.println("""
-                                        Usted esta reservando
-                                        Asiento:"""+Car2+"""
-                                         Tiempo: 10:20 pm
-                                        Lugar:arequipa Mall Plaza
-                                        """);
+							Usted esta reservando
+							Asiento: """ + Car2 + """
+							Tiempo: 10:20 pm
+							Lugar: Juliaca
+							""");
 					break;
 				case 0:
 					System.out.println("Estas saliendo..");
 					break;
 				default:
 					System.out.println("Opcion no valida.");
-					break;
-
 			}
-		}while (tiempo!=0);
-	}
+			sc.nextLine();
+		} while (tiempo!= 0) ;
+		}
 	public void arequipaMallPlaza() {
 
 		int cine;
@@ -985,7 +964,7 @@ public class Cinep {
 				case 1:
 				case 2:
 				case 3:
-					recogerDatosPublicitario(opcion_publi);
+					recogerDatosPublicitario1();
 					break;
 				case 6:
 					recogerDatosEvento();
@@ -999,7 +978,7 @@ public class Cinep {
 			}
 		} while (opcion_publi != 0);
 	}
-	public void recogerDatosPublicitario(int opcion) {
+	public void recogerDatosPublicitario1() {
 		System.out.println("Nombre completo:");
 		String nombre_publi = sc.next();
 		System.out.println("Nombre: " + nombre_publi);
