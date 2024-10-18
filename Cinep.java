@@ -2,58 +2,9 @@ import java.util.Scanner;
 
 public class Cinep {
 	Scanner sc= new Scanner(System.in);
-	private String pelicula;
+	private String pelicula, Car1;
 	private double  total,igv, subtotal, vuelto, pago, resto,costo2d=10,costo3d=18, costoniños2d=8,costoviejos=8,costoniños3d=15,costoviejos3d=15,costopromo2d=8,costopromo3d=12,costosocio2d =6,costosocio3d = 12;
 	private int opcion, tiempo;
-	public double total(){
-		igv = total * 0.18;
-		subtotal = total - igv;
-		System.out.println("SUBTOTAL " + subtotal);
-		System.out.println("IGV " + igv);
-		System.out.println("TOTAL A PAGAR " + total);
-		return total;
-	}
-	public double vuelto(){
-		System.out.println("Ingrese la cantidad a pagar:");
-		pago = sc.nextDouble();
-		vuelto = pago - total;
-		if (vuelto < 0){
-			System.out.println("Falta pagar " + -(vuelto));
-			System.out.println("Completa el monto a pagar");
-			resto = sc.nextDouble();
-			if(-(vuelto) == resto){
-				System.out.println("Pago Completo");
-			}
-			else if (-(vuelto)<resto) {
-				System.out.println("Usted tiene de vuelto: " + (resto + vuelto));
-			}
-			else{
-				System.out.println("No tiene dinero, deje ese objeto en su lugar. ");
-			}
-		}
-		else if (vuelto > 0){
-
-			System.out.println("Su vuelto es: " + vuelto);
-		}
-		else {
-			System.out.println("Pago completo");
-		}
-		return vuelto;
-	}
-	public void contenido(){
-		System.out.println("""
-                |-----------------------|
-                |        Sinopsis       |
-                |""" +"       "+ pelicula+ """  
-                      |
-                |Lorem ip               |
-                |      Lorem ipsu       |
-                |            Lorem Ipsum|
-                |                       |
-                |                       |
-                |-----------------------|
-                """);
-	}
 	public void menuprincipal(){
 		System.out.println("""
                
@@ -80,52 +31,41 @@ public class Cinep {
                 olllccc                                                                                                                                                   
                 \n
                 """);
-		System.out.print("1.Peliculas     ");
-		System.out.print("2.Cines    ");
-		System.out.print("3.Promociones    ");
-		System.out.print("4.Socio    ");
-		System.out.print("5:Dulceria    ");
-		System.out.print("6.Coorportivo    ");
-		System.out.print("7.Contactanos    ");
+		System.out.print("                   			1.Peliculas     ");
+		System.out.print("	2.Cines    ");
+		System.out.print("	3.Promociones    ");
+		System.out.print("	4.Socio    ");
+		System.out.print("	5:Dulceria    ");
+		System.out.print("	6.Coorportivo    ");
+		System.out.print("	7.Contactanos    ");
 		System.out.println("");
+		System.out.println("\n");
 		System.out.print("""
-                                        |-----------------------|                     |-----------------------| 
-                                        |      Pelicula 1(8)    |                     |     Pelicula 2(9)     |
-                                        |                       |                     |                       |
-                                        |Lorem ipsum            |                     |Lorem ipsum            |
-                                        |Lorem ipsum            |                     |Lorem ipsum            |
-                                        |Lorem ipsum            |                     |Lorem ipsum            |
-                                        |Lorem ipsum            |                     |Lorem ipsum            |
-                                        |                       |                     |                       |
-                                        |                       |                     |                       |
-                                        |-----------------------|                     |-----------------------|
+                                        |-----------------------|                     |-----------------------|                      	|-----------------------|
+                                        |      El Plan del      |                     |    	  Hellboy(9)      |                      	|      La Chica del     |
+                                        |     	Asesino(8)	    |                     |                       |                     	|      Alquiler(10)     |
+                                        |                       |                     |Lorem ipsum            |                   	  	|          			    |
+                                        |Lorem ipsum            |                     |Lorem ipsum            |		                    |Lorem ipsum            |
+                                        |Lorem ipsum            |                     |Lorem ipsum            |                         |Lorem ipsum            |
+                                        |Lorem ipsum            |                     |Lorem ipsum            |                	        |Lorem ipsum            |
+                                        |Lorem ipsum            |                     |                       |                 	    |Lorem ipsum            |
+                                        |                       |                     |                       |                 	    |                       |
+                                        |-----------------------|                     |-----------------------|                	       	|-----------------------|
                 """);
 		System.out.println("");
 		System.out.print("""
-                                        |-----------------------|                     |-----------------------| 
-                                        |     Pelicula 3(10)    |                     |     Pelicula 3(11)    |
-                                        |                       |                     |                       |
-                                        |Lorem ipsum            |                     |Lorem ipsum            |
-                                        |Lorem ipsum            |                     |Lorem ipsum            |
-                                        |Lorem ipsum            |                     |Lorem ipsum            |
-                                        |Lorem ipsum            |                     |Lorem ipsum            |
-                                        |                       |                     |                       |
-                                        |                       |                     |                       |
-                                        |-----------------------|                     |-----------------------|
+                                        |-----------------------|                     |-----------------------|						  	|-----------------------|
+                                        |  My Hero Academy(11)  |                     |    	 Guason 2(12)     |						  	|    La Sustancia(13)   |
+                                        |                       |                     |                       |							|                       |
+                                        |Lorem ipsum            |                     |Lorem ipsum            |							|Lorem ipsum            |
+                                        |Lorem ipsum            |                     |Lorem ipsum            |							|Lorem ipsum            |
+                                        |Lorem ipsum            |                     |Lorem ipsum            |							|Lorem ipsum            |
+                                        |Lorem ipsum            |                     |Lorem ipsum            |							|Lorem ipsum            |
+                                        |                       |                     |                       |							|                       |
+                                        |                       |                     |                       |							|                       |
+                                        |-----------------------|                     |-----------------------|							|-----------------------|
                 """);
-		System.out.println("");
-		System.out.print("""
-                                        |-----------------------|                     |-----------------------| 
-                                        |     Pelicula 5(12)    |                     |     Pelicula 6(13)    |
-                                        |                       |                     |                       |
-                                        |Lorem ipsum            |                     |Lorem ipsum            |
-                                        |Lorem ipsum            |                     |Lorem ipsum            |
-                                        |Lorem ipsum            |                     |Lorem ipsum            |
-                                        |Lorem ipsum            |                     |Lorem ipsum            |
-                                        |                       |                     |                       |
-                                        |                       |                     |                       |
-                                        |-----------------------|                     |-----------------------|
-                """);
+		System.out.println("\nEliga una opcion por favor:");
 		opcion = sc.nextInt();
 		switch (opcion){
 			case 1:
@@ -150,86 +90,223 @@ public class Cinep {
 				this.contactanos();
 				break;
 			case 8:
-				pelicula ="Pelicula 1";
-				this.ElPlanDelAsesino();
+				pelicula ="El Plan del Asesino";
+				this.pelicula();
 				break;
 			case 9:
-				pelicula ="Pelicula 2";
-				this.ElPlanDelAsesino();
+				pelicula ="Hellboy";
+				this.pelicula();
 				break;
 			case 10:
-				pelicula ="Pelicula 3";
-				this.ElPlanDelAsesino();
+				pelicula ="La chica del Alquiler";
+				this.pelicula();
 				break;
 			case 11:
-				pelicula ="Pelicula 4";
-				this.ElPlanDelAsesino();
+				pelicula ="My Hero Academy";
+				this.pelicula();;
 				break;
 			case 12:
-				pelicula ="Pelicula 5";
-				this.ElPlanDelAsesino();
+				pelicula ="Guason 2";
+				this.pelicula();
 				break;
 			case 13:
-				pelicula ="Pelicula 6";
-				this.ElPlanDelAsesino();
+				pelicula ="La sustancia";
+				this.pelicula();
 				break;
 		}
 
 	}
-	public void menuFiorella(){
-		int cine;
-		do {
-			System.out.println("""
-                    1) cines
-                    2) peliculas
-                    0) Salir
-                    *) Ingrese una opcion:""");
-			cine = sc.nextInt();
-			switch (cine) {
-				case 1:
-					this.cines();
-					break;
-				case 2:
-					this.peliculas();
-					break;
-				case 0:
-					System.out.println("Saliendo del apartado...");
-					break;
-				default:
-					System.out.println("Opcion no valida.");
-					break;
+	public double total(){
+		igv = total * 0.18;
+		subtotal = total - igv;
+		System.out.println("SUBTOTAL " + subtotal);
+		System.out.println("IGV " + igv);
+		System.out.println("TOTAL A PAGAR " + total);
+		this.vuelto();
+		return total;
+	}
+	public double vuelto(){
+		System.out.println("Ingrese la cantidad a pagar:");
+		pago = sc.nextDouble();
+		vuelto = pago - total;
+		if (vuelto < 0){
+			System.out.println("Falta pagar " + -(vuelto));
+			System.out.println("Completa el monto a pagar");
+			resto = sc.nextDouble();
+			if(-(vuelto) == resto){
+				this.tiempo();
+				System.out.println("Pago Completo");
+				System.out.println("DISFRUTE SU PELICULA");
+				System.out.println("--------- CINEPLANET --------");
 			}
-		}while (cine !=0);
+			else if (-(vuelto)<resto) {
+				System.out.println("Usted tiene de vuelto: " + (resto + vuelto));
+			}
+			else{
+				System.out.println("No tiene dinero, las butacas vuelven a estar disponibles ");
+			}
+		}
+		else if (vuelto > 0){
+			this.tiempo();
+			System.out.println("\nSu vuelto es: " + vuelto);
+			System.out.println("Pago Completo");
+			System.out.println("DISFRUTE SU PELICULA");
+			System.out.println("--------- CINEPLANET --------");
+		}
+		else {
+			this.tiempo();
+			System.out.println("Pago completo");
+			System.out.println("DISFRUTE SU PELICULA");
+			System.out.println("--------- CINEPLANET --------");
+		}
+		return vuelto;
+	}
+	public void contenido(){
+		System.out.println("""
+                |-----------------------|
+                |        Sinopsis       |
+                |""" +"       "+ pelicula+ """  
+                      |
+                |Lorem ip               |
+                |      Lorem ipsu       |
+                |            Lorem Ipsum|
+                |                       |
+                |                       |
+                |-----------------------|
+                """);
 	}
 	public void socio(){}
-	public void asientos(){}
+	public void asientos(){
+		System.out.println("\n"+"""
+							1  2  3  4  5  6  7  8  9  10 11 12 	13 14 15
+							
+						A   ○  ○  ○  ○  ●  ○  ○  ○  ○  ○  ○  ○
+						B	○  ○  ○  ○  ○  ○  ○  ○  ○  ○  ○  ○
+						C	○  ●  ●  ○  ○  ○  ○  ○  ○  ○  ○  ○
+						D	○  ○  ○  ○  ○  ●  ○  ○  ○  ○  ○  ○
+						E	○  ○  ○  ○  ○  ○  ○  ○  ○  ○  ○  ○
+						F	○  ●  ●  ○  ○  ○  ○  ○  ○  ○  ●  ○
+						G	○  ○  ○  ○  ○  ○  ●  ○  ○  ○  ○  ○
+						H	○  ○  ○  ○  ●  ○  ○  ○  ○  ○  ○  ○
+						I	○  ○  ○  ○  ○  ○  ○  ○  ○  ○  ○  ○     	○  ●  ●
+						J	○  ○  ○  ○  ○  ○  ●  ○  ○  ○  ○  ○		●  ○  ○
+						
+						Elegir un asiento con el siguiente formato("C2"):
+						""");
+		Car1 = sc.nextLine();
+		if (Car1.equals("")){
+		}
+		else{
+			this.mas_asientos();
+		}
+
+	}
+	public void mas_asientos(){
+		System.out.println("\n¿Quiere mas asientos?");
+		System.out.println("1. Si");
+		System.out.println("2. No");
+		opcion = sc.nextInt();
+		if(opcion == 1){
+			this.asientos();
+		}
+		else if(opcion == 2){
+			this.comprar();
+		}
+	}
+	public void comprar(){
+		if (Car1.equals("")){
+		}
+		else{
+			this.costo();
+		}
+	}
+	public void tiempo(){
+		if (tiempo ==1){
+			System.out.println("""
+							Usted esta comprando las siguientes butacas
+							Asiento: """ + Car1 + "  "+"""
+							Tiempo: 05:20 pm
+							Lugar: Juliaca
+							""");
+		} else if (tiempo ==2) {
+			System.out.println("""
+							Usted esta comprando las siguientes butacas
+							Asiento: """ + Car1 + "  "+"""
+							Tiempo: 10:20 pm
+							Lugar: Juliaca
+							""");
+
+		}
+	}
 	public double costo(){
-		int pagototal=0;
-		return pagototal;
+		System.out.println("""
+					Entradas Generales
+					1. General 2D						4.General 3D
+					S/.10								S/.18
+					2. Mayores 60 años 2D				5.Mayores 60 años 3D
+					s/.8								s/.15
+					3. Niños 2D							6.Niños 3D
+					s/.8								s/.15
+					0. Regresar
+					""");
+		System.out.println("Eliga que entrada quiere:");
+		opcion= sc.nextInt();
+		switch (opcion){
+			case 1:
+				total = costo2d;
+				this.total();
+				break;
+			case 2:
+				total= costoviejos;
+				this.total();
+				break;
+			case 3:
+				total = costoniños2d;
+				this.total();
+				break;
+			case 4:
+				total = costo3d;
+				this.total();
+				break;
+			case 5:
+				total = costoviejos3d;
+				this.total();
+				break;
+			case 6:
+				total = costoniños3d;
+				this.total();
+				break;
+			case 0:
+				this.asientos();
+				break;
+		}
+		return total;
 	}
 	public void cines(){
 		int cine;
 		do {
 			System.out.println("""
                     Seleccionar Ciudad
-                    1) Lima
+                    1) Juliaca
                     2) Puno
-                    3) Juliaca
-                    4) etc...
+                    3) Lima
+                    4) Etc...
+                    0) Regresar...
                     Ingrese una opcion:""");
 			cine = sc.nextInt();
 			switch (cine) {
 				case 1:
-					ciuLima();
+					ciuJuliaca();
 					break;
 				case 2:
 					ciuPuno();
 					break;
 				case 3:
-					ciuJuliaca();
+					ciuLima();
 					break;
 				case 0:
-					System.out.println("Saliendo del apartado...");
+					System.out.println("Regresando");
+					this.menuprincipal();
 					break;
 				default:
 					System.out.println("Opcion no valida.");
@@ -240,47 +317,31 @@ public class Cinep {
 	public void ciuPuno() {}
 	public void ciuJuliaca() {
 		int cine;
-		do {
-			System.out.println("""
-                    1) CP Arequipa Mall Plaza
-                        Av. Ejercito 793 Cayma
-                        2D  3D  REGULAR
-                    2) CP Arequipa Paseo Central
-                        Av. Arturo Ibañez S/N
-                        2D  REGULAR
-                    3) CP Arequipa Real Plaza
-                        Av. Ejercito 1009 Cayma
-                        2D  REGULAR  3D
-                    0) Para salir
-                    Ingrese a un Cine:""");
-			cine = sc.nextInt();
-			switch (cine) {
-				case 1:
-					arequipaMallPlaza();
-					break;
-				case 2:
-					break;
-				case 3:
-					break;
-				case 0:
-					System.out.println("Saliendo del apartado...");
-					break;
-				default:
-					System.out.println("Opcion no valida.");
-					break;
-			}
-		}while (cine!=0);
+			this.peliculas();
 	}
 	public void peliculas() {
 		int cine;
 		do {
 			System.out.println("""
-                    Seleccionar Ciudad
-                    1) Lima
-                    2) Puno
-                    3) Juliaca
-                    4) etc...
-                    Ingrese una opcion:""");
+Tenemos las siguientes peliculas:
+1)El Plan Del Asesino
+
+2)Hellboy: The Crooked Man
+                    
+3)La Chica del Alquile
+
+4)My Hero Academia : Ahora es tu Turno
+
+5)Guasón 2: Folie À Deux
+
+6)La Sustancia
+
+7)No Hables con Extraños
+
+8)Robot Salvaje
+
+9)Transformers Uno
+""");
 			cine = sc.nextInt();
 			switch (cine) {
 				case 1:
@@ -305,42 +366,12 @@ public class Cinep {
 	public void ciuPelJuliaca() {
 		int cine;
 		do {
-			System.out.println("""
-                    A que cine desea ir :D
-                    
-                    1)El Plan Del Asesino
-                        CP Arequipa Mall Plaza
-                        Av. Ejercito 793 Cayma
-                    2)Hellboy: The Crooked Man
-                        CP Arequipa Mall Plaza
-                        Av. Ejercito 793 Cayma
-                    3)La Chica del Alquile
-                        CP Arequipa Mall Plaza
-                        Av. Ejercito 793 Cayma
-                    4)My Hero Academia : Ahora es tu Turno
-                        CP Arequipa Paseo Central
-                        Av. Arturo Ibañez S/N
-                    5)Guasón 2: Folie À Deux
-                        CP Arequipa Paseo Central
-                        Av. Arturo Ibañez S/N
-                    6)La Sustancia
-                        CP Arequipa Paseo Central
-                        Av. Arturo Ibañez S/N
-                    7)No Hables con Extraños
-                        CP Arequipa Real Plaza
-                        Av. Ejercito 1009 Cayma
-                    8)Robot Salvaje
-                        CP Arequipa Real Plaza
-                        Av. Ejercito 1009 Cayma
-                    9)Transformers Uno
-                        CP Arequipa Real Plaza
-                        Av. Ejercito 1009 Cayma
-                    Ingrese una opcion:""");
+			this.peliculas();
 			cine = sc.nextInt();
 			switch (cine) {
 				case 1:
 					pelicula = "El Plan del Asesino";
-					this.ElPlanDelAsesino();
+					this.pelicula();
 					break;
 				case 2:
 					break;
@@ -353,10 +384,10 @@ public class Cinep {
 			}
 		}while (cine!=0);
 	}
-	public void ElPlanDelAsesino() {
-		System.out.println("""
-					El Plan Del Asesino
-					Ingresar Tiempo de ocupacion
+	public void pelicula() {
+		this.contenido();
+		System.out.println("\n" +"""
+					Tenemos los siguientes horarios:
 					1) 05:20 pm
 					2) 10:20 pm
 					0) para regresar
@@ -365,54 +396,19 @@ public class Cinep {
 		do {
 			switch (tiempo) {
 				case 1:
-					System.out.println("""
-							Sitios Libres
-							siendo x Ocupado
-							y 0 Libre:
-							   a b c d e
-							1  x x x x x
-							2  O x O x x
-							3  0 x 0 0 0
-							4  0 0 0 0 0
-							5  x x x x 0
-							Ingrese un sitio (Ejm"e5"):""");
-					String Car1 = sc.nextLine();
-					System.out.println("""
-							Usted esta reservando
-							Asiento: """ + Car1 + """
-							Tiempo: 05:20 pm
-							Lugar: Juliaca
-							""");
+					this.asientos();
 					break;
 				case 2:
-					System.out.println("""
-							Sitios Libres
-							siendo x Ocupado
-							y 0 Libre:
-							   a b c d e
-							1  x x x x x
-							2  O x O x x
-							3  0 x 0 0 0
-							4  0 0 0 0 0
-							5  x x x x 0
-							Ingrese un sitio (Ejm"e5"):""");
-					String Car2 = sc.nextLine();
-					System.out.println("""
-							Usted esta reservando
-							Asiento: """ + Car2 + """
-							Tiempo: 10:20 pm
-							Lugar: Juliaca
-							""");
+					this.asientos();
 					break;
 				case 0:
-					System.out.println("Estas saliendo..");
+					this.peliculas();
 					break;
 				default:
 					System.out.println("Opcion no valida.");
 			}
-			sc.nextLine();
-		} while (tiempo!= 0) ;
-		}
+		} while (Car1.equals("")) ;
+	}
 	public void arequipaMallPlaza() {
 
 		int cine;
@@ -440,7 +436,7 @@ public class Cinep {
 			cine = sc.nextInt();
 			switch (cine) {
 				case 1:
-					ElPlanDelAsesino();
+					this.pelicula();
 					break;
 				case 2:
 					break;
