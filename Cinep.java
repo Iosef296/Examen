@@ -1,10 +1,11 @@
+import javax.swing.plaf.synth.SynthOptionPaneUI;
 import java.util.Scanner;
 
 public class Cinep {
 	Scanner sc= new Scanner(System.in);
-	private String pelicula, Car1;
+	private String pelicula, Car1,dulceria;
 	private double  total,igv, subtotal, vuelto, pago, resto,costo2d=10,costo3d=18, costoniños2d=8,costoviejos=8,costoniños3d=15,costoviejos3d=15,costopromo2d=8,costopromo3d=12,costosocio2d =6,costosocio3d = 12;
-	private int opcion, tiempo;
+	private int opcion, tiempo, pelicula1,preciodulceria;
 	public void menuprincipal(){
 		System.out.println("""
                
@@ -320,8 +321,6 @@ public class Cinep {
 			this.peliculas();
 	}
 	public void peliculas() {
-		int cine;
-		do {
 			System.out.println("""
 Tenemos las siguientes peliculas:
 1)El Plan Del Asesino
@@ -341,48 +340,52 @@ Tenemos las siguientes peliculas:
 8)Robot Salvaje
 
 9)Transformers Uno
+
+0)Regresar
 """);
-			cine = sc.nextInt();
-			switch (cine) {
+			pelicula1 = sc.nextInt();
+			switch (pelicula1) {
 				case 1:
-					ciuPelLima();
-					break;
-				case 2:
-					ciuPelPuno();
-					break;
-				case 3:
-					ciuPelJuliaca();
-					break;
-				case 0:
-					System.out.println("Saliendo del apartado...");
-					break;
-				default:
-					System.out.println("Opcion no valida.");
-			}
-		}while (cine!=0);
-	}
-	public void ciuPelLima() {}
-	public void ciuPelPuno() {}
-	public void ciuPelJuliaca() {
-		int cine;
-		do {
-			this.peliculas();
-			cine = sc.nextInt();
-			switch (cine) {
-				case 1:
-					pelicula = "El Plan del Asesino";
+					pelicula ="El Plan del Asesino";
 					this.pelicula();
 					break;
 				case 2:
+					pelicula ="Hellboy: The Crooked Man";
+					this.pelicula();
 					break;
 				case 3:
+					pelicula ="My Hero Academia \n: Ahora es tu Turno";
+					this.pelicula();
+					break;
+				case 4:
+					pelicula ="El Plan del Asesino";
+					this.pelicula();
+					break;
+				case 5:
+					pelicula ="Guasón 2: Folie À Deux";
+					this.pelicula();
+					break;
+				case 6:
+					pelicula ="La Sustancia";
+					this.pelicula();
+				case 7:
+					pelicula ="No Hables con Extraños";
+					this.pelicula();
+				case 8:
+					pelicula ="Robot Salvaje";
+					this.pelicula();
+				case 9:
+					pelicula ="Transformers UNO";
+					this.pelicula();
 					break;
 				case 0:
-					System.out.println("Saliendo del apartado...");
+					this.menuprincipal();
 					break;
 				default:
+					System.out.println("\n");
+					this.peliculas();
 			}
-		}while (cine!=0);
+
 	}
 	public void pelicula() {
 		this.contenido();
@@ -408,227 +411,6 @@ Tenemos las siguientes peliculas:
 					System.out.println("Opcion no valida.");
 			}
 		} while (Car1.equals("")) ;
-	}
-	public void arequipaMallPlaza() {
-
-		int cine;
-		do {
-			System.out.println("""
-                    Peliculas de HOY !!
-                    1) El Plan Del Asesino
-                        Acción  2h  +14.
-                        2D REGULAR DOBLADA
-                        * 05:20 pm
-                        * 10:20 pm
-                    2) Hellboy: The Crooked Man
-                        Acción  1h 40min  +14.
-                        2D REGULAR DOBLADA
-                        * 03:10 pm
-                        * 08:00 pm
-                    3) My Hero Academia : Ahora es tu Turno
-                        Anime  2h  APT.
-                        2D REGULAR DOBLADA
-                        *02:50 pm
-                        *05:10 pm
-                        2D REGULAR SUBTITULADA
-                        *07:30 pm
-                    Ingrese una opcion:""");
-			cine = sc.nextInt();
-			switch (cine) {
-				case 1:
-					this.pelicula();
-					break;
-				case 2:
-					break;
-				default:
-					System.out.println("Opcion no valida.");
-					break;
-			}
-
-		}while (cine!=0);
-	}
-	public void contactanos(){
-		System.out.println("---Contactanos---");
-		System.out.println("Atención de Consultas o Incidencias");
-		System.out.println("Para asegurar la calidad y optimización de nuestro servicio " +
-				" por favor llenar todos los campos que solicitamos.¡Gracias!");
-		System.out.println("Nombre");
-		String nombre =sc.next();
-		System.out.println("Apellidos");
-		String apellidos=sc.next();
-		System.out.println("Eres Socio Cineplanet? (Sí/No)");
-		String socio=sc.next();
-		System.out.println("DNI");
-		int Dni=sc.nextInt();
-		System.out.println("Teléfono de contacto");
-		int telefono=sc.nextInt();
-		System.out.println("Correo");
-		String correo=sc.next();
-		System.out.println("Motivo");
-		System.out.println("""
-                        Opcion 1: ACTUALIZACION DE DATOS
-                        Opcion 2: COMPRA ONLINE
-                        Opcion 3: INCIDENCIAS EN CINES
-                        Opcion 4: PROGRAMA SOCIO
-                        Opcion 5: VENTA CORPORATIVOS
-                        Opcion 6: PROMOCIONES Y CAMPAÑAS
-                        Opcion 7: FELICITACIONES
-                        Opcion 8: OTROS MOTIVOS
-                        """);
-		int opcion=sc.nextInt();
-		sc.nextLine();
-		switch (opcion){
-			case 1:
-				System.out.println("Mensaje - Información que deseas actualizar.");
-				String MensajeAct=sc.next();
-				System.out.println("Archivos adjuntos - Para validar tus datos adjunta una" +
-						"imagen de tu Documento de Identidad en formato JPG PNG o PDF.");
-				String Act=sc.next();
-				System.out.println("Pronto recibirás un correo notificando la actualizacion" +
-						"de datos solicitada.");
-				System.out.println("Disfruta de tus Beneficios.");
-				break;
-			case 2:
-				System.out.println("Consulta");
-				System.out.println("""
-                        Opcion 1: No puedo realizar compras 
-                        Opcion 2: Se concretó el pago y no llega la orden de compra
-                        """);
-				System.out.println("Canal de compra");
-				System.out.println("""
-                        Opcion 1: APP
-                        Opcion 2: Wed
-                        Opcion 3: Boletería Express(Kiosko)
-                        Opcion 4: Presencial
-                        """);
-				System.out.println("Tipo de Compra");
-				System.out.println("""
-                        Opcion 1: PayU
-                        Opcion 2: Billetera Electrónica(Yape/Plin/Tunki)
-                        Opcion 3: Agora
-                        Opcion 4: Boletería Express(Visa/MAstercard)
-                        Opcion 5: Presencial (Caja en el Cine)
-                        """);
-				System.out.println("Cine");
-				System.out.println("Mensaje - Información que deseas actualizar.");
-				String MensajeOnl=sc.next();
-				System.out.println("Archivos adjuntos - Para validar tus datos adjunta una" +
-						"imagen de tu Documento de Identidad en formato JPG PNG o PDF.");
-				String Onl=sc.next();
-				System.out.println("Pronto recibirás un correo notificando la actualizacion" +
-						"de datos solicitada.");
-				System.out.println("Disfruta de tus Beneficios.");
-				break;
-			case 3:
-				System.out.println("Área");
-				System.out.println("""
-                        Opcion 1: Boletería
-                        Opcion 2: Dulcería
-                        Opcion 3: Ingreso a salas
-                        Opcion 4: Salas
-                        Opcion 5: Baños
-                        Opcion 6: Otras áreas
-                        """);
-				System.out.println("Mensaje - Información que deseas actualizar.");
-				String MensajeInc=sc.next();
-				System.out.println("Archivos adjuntos - Para validar tus datos adjunta una" +
-						"imagen de tu Documento de Identidad en formato JPG PNG o PDF.");
-				String Inc=sc.next();
-				System.out.println("Pronto recibirás un correo notificando la actualizacion" +
-						"de datos solicitada.");
-				System.out.println("Disfruta de tus Beneficios.");
-				break;
-			case 4:
-				System.out.println("Consulta");
-				System.out.println("""
-                        Opcion 1: Mis Visitas y Puntos
-                        Opcion 2: Mi Categoría Socio
-                        Opcion 3: Mis Beneficios
-                        """);
-				int opcion_soc=sc.nextInt();
-				switch (opcion_soc){
-					case 1:
-						System.out.println("Cine");
-						System.out.println("Número de Compra");
-						int numsoc=sc.nextInt();
-						System.out.println("Mensaje - Información que deseas actualizar.");
-						String Soc=sc.next();
-						System.out.println("Archivos adjuntos - Para validar tus datos adjunta una" +
-								"imagen de tu Documento de Identidad en formato JPG PNG o PDF.");
-						String ActSoc=sc.next();
-						System.out.println("Pronto recibirás un correo notificando la actualizacion" +
-								"de datos solicitada.");
-						System.out.println("Disfruta de tus Beneficios.");
-						break;
-					case 2:
-						System.out.println("Mensaje - Información que deseas actualizar.");
-						String MensajeSoc=sc.next();
-						System.out.println("Archivos adjuntos - Para validar tus datos adjunta una" +
-								"imagen de tu Documento de Identidad en formato JPG PNG o PDF.");
-						String soc=sc.next();
-						System.out.println("Pronto recibirás un correo notificando la actualizacion" +
-								"de datos solicitada.");
-						System.out.println("Disfruta de tus Beneficios.");
-						break;
-					case 3:
-						System.out.println(" Mensaje - Información que deseas actualizar.");
-						String MensajeSoci=sc.next();
-						System.out.println("Archivos adjuntos - Para validar tus datos adjunta una" +
-								"imagen de tu Documento de Identidad en formato JPG PNG o PDF.");
-						String soci=sc.next();
-						System.out.println("Pronto recibirás un correo notificando la actualizacion" +
-								"de datos solicitada.");
-						System.out.println("Disfruta de tus Beneficios.");
-						break;
-					default:
-						System.out.println("Opcion no valida");
-						break;
-				}
-				break;
-			case 5:
-				System.out.println("Link a la sección de ventas corporativas");
-				System.out.println("https://www.cineplanet.com.pe/ventas-corporativas");
-				break;
-			case 6:
-				System.out.println(" Mensaje - Información que deseas actualizar.");
-				String MensajePro=sc.next();
-				System.out.println("Archivos adjuntos - Para validar tus datos adjunta una" +
-						"imagen de tu Documento de Identidad en formato JPG PNG o PDF.");
-				String Pro=sc.next();
-				System.out.println("Pronto recibirás un correo notificando la actualizacion" +
-						"de datos solicitada.");
-				System.out.println("Disfruta de tus Beneficios.");
-				break;
-			case 7:
-				System.out.println("Me gustaría reconocer a ");
-				System.out.println("""
-                        Opcion 1: Cine
-                        Opcion 2: Área
-                        Opcion 3: Persona
-                        """);
-				System.out.println(" Mensaje - Información que deseas actualizar.");
-				String MensajeFel=sc.next();
-				System.out.println("Archivos adjuntos - Para validar tus datos adjunta una" +
-						"imagen de tu Documento de Identidad en formato JPG PNG o PDF.");
-				String Feli=sc.next();
-				System.out.println("Pronto recibirás un correo notificando la actualizacion" +
-						"de datos solicitada.");
-				System.out.println("Disfruta de tus Beneficios.");
-				break;
-			case 8:
-				System.out.println(" Mensaje - Información que deseas actualizar. ");
-				String MensajeMot=sc.next();
-				System.out.println("Archivos adjuntos - Para validar tus datos adjunta una" +
-						"imagen de tu Documento de Identidad en formato JPG PNG o PDF.");
-				String Mot=sc.next();
-				System.out.println("Pronto recibirás un correo notificando la actualizacion" +
-						"de datos solicitada.");
-				System.out.println("Disfruta de tus Beneficios.");
-				break;
-			default:
-				System.out.println("Opcion no valida");
-				break;
-		}
 	}
 	public void coorporativo(){
 		System.out.println("---Corporativo---");
@@ -1101,33 +883,237 @@ Tenemos las siguientes peliculas:
 		System.out.println("\n¡Gracias por su compra en Cineplanet Juliaca!");
 	}
 	public void dulceria(){
-		Scanner scanner = new Scanner(System.in);
-		String[] productos = {"Popcorn", "Gaseosa", "Nachos", "Caramelos", "Hot Dog"};
-		double[] precios = {12.50, 7.00, 10.00, 5.50, 8.00};
-		System.out.println("---- Dulcería Cineplanet Juliaca ----");
-		System.out.println("Productos disponibles:");
-		for (int i = 0; i < productos.length; i++) {
-			System.out.println((i + 1) + ". " + productos[i] + " - S/ " + precios[i]);
-		}
-		int[] cantidades = new int[productos.length];
-		for (int i = 0; i < productos.length; i++) {
-			System.out.print("Ingrese la cantidad de " + productos[i] + " que desea comprar: ");
-			cantidades[i] = scanner.nextInt();
-		}
-		double total = 0;
-		System.out.println("\nResumen de compra:");
-		for (int i = 0; i < productos.length; i++) {
-			if (cantidades[i] > 0) {
-				double subtotal = cantidades[i] * precios[i];
-				System.out.println(productos[i] + " x " + cantidades[i] + " = S/ " + subtotal);
-				total += subtotal;
-			}
-		}
-		System.out.println("\nTotal a pagar: S/ " + total);
-		System.out.println("\n¡Gracias por su compra en Cineplanet Juliaca!");
+		System.out.print("\n						1. PROMOCIONAL");
+		System.out.print("		2. COMBO");
+		System.out.print("		3. CANCHITA/HD/NACHOS");
+		System.out.print("		4. BEBIDAS");
+		System.out.print("		5. GOLOSINAS");
+		System.out.print("Seleccione que quiere comprar:");
+		opcion= sc.nextInt();
+	}
+	public void dulceriapromocional(){
+		System.out.println("""
+                |-------------------------------|
+                |   COMBO DOS SALADO + 2 M&M    |
+                | 1 Canchita Gigante (Salada) + |
+                |   2 Bebida (32oz) + 2 M&M's.  |
+                |                      			|
+                |                      			|
+                |                      S/. 47.00|
+                |-------------------------------|
+                """);
+
 	}
 	public static void main(String[] args) {
 		Cinep obj = new Cinep();
 		obj.menuprincipal();
+	}
+	public void contactanos() {
+		System.out.println("---Contactanos---");
+		System.out.println("Atención de Consultas o Incidencias");
+		System.out.println("Para asegurar la calidad y optimización de nuestro servicio " +
+				" por favor llenar todos los campos que solicitamos.¡Gracias!");
+		System.out.println("Nombre");
+		String nombre = sc.next();
+		System.out.println("Nombre" + nombre);
+		System.out.println("Apellidos");
+		String apellidos = sc.next();
+		System.out.println("Apellidos" + apellidos);
+		System.out.println("Eres Socio Cineplanet? (Sí/No)");
+		String socio = sc.next();
+		System.out.println("Socio" + socio);
+		System.out.println("DNI");
+		int Dni = sc.nextInt();
+		System.out.println("DNI" + Dni);
+		System.out.println("Teléfono de contacto");
+		int telefono = sc.nextInt();
+		System.out.println("Telefono" + telefono);
+		System.out.println("Correo");
+		String correo = sc.next();
+		System.out.println("Correo" + correo);
+		System.out.println("Motivo");
+		System.out.println("""
+				Opcion 1: ACTUALIZACION DE DATOS
+				Opcion 2: COMPRA ONLINE
+				Opcion 3: INCIDENCIAS EN CINES
+				Opcion 4: PROGRAMA SOCIO
+				Opcion 5: VENTA CORPORATIVOS
+				Opcion 6: PROMOCIONES Y CAMPAÑAS
+				Opcion 7: FELICITACIONES
+				Opcion 8: OTROS MOTIVOS
+				""");
+		int opcion = sc.nextInt();
+		sc.nextLine();
+		switch (opcion) {
+			case 1:
+				System.out.println("Mensaje - Información que deseas actualizar.");
+				String MensajeAct = sc.next();
+				System.out.println("Mensaje" + MensajeAct);
+				System.out.println("Archivos adjuntos - Para validar tus datos adjunta una" +
+						"imagen de tu Documento de Identidad en formato JPG PNG o PDF.");
+				String Act = sc.next();
+				System.out.println("Actualizar" + Act);
+				System.out.println("Pronto recibirás un correo notificando la actualizacion" +
+						"de datos solicitada.");
+				System.out.println("Disfruta de tus Beneficios.");
+				break;
+			case 2:
+				System.out.println("Consulta");
+				System.out.println("""
+						Opcion 1: No puedo realizar compras 
+						Opcion 2: Se concretó el pago y no llega la orden de compra
+						""");
+				System.out.println("Canal de compra");
+				System.out.println("""
+						Opcion 1: APP
+						Opcion 2: Wed
+						Opcion 3: Boletería Express(Kiosko)
+						Opcion 4: Presencial
+						""");
+				System.out.println("Tipo de Compra");
+				System.out.println("""
+						Opcion 1: PayU
+						Opcion 2: Billetera Electrónica(Yape/Plin/Tunki)
+						Opcion 3: Agora
+						Opcion 4: Boletería Express(Visa/MAstercard)
+						Opcion 5: Presencial (Caja en el Cine)
+						""");
+				System.out.println("Cine");
+				System.out.println("Mensaje - Información que deseas actualizar.");
+				String MensajeOnl = sc.next();
+				System.out.println("Mensaje" + MensajeOnl);
+				System.out.println("Archivos adjuntos - Para validar tus datos adjunta una" +
+						"imagen de tu Documento de Identidad en formato JPG PNG o PDF.");
+				String Onl = sc.next();
+				System.out.println("Archivos" + Onl);
+				System.out.println("Pronto recibirás un correo notificando la actualizacion" +
+						"de datos solicitada.");
+				System.out.println("Disfruta de tus Beneficios.");
+				break;
+			case 3:
+				System.out.println("Área");
+				System.out.println("""
+						Opcion 1: Boletería
+						Opcion 2: Dulcería
+						Opcion 3: Ingreso a salas
+						Opcion 4: Salas
+						Opcion 5: Baños
+						Opcion 6: Otras áreas
+						""");
+				System.out.println("Mensaje - Información que deseas actualizar.");
+				String MensajeInc = sc.next();
+				System.out.println("Mensaje" + MensajeInc);
+				System.out.println("Archivos adjuntos - Para validar tus datos adjunta una" +
+						"imagen de tu Documento de Identidad en formato JPG PNG o PDF.");
+				String Inc = sc.next();
+				System.out.println("Archivos" + Inc);
+				System.out.println("Pronto recibirás un correo notificando la actualizacion" +
+						"de datos solicitada.");
+				System.out.println("Disfruta de tus Beneficios.");
+				break;
+			case 4:
+				System.out.println("Consulta");
+				System.out.println("""
+						Opcion 1: Mis Visitas y Puntos
+						Opcion 2: Mi Categoría Socio
+						Opcion 3: Mis Beneficios
+						""");
+				int opcion_soc = sc.nextInt();
+				switch (opcion_soc) {
+					case 1:
+						System.out.println("Cine");
+						System.out.println("Número de Compra");
+						int numsoc = sc.nextInt();
+						System.out.println("Numero" + numsoc);
+						System.out.println("Mensaje - Información que deseas actualizar.");
+						String Soc = sc.next();
+						System.out.println("Mensaje" + Soc);
+						System.out.println("Archivos adjuntos - Para validar tus datos adjunta una" +
+								"imagen de tu Documento de Identidad en formato JPG PNG o PDF.");
+						String ActSoc = sc.next();
+						System.out.println("Archivos" + ActSoc);
+						System.out.println("Pronto recibirás un correo notificando la actualizacion" +
+								"de datos solicitada.");
+						System.out.println("Disfruta de tus Beneficios.");
+						break;
+					case 2:
+						System.out.println("Mensaje - Información que deseas actualizar.");
+						String MensajeSoc = sc.next();
+						System.out.println("Mensaje" + MensajeSoc);
+						System.out.println("Archivos adjuntos - Para validar tus datos adjunta una" +
+								"imagen de tu Documento de Identidad en formato JPG PNG o PDF.");
+						String soc = sc.next();
+						System.out.println("Archivos" + soc);
+						System.out.println("Pronto recibirás un correo notificando la actualizacion" +
+								"de datos solicitada.");
+						System.out.println("Disfruta de tus Beneficios.");
+						break;
+					case 3:
+						System.out.println(" Mensaje - Información que deseas actualizar.");
+						String MensajeSoci = sc.next();
+						System.out.println("Mensaje" + MensajeSoci);
+						System.out.println("Archivos adjuntos - Para validar tus datos adjunta una" +
+								"imagen de tu Documento de Identidad en formato JPG PNG o PDF.");
+						String soci = sc.next();
+						System.out.println("Archivos" + soci);
+						System.out.println("Pronto recibirás un correo notificando la actualizacion" +
+								"de datos solicitada.");
+						System.out.println("Disfruta de tus Beneficios.");
+						break;
+					default:
+						System.out.println("Opcion no valida");
+						break;
+				}
+				break;
+			case 5:
+				System.out.println("Link a la sección de ventas corporativas");
+				System.out.println("https://www.cineplanet.com.pe/ventas-corporativas");
+				break;
+			case 6:
+				System.out.println(" Mensaje - Información que deseas actualizar.");
+				String MensajePro = sc.next();
+				System.out.println("Mensaje" + MensajePro);
+				System.out.println("Archivos adjuntos - Para validar tus datos adjunta una" +
+						"imagen de tu Documento de Identidad en formato JPG PNG o PDF.");
+				String Pro = sc.next();
+				System.out.println("Archivos" + Pro);
+				System.out.println("Pronto recibirás un correo notificando la actualizacion" +
+						"de datos solicitada.");
+				System.out.println("Disfruta de tus Beneficios.");
+				break;
+			case 7:
+				System.out.println("Me gustaría reconocer a ");
+				System.out.println("""
+						Opcion 1: Cine
+						Opcion 2: Área
+						Opcion 3: Persona
+						""");
+				System.out.println(" Mensaje - Información que deseas actualizar.");
+				String MensajeFel = sc.next();
+				System.out.println("Mensaje" + MensajeFel);
+				System.out.println("Archivos adjuntos - Para validar tus datos adjunta una" +
+						"imagen de tu Documento de Identidad en formato JPG PNG o PDF.");
+				String Feli = sc.next();
+				System.out.println("Archivos" + Feli);
+				System.out.println("Pronto recibirás un correo notificando la actualizacion" +
+						"de datos solicitada.");
+				System.out.println("Disfruta de tus Beneficios.");
+				break;
+			case 8:
+				System.out.println(" Mensaje - Información que deseas actualizar. ");
+				String MensajeMot = sc.next();
+				System.out.println("Mensaje" + MensajeMot);
+				System.out.println("Archivos adjuntos - Para validar tus datos adjunta una" +
+						"imagen de tu Documento de Identidad en formato JPG PNG o PDF.");
+				String Mot = sc.next();
+				System.out.println("Archivos" + Mot);
+				System.out.println("Pronto recibirás un correo notificando la actualizacion" +
+						"de datos solicitada.");
+				System.out.println("Disfruta de tus Beneficios.");
+				break;
+			default:
+				System.out.println("Opcion no valida");
+				break;
+		}
 	}
 }
