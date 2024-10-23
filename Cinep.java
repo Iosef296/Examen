@@ -1,38 +1,40 @@
-import javax.swing.plaf.synth.SynthOptionPaneUI;
 import java.util.Scanner;
 
 public class Cinep {
 	Scanner sc= new Scanner(System.in);
-	private String pelicula, Car1,dulceria;
+	private String pelicula, Car1,dulceria,cine1, ciudad,evento,capacidad;
 	private double  total,igv, subtotal, vuelto, pago, resto,costo2d=10,costo3d=18, costoniños2d=8,costoviejos=8,costoniños3d=15,costoviejos3d=15,costopromo2d=8,costopromo3d=12,costosocio2d =6,costosocio3d = 12;
-	private int opcion, tiempo, pelicula1,preciodulceria;
+	private int opcion, tiempo, pelicula1,cine,preciodulceria,comboscoorporativo,cantidad=0,dia,mes ,año;
+
+
+	//IOSEF
 	public void menuprincipal(){
 		System.out.println("""
-               
-                                       ;coxO000kxolc;                                                                                                                                                                                                                                                                      
-                                       :oOXWWXOdlc;                                                                                                                                                 
-                                     :kXWWXkl;                                                                                                                                                     
-                                   ;xNMWXx:                                                                                                                                                         
-                                  c0WMWO:                          :oc                       :ooc                                        okxc                                     :dkd:                     
-                                 cKMMNx;                         ;dXW0cll                    :ooc                                        okxc                                     :dkd:             
-                                :OWMWk;     ;:ll:            :oOKOk0KOOKO:                                                              :0MWx                                     oNMXl             
-                                dNMMKc    o0XNWWKl      ;:: lKWMW0ccONNk:          :dkOOkxc  ckOd; ;oxkkkkxxl;    :dkOOko:  :dk00KK0kl  :0MWx   :dkckxxkx: :dkkkkkxl;    cdkOOko;  oXMW0kcc         
-                                kWMWk     xWMMMWXd   ldOKNXxcdOkl; ;dOo;          oKWWXKXKd  dWMKc dNMWKKNWWW0c  oXWN0OXWKl oNMWKO0NMNx;:0MWx   ddcxkxkxx:xWMWKKNWW0c ;xNWN00NW0c oXMWKOll           
-                               ;OMMWx     ;dOOOOOkd:cKMMMWXk:                    cKMWOc;;;   dWMKc dNMKc lxKMWk cKMWK  0WMk;oNMNd ;xWMKc:0MWk        WWWO:xWMKc lKMWx;oXMWK  KWWx oXMXl             
-                                kWMWx;:ccc; dKNWMMW0clOOkkkkko    ;od:           lXMWx       dWMKc dWM0: :lOMMO;lXMWX0000Ol oNMNo  xWMXl:0MWk;oKWN0SKWMXo;xWMKc :OMWO:dNMWX0000kc oXMKl             
-                       ;dko    c0WMWKOXNWW0clKWWNXKOl  o0NWMW0c :xKWNd           ;OWMXkxxko  dWMKc dWM0: :lOMMO;:0WWK     ; oNMWKkONMNx;:0MWk:xWMK   NMXo;kWMKc :OMWO;cKMWK       oXMKl             
-                        :kOl   :kXWMXkOKKKOl :dO000KKOloKNKkd:  lKN0o;            :xKNNNNXx; c0NO: oXNO: ;ckNNk; ckKXNNNXk: oNMWNXXKOo; ;dXXd;ckKXXXNNXkc;xXNO: ;kNNx; lkKNNNNKx; cON0c             
-                        ;oO0kkOkdkNMW0loO000kcc0WMMMWXx;;:;      ::                 ;:cc:;    ;:;  ;:c:    :cc;    ;:ccc:   oNMNd;;;      ::;   ;:clcc;   ;cc:   :cc;    ;cccc;    ;c:              
-                     ;:cloxkxxk00xx0WW0dkXXXXx:cxO0000Oxc                                                                   lKWXo                                                                   
-                   :coddxxxdl::dO0kx0WWKdc::;;   oKNWMWNk;     ;;                                                            coo:                                                                   
-                ;:loxxxxdol:;   :colldk0X0d:     ;okkxol:   ;;;                                                                                                                                     
-                codxxxddoc:;           ;lxOOkdlc;;   ;;::::;;                                                                                                                                       
-                oddddoolc:;;            :clooollccccc::;                                                                                                                                          
-                oooolllcc                                                                                                                                                   
-                olllccc                                                                                                                                                   
+
+                                       ;coxO000kxolc;
+                                       :oOXWWXOdlc;
+                                     :kXWWXkl;
+                                   ;xNMWXx:
+                                  c0WMWO:                          :oc                       :ooc                                        okxc                                     :dkd:
+                                 cKMMNx;                         ;dXW0cll                    :ooc                                        okxc                                     :dkd:
+                                :OWMWk;     ;:ll:            :oOKOk0KOOKO:                                                              :0MWx                                     oNMXl
+                                dNMMKc    o0XNWWKl      ;:: lKWMW0ccONNk:          :dkOOkxc  ckOd; ;oxkkkkxxl;    :dkOOko:  :dk00KK0kl  :0MWx   :dkckxxkx: :dkkkkkxl;    cdkOOko;  oXMW0kcc
+                                kWMWk     xWMMMWXd   ldOKNXxcdOkl; ;dOo;          oKWWXKXKd  dWMKc dNMWKKNWWW0c  oXWN0OXWKl oNMWKO0NMNx;:0MWx   ddcxkxkxx:xWMWKKNWW0c ;xNWN00NW0c oXMWKOll
+                               ;OMMWx     ;dOOOOOkd:cKMMMWXk:                    cKMWOc;;;   dWMKc dNMKc lxKMWk cKMWK  0WMk;oNMNd ;xWMKc:0MWk        WWWO:xWMKc lKMWx;oXMWK  KWWx oXMXl
+                                kWMWx;:ccc; dKNWMMW0clOOkkkkko    ;od:           lXMWx       dWMKc dWM0: :lOMMO;lXMWX0000Ol oNMNo  xWMXl:0MWk;oKWN0SKWMXo;xWMKc :OMWO:dNMWX0000kc oXMKl
+                       ;dko    c0WMWKOXNWW0clKWWNXKOl  o0NWMW0c :xKWNd           ;OWMXkxxko  dWMKc dWM0: :lOMMO;:0WWK     ; oNMWKkONMNx;:0MWk:xWMK   NMXo;kWMKc :OMWO;cKMWK       oXMKl
+                        :kOl   :kXWMXkOKKKOl :dO000KKOloKNKkd:  lKN0o;            :xKNNNNXx; c0NO: oXNO: ;ckNNk; ckKXNNNXk: oNMWNXXKOo; ;dXXd;ckKXXXNNXkc;xXNO: ;kNNx; lkKNNNNKx; cON0c
+                        ;oO0kkOkdkNMW0loO000kcc0WMMMWXx;;:;      ::                 ;:cc:;    ;:;  ;:c:    :cc;    ;:ccc:   oNMNd;;;      ::;   ;:clcc;   ;cc:   :cc;    ;cccc;    ;c:
+                     ;:cloxkxxk00xx0WW0dkXXXXx:cxO0000Oxc                                                                   lKWXo
+                   :coddxxxdl::dO0kx0WWKdc::;;   oKNWMWNk;     ;;                                                            coo:
+                ;:loxxxxdol:;   :colldk0X0d:     ;okkxol:   ;;;
+                codxxxddoc:;           ;lxOOkdlc;;   ;;::::;;
+                oddddoolc:;;            :clooollccccc::;
+                oooolllcc
+                olllccc
                 \n
                 """);
-		System.out.print("                   			1.Peliculas     ");
+		System.out.print("                   			1.Peliculas	");
 		System.out.print("	2.Cines    ");
 		System.out.print("	3.Promociones    ");
 		System.out.print("	4.Socio    ");
@@ -85,7 +87,7 @@ public class Cinep {
 				this.dulceria();
 				break;
 			case 6:
-				this.Menucoorporativo();
+				this.coorporativo();
 				break;
 			case 7:
 				this.contactanos();
@@ -114,6 +116,8 @@ public class Cinep {
 				pelicula ="La sustancia";
 				this.pelicula();
 				break;
+			default:
+				this.menuprincipal();
 		}
 
 	}
@@ -162,6 +166,665 @@ public class Cinep {
 		}
 		return vuelto;
 	}
+	public void socio(){}
+	public void comprar(){
+		if (Car1.equals("")){
+		}
+		else{
+			this.costo();
+		}
+	}
+	public double costo(){
+		System.out.println("""
+					Entradas Generales
+					1. General 2D						4.General 3D
+					S/.10								S/.18
+					2. Mayores 60 años 2D				5.Mayores 60 años 3D
+					s/.8								s/.15
+					3. Niños 2D							6.Niños 3D
+					s/.8								s/.15
+					0. Regresar
+					""");
+		System.out.println("¿Que entradas quiere?:");
+		opcion= sc.nextInt();
+		System.out.println("¿Cuantas entradas quiere?");
+		cantidad =sc.nextInt();
+		switch (opcion){
+			case 1:
+				total = costo2d * cantidad;
+				this.total();
+			break;
+			case 2:
+				total = costoviejos * cantidad;
+				this.total();
+				break;
+			case 3:
+				total = costoniños2d * cantidad;
+				this.total();
+				break;
+			case 4:
+				total = costo3d * cantidad;
+				this.total();
+				break;
+			case 5:
+				total = costoviejos3d * cantidad;
+				this.total();
+				break;
+			case 6:
+				total = costoniños3d * cantidad;
+				this.total();
+				break;
+			default:
+				this.costo();
+		}
+		return total;
+	}
+
+
+	//FIORELLA
+	//CINES
+	public void cines(){
+			sc.nextLine();
+			System.out.println("""
+                    
+			CINES
+			
+			Filtrar por:
+			
+			1. Ciudad
+			2. Formato
+                    
+					|-------------------------------|					|-------------------------------|
+					|                      			|					|                      			|
+					|   	  CP Alcazar (3)		|					|   	CP Mall Plaza (4)		|
+					|	 Av. Santa Cruz 814 - 816	|					|	 Av. Ejercito 793 Cayma		|
+					|    2D, REGULAR, 3D         	|					|    2D, REGULAR, 3D         	|
+					|                      			|					|                      			|
+					|-------------------------------|					|-------------------------------|
+					
+					|-------------------------------|					|-------------------------------|
+					|                      			|					|                      			|
+					|   	  CP Juliaca (5)		|					|   		CP Puno (6)			|
+					|	 Calle Tumbes 395 			|					|	 Av. Los Incas s/n			|
+					|    2D, REGULAR, 3D         	|					|    2D, REGULAR, 3D         	|
+					|                      			|					|                      			|
+					|-------------------------------|					|-------------------------------|
+					
+			0. Regresar
+                    """);
+			System.out.println("Elija el cine de su preferencia");
+			cine = sc.nextInt();
+			switch (cine) {
+				case 1:
+					this.cinesciudad();
+					break;
+				case 2:
+					this.cinesformato();
+					break;
+				case 3:
+					cine1 = "CP Alcazar";
+					this.cine();
+					break;
+				case 4:
+					cine1 = "CP Mall Plaza";
+					this.cine();
+					break;
+				case 5:
+					cine1 = "CP Juliaca";
+					this.cine();
+					break;
+				case 6:
+					cine1 = "CP Puno";
+					this.cine();
+					break;
+				case 0:
+					System.out.println("Regresando");
+					this.menuprincipal();
+					break;
+				default:
+					this.cines();
+
+			}
+
+	}
+	public void cine(){
+
+		this.peliculas();
+	}
+	public void asientos() {
+		sc.nextLine();
+		System.out.println("\n" + """
+					1  2  3  4  5  6  7  8  9  10 11 12 	13 14 15
+				
+				A   ○  ○  ○  ○  ●  ○  ○  ○  ○  ○  ○  ○
+				B	○  ○  ○  ○  ○  ○  ○  ○  ○  ○  ○  ○
+				C	○  ●  ●  ○  ○  ○  ○  ○  ○  ○  ○  ○
+				D	○  ○  ○  ○  ○  ●  ○  ○  ○  ○  ○  ○
+				E	○  ○  ○  ○  ○  ○  ○  ○  ○  ○  ○  ○
+				F	○  ●  ●  ○  ○  ○  ○  ○  ○  ○  ●  ○
+				G	○  ○  ○  ○  ○  ○  ●  ○  ○  ○  ○  ○
+				H	○  ○  ○  ○  ●  ○  ○  ○  ○  ○  ○  ○
+				I	○  ○  ○  ○  ○  ○  ○  ○  ○  ○  ○  ○     	○  ●  ●
+				J	○  ○  ○  ○  ○  ○  ●  ○  ○  ○  ○  ○		●  ○  ○
+				
+				Elegir un asiento con el siguiente formato("C2"):
+				""");
+		Car1 = sc.nextLine();
+		if (Car1.equals("")) {
+			this.comprar();
+		}
+
+	}
+	public void tiempo(){
+		if (tiempo ==1){
+			System.out.println("""
+							Usted esta comprando las siguientes butacas
+							Asiento: """ + Car1 + "  "+"""
+							Tiempo: 05:20 pm
+							""");
+			System.out.println("Lugar: "+cine1);
+		} else if (tiempo ==2) {
+			System.out.println("""
+							Usted esta comprando las siguientes butacas
+							Asiento: """ + Car1 + "  "+"""
+							Tiempo: 10:20 pm
+							""");
+			System.out.println("Lugar: "+cine1);
+		}
+	}
+	//CIUDADES
+	public void cinesciudad(){
+		this.ciudades();
+		System.out.println("\nELIJA LA CIUDAD DEL CINE QUE DESEA VISITAR");
+		cine = sc.nextInt();
+		switch (cine){
+			case 1:
+				this.ciuLima();
+				break;
+			case 2:
+				this.ciuArequipa();
+				break;
+			case 3:
+				this.ciuCajamarca();
+				break;
+			case 4:
+				this.ciuChiclayo();
+				break;
+			case 5:
+				this.ciuCusco();
+				break;
+			case 6:
+				this.ciuHuancayo();
+				break;
+			case 7:
+				this.ciuHuanuco();
+				break;
+			case 8:
+				this.ciuJuliaca();
+				break;
+			case 9:
+				this.ciuPiura();
+				break;
+			case 10:
+				this.ciuPucallpa();
+				break;
+			case 11:
+				this.ciuPuno();
+				break;
+			case 12:
+				this.ciuTacna();
+				break;
+			case 13:
+				this.ciuTrujllo();
+				break;
+			case 0:
+				this.cines();
+			default:
+				this.cinesciudad();
+		}
+	}
+	public void ciuLima() {
+		this.cinesLima();
+		if (cine==0){
+			this.cines();
+		}else{
+			this.cine();}
+	}
+	public void ciuArequipa() {
+		this.cinesArequipa();
+		if (cine==0){
+			this.cines();
+		}else{
+			this.cine();}
+	}
+	public void ciuCajamarca() {
+		this.cinesCajamarca();
+		if (cine==0){
+			this.cines();
+		}else{
+			this.cine();}
+	}
+	public void ciuChiclayo() {
+		this.cinesChiclayo();
+		if (cine==0){
+			this.cines();
+		}else{
+			this.cine();}
+	}
+	public void ciuCusco() {
+		this.cinesCusco();
+		if (cine==0){
+			this.cines();
+		}else{
+			this.cine();}
+	}
+	public void ciuHuancayo() {
+		this.cinesHuancayo();
+		if (cine==0){
+			this.cines();
+		}else{
+			this.cine();}
+	}
+	public void ciuHuanuco() {
+		this.cinesHuanuco();
+		if (cine==0){
+			this.cines();
+		}else{
+			this.cine();}
+	}
+	public void ciuJuliaca() {
+		this.cinesJuliaca();
+		if (cine==0){
+			this.cines();
+		}else{
+			this.cine();}
+	}
+	public void ciuPiura() {
+		this.cinesPiura();
+		if (cine==0){
+			this.cines();
+		}else{
+			this.cine();}
+	}
+	public void ciuPucallpa() {
+		this.cinesPucallpa();
+		if (cine==0){
+			this.cines();
+		}else{
+			this.cine();}
+	}
+	public void ciuPuno() {
+		this.cinesPuno();
+		if (cine==0){
+			this.cines();
+		}else{
+			this.cine();}
+	}
+	public void ciuTacna() {
+		this.cinesTacna();
+		if (cine==0){
+			this.cines();
+		}else{
+			this.cine();}
+	}
+	public void ciuTrujllo() {
+		this.cinesTrujllo();
+		if (cine==0){
+			this.cines();
+		}else{
+			this.cine();}
+	}
+	//FORMATO
+	public void cinesformato(){
+		System.out.println("TODAS LOS FORMATOS");
+		System.out.println("1. 2D");
+		System.out.println("2. 3D");
+		System.out.println("3. REGULAR");
+		System.out.println("\nELIJA EL FORMATO DE PELICULA QUE DESEA VER");
+		cine = sc.nextInt();
+		switch (cine){
+			case 1:
+				this.cine2d();
+				break;
+			case 2:
+				this.cine3d();
+				break;
+			case 3:
+				this.cineregular();
+				break;
+			case 0:
+				this.cines();
+			default:
+				this.cinesformato();
+		}
+	}
+	public void cine2d(){
+		System.out.println("""
+					
+					|-------------------------------|					|-------------------------------|
+					|                      			|					|                      			|
+					|   	  CP Alcazar (1)		|					|   		CP Brasil (2)		|
+					|	 Av. Santa Cruz 814 - 816	|					|	 Av. Brasil 714 - 792		|
+					|    2D, REGULAR, 3D         	|					|    2D, REGULAR, 3D         	|
+					|                      			|					|                      			|
+					|-------------------------------|					|-------------------------------|
+					
+					|-------------------------------|					|-------------------------------|
+					|                      			|					|                      			|
+					|    CP Caminos del Inca (3)    |					|   	CP El Polo (4)			|
+					|	 Av. Inca 241 				|					|	 Av. El Polo 695			|
+					|    2D, REGULAR, 3D         	|					|    2D, REGULAR, 3D         	|
+					|                      			|					|                      			|
+					|-------------------------------|					|-------------------------------|
+					
+					|-------------------------------|					|-------------------------------|
+					|                      			|					|                      			|
+					|   CP Arequipa Mall Plaza (5)	|					|    CP Paseo Central (6)		|
+					|	Av. Ejercito 814 - 816		|					|	 Av. Arturo Ibañez s/n		|
+					|   2D, REGULAR, 3D         	|					|    2D, REGULAR	        	|
+					|                      			|					|                      			|
+					|-------------------------------|					|-------------------------------|
+					
+					|-------------------------------|					|-------------------------------|
+					|                      			|					|                      			|
+					|   CP Chiclayo Mall Plaza (7)	|					|  CP Chiclayo Real Plaza (8)	|
+					|	Av. Panamericana 814 - 816	|					|  Av. Miguel Cervantes 300		|
+					|   2D, REGULAR, 3D         	|					|  2D, REGULAR, 3D	        	|
+					|                      			|					|                      			|
+					|-------------------------------|					|-------------------------------|
+					
+				
+				0. Regresar
+				
+				ELIJA UN CINE:	
+				""");
+		cine = sc.nextInt();
+		switch (cine){
+			case 1:
+				cine1= "CP Alcazar";
+				this.cine();
+				break;
+			case 2:
+				cine1= "CP Brasil";
+				this.cine();
+				break;
+			case 3:
+				cine1= "CP Caminos del Inca";
+				this.cine();
+				break;
+			case 4:
+				cine1= "CP El Polo";
+				this.cine();
+				break;
+			case 5:
+				cine1= "Arequipa Mall Plaza";
+				this.cine();
+				break;
+			case 6:
+				cine1= "CP Paseo Central";
+				this.cine();
+				break;
+			case 7:
+				cine1= "Chiclayo Mall Plaza";
+				this.cine();
+				break;
+			case 8:
+				cine1= "Chiclayo Real Plaza";
+				this.cine();
+				break;
+			case 0:
+				this.cines();
+				break;
+			default:
+				this.cine2d();
+		}
+	}
+	public void cineregular(){
+		System.out.println("""
+					
+					|-------------------------------|					|-------------------------------|
+					|                      			|					|                      			|
+					|   	  CP Alcazar (1)		|					|   		CP Brasil (2)		|
+					|	 Av. Santa Cruz 814 - 816	|					|	 Av. Brasil 714 - 792		|
+					|    2D, REGULAR, 3D         	|					|    2D, REGULAR, 3D         	|
+					|                      			|					|                      			|
+					|-------------------------------|					|-------------------------------|
+					
+					|-------------------------------|					|-------------------------------|
+					|                      			|					|                      			|
+					|    CP Caminos del Inca (3)    |					|   	CP El Polo (4)			|
+					|	 Av. Inca 241 				|					|	 Av. El Polo 695			|
+					|    2D, REGULAR, 3D         	|					|    2D, REGULAR, 3D         	|
+					|                      			|					|                      			|
+					|-------------------------------|					|-------------------------------|
+					
+					|-------------------------------|					|-------------------------------|
+					|                      			|					|                      			|
+					|   CP Arequipa Mall Plaza (5)	|					|    CP Paseo Central (6)		|
+					|	Av. Ejercito 814 - 816		|					|	 Av. Arturo Ibañez s/n		|
+					|   2D, REGULAR, 3D         	|					|    2D, REGULAR	        	|
+					|                      			|					|                      			|
+					|-------------------------------|					|-------------------------------|
+					
+					|-------------------------------|					|-------------------------------|
+					|                      			|					|                      			|
+					|   CP Chiclayo Mall Plaza (7)	|					|  CP Chiclayo Real Plaza (8)	|
+					|	Av. Panamericana 814 - 816	|					|  Av. Miguel Cervantes 300		|
+					|   2D, REGULAR, 3D         	|					|  2D, REGULAR, 3D	        	|
+					|                      			|					|                      			|
+					|-------------------------------|					|-------------------------------|
+					
+				
+				0. Regresar
+				
+				ELIJA UN CINE:	
+				""");
+		cine = sc.nextInt();
+		switch (cine){
+			case 1:
+				cine1= "CP Alcazar";
+				this.cine();
+				break;
+			case 2:
+				cine1= "CP Brasil";
+				this.cine();
+				break;
+			case 3:
+				cine1= "CP Caminos del Inca";
+				this.cine();
+				break;
+			case 4:
+				cine1= "CP El Polo";
+				this.cine();
+				break;
+			case 5:
+				cine1= "Arequipa Mall Plaza";
+				this.cine();
+				break;
+			case 6:
+				cine1= "CP Paseo Central";
+				this.cine();
+				break;
+			case 7:
+				cine1= "Chiclayo Mall Plaza";
+				this.cine();
+				break;
+			case 8:
+				cine1= "Chiclayo Real Plaza";
+				this.cine();
+				break;
+			case 0:
+				this.cines();
+				break;
+			default:
+				this.cine2d();
+		}
+	}
+	public void cine3d(){
+		System.out.println("""
+					
+					|-------------------------------|					|-------------------------------|
+					|                      			|					|                      			|
+					|   	  CP Alcazar (1)		|					|   		CP Brasil (2)		|
+					|	 Av. Santa Cruz 814 - 816	|					|	 Av. Brasil 714 - 792		|
+					|    2D, REGULAR, 3D         	|					|    2D, REGULAR, 3D         	|
+					|                      			|					|                      			|
+					|-------------------------------|					|-------------------------------|
+					
+					|-------------------------------|					|-------------------------------|
+					|                      			|					|                      			|
+					|    CP Caminos del Inca (3)    |					|   	CP El Polo (4)			|
+					|	 Av. Inca 241 				|					|	 Av. El Polo 695			|
+					|    2D, REGULAR, 3D         	|					|    2D, REGULAR, 3D         	|
+					|                      			|					|                      			|
+					|-------------------------------|					|-------------------------------|
+					
+					|-------------------------------|					|-------------------------------|
+					|                      			|					|                      			|
+					|   CP Arequipa Mall Plaza (5)	|					|    	 CP Juliaca (6) 		|
+					|	Av. Ejercito 814 - 816		|					|	 Calle Tumbes s/n			|
+					|   2D, REGULAR, 3D         	|					|    2D, REGULAR,  3D	       	|
+					|                      			|					|                      			|
+					|-------------------------------|					|-------------------------------|
+					
+					|-------------------------------|					|-------------------------------|
+					|                      			|					|                      			|
+					|   	CP Trujillo(7)			|					|  	CP Trujillo Real Plaza (8)	|
+					|	Jr. Marisacal 537			|					|  	Av. Cesar Vallejo 1345		|
+					|   2D, REGULAR, 3D	        	|					|  	2D, REGULAR, 3D	        	|
+					|                      			|					|                      			|
+					|-------------------------------|					|-------------------------------|
+					
+				
+				0. Regresar
+				
+				ELIJA UN CINE:	
+				""");
+		cine = sc.nextInt();
+		switch (cine){
+			case 1:
+				cine1= "CP Alcazar";
+				this.cine();
+				break;
+			case 2:
+				cine1= "CP Brasil";
+				this.cine();
+				break;
+			case 3:
+				cine1= "CP Caminos del Inca";
+				this.cine();
+				break;
+			case 4:
+				cine1= "CP El Polo";
+				this.cine();
+				break;
+			case 5:
+				cine1= "Arequipa Mall Plaza";
+				this.cine();
+				break;
+			case 6:
+				cine1= "CP Juliaca";
+				this.cine();
+				break;
+			case 7:
+				cine1= "Trujillo";
+				this.cine();
+				break;
+			case 8:
+				cine1= "Trujillo Real Plaza";
+				this.cine();
+				break;
+			case 0:
+				this.cines();
+				break;
+			default:
+				this.cine3d();
+		}
+	}
+	//PELICULAS
+	public void peliculas() {
+		System.out.println("\nEn "+ cine1 + " tenemos las siguientes peliculas:");
+		System.out.println( """
+1)El Plan Del Asesino
+2)Hellboy: The Crooked Man
+3)La Chica del Alquile
+4)My Hero Academia : Ahora es tu Turno
+5)Guasón 2: Folie À Deux
+6)La Sustancia
+7)No Hables con Extraños
+8)Robot Salvaje
+9)Transformers Uno
+
+0)Regresar
+""");
+		pelicula1 = sc.nextInt();
+		switch (pelicula1) {
+			case 1:
+				pelicula ="El Plan del Asesino";
+				this.pelicula();
+				break;
+			case 2:
+				pelicula ="Hellboy: The Crooked Man";
+				this.pelicula();
+				break;
+			case 3:
+				pelicula ="My Hero Academia \n: Ahora es tu Turno";
+				this.pelicula();
+				break;
+			case 4:
+				pelicula ="El Plan del Asesino";
+				this.pelicula();
+				break;
+			case 5:
+				pelicula ="Guasón 2: Folie À Deux";
+				this.pelicula();
+				break;
+			case 6:
+				pelicula ="La Sustancia";
+				this.pelicula();
+			case 7:
+				pelicula ="No Hables con Extraños";
+				this.pelicula();
+			case 8:
+				pelicula ="Robot Salvaje";
+				this.pelicula();
+			case 9:
+				pelicula ="Transformers UNO";
+				this.pelicula();
+				break;
+			case 0:
+				this.menuprincipal();
+				break;
+			default:
+				System.out.println("\n");
+				this.peliculas();
+		}
+
+	}
+	public void pelicula() {
+		this.contenido();
+		System.out.println("\n" +"""
+					Tenemos los siguientes horarios:
+					1) 05:20 pm
+					2) 10:20 pm
+					0) para regresar
+					Ingresar una opcion:""");
+		tiempo = sc.nextInt();
+			switch (tiempo) {
+				case 1:
+					this.asientos();
+					break;
+				case 2:
+					this.asientos();
+					break;
+				case 0:
+					this.peliculas();
+					break;
+				default:
+					System.out.println("Opcion no valida.");
+					this.pelicula();
+			}
+	}
 	public void contenido(){
 		System.out.println("""
                 |-----------------------|
@@ -176,738 +839,1874 @@ public class Cinep {
                 |-----------------------|
                 """);
 	}
-	public void socio(){}
-	public void asientos(){
-		System.out.println("\n"+"""
-							1  2  3  4  5  6  7  8  9  10 11 12 	13 14 15
-							
-						A   ○  ○  ○  ○  ●  ○  ○  ○  ○  ○  ○  ○
-						B	○  ○  ○  ○  ○  ○  ○  ○  ○  ○  ○  ○
-						C	○  ●  ●  ○  ○  ○  ○  ○  ○  ○  ○  ○
-						D	○  ○  ○  ○  ○  ●  ○  ○  ○  ○  ○  ○
-						E	○  ○  ○  ○  ○  ○  ○  ○  ○  ○  ○  ○
-						F	○  ●  ●  ○  ○  ○  ○  ○  ○  ○  ●  ○
-						G	○  ○  ○  ○  ○  ○  ●  ○  ○  ○  ○  ○
-						H	○  ○  ○  ○  ●  ○  ○  ○  ○  ○  ○  ○
-						I	○  ○  ○  ○  ○  ○  ○  ○  ○  ○  ○  ○     	○  ●  ●
-						J	○  ○  ○  ○  ○  ○  ●  ○  ○  ○  ○  ○		●  ○  ○
-						
-						Elegir un asiento con el siguiente formato("C2"):
-						""");
-		Car1 = sc.nextLine();
-		if (Car1.equals("")){
-		}
-		else{
-			this.mas_asientos();
-		}
 
-	}
-	public void mas_asientos(){
-		System.out.println("\n¿Quiere mas asientos?");
-		System.out.println("1. Si");
-		System.out.println("2. No");
-		opcion = sc.nextInt();
-		if(opcion == 1){
-			this.asientos();
-		}
-		else if(opcion == 2){
-			this.comprar();
-		}
-	}
-	public void comprar(){
-		if (Car1.equals("")){
-		}
-		else{
-			this.costo();
-		}
-	}
-	public void tiempo(){
-		if (tiempo ==1){
-			System.out.println("""
-							Usted esta comprando las siguientes butacas
-							Asiento: """ + Car1 + "  "+"""
-							Tiempo: 05:20 pm
-							Lugar: Juliaca
-							""");
-		} else if (tiempo ==2) {
-			System.out.println("""
-							Usted esta comprando las siguientes butacas
-							Asiento: """ + Car1 + "  "+"""
-							Tiempo: 10:20 pm
-							Lugar: Juliaca
-							""");
 
-		}
-	}
-	public double costo(){
+	//PAMELA
+	//PROMOCIONES
+	public void promociones(){
+		System.out.print("""
+				
+				1)
+				Eres ENTEL,								|---------------------------|
+				eres CINE								|	  #########     == \s	|
+				                  						|	############# =====\s	|
+				Cine todo el año                 		|	#####    #####  ====	|
+				                  						|	##############  ====	|
+				|---------------------------|           |	##############  ====	|
+				|  Terminos y Condiciones   |           |	#####           ====	|
+				|---------------------------|	        |	############# ======	|
+				                    					|	  ##########   === \s	|
+														|---------------------------|
+				""");
 		System.out.println("""
-					Entradas Generales
-					1. General 2D						4.General 3D
-					S/.10								S/.18
-					2. Mayores 60 años 2D				5.Mayores 60 años 3D
-					s/.8								s/.15
-					3. Niños 2D							6.Niños 3D
-					s/.8								s/.15
-					0. Regresar
-					""");
-		System.out.println("Eliga que entrada quiere:");
+				
+				2)
+				Obten tu								|---------------------------|
+				combo									|	  #########     == \s	|
+				Entel Mix                  				|	############# =====\s	|
+				hasta el                 				|	#####    #####  ====	|
+				10.11                  					|	##############  ====	|
+				          								|	##############  ====	|
+				|---------------------------|           |	#####           ====	|
+				|  Terminos y Condiciones   |	        |	############# ======	|
+				|---------------------------|           |	  ##########   === \s	|
+														|---------------------------|
+				""");
+		System.out.println("0. Regresar");
+		System.out.println("Leer Terminos y Condiciones");
+		opcion=sc.nextInt();
+		switch(opcion){
+			case 1:
+				this.promocion1();
+				break;
+			case 2:
+				this.promocion2();
+				break;
+			case 0:
+				this.menuprincipal();
+			default:
+				this.promociones();
+		}
+	}
+	public void promocion1(){
+		System.out.println("""
+				TÉRMINOS Y CONDICIONES GENERALES DE LA PROMOCIÓN:
+				• El código que otorgará Entel a sus usuarios se realizará a través de SMS y de la
+				App Mi Entel. Dicha entrega deberá contar con la siguiente información: (i)
+				código alfanumérico; (ii) vigencia; y, (iv) nombre del remitente.
+				• El cliente podrá canjear el código en la página web, aplicativo móvil de
+				Cineplanet o boletería que se encuentren habilitadas en Cineplanet,
+				registrando los códigos que se han adquirido de Entel.
+				• Para el caso de página web y aplicativo móvil de Cineplanet, el cliente deberá
+				entrar a la Web o App de Cineplanet y digitar el código en la sección “Canjea
+				tus códigos” para la función elegida de la semana. En boleterías, los códigos se
+				deberán mostrar directamente desde la App Entel o el SMS recibido.
+				• Válido para clientes con líneas activas Entel prepago, postpago, hogar y
+				corporativas (móvil, BAM, BAFI).
+				• Códigos son válidos solo durante la semana en que se solicitaron (semana
+				considerada desde las 00:00:01 horas del lunes hasta las 23:59:59 horas del
+				domingo).
+				• Máximo 2 códigos a la semana por línea celular y/o por servicio fijo
+				contratado.
+				• Beneficio aplica sobre el precio de 1 entrada general del día que se utilice la
+				promoción.
+				• No válido las capturas de pantallas.
+				• No válido para películas en semana de estreno ni para películas bloqueadas
+				por el distribuidor. No aplica con otras promociones.
+				• No válido para películas en preestreno, ni contenido alternativo emitido por
+				Cineplanet (conciertos, animes, unipersonales, campeonatos, entre otros),
+				Festiplanet o Día del Cine.
+				• Acumula puntos y visitas para los clientes inscritos en el programa Socio
+				Cineplanet. Para realizar el canje de su código el cliente Entel debe ingresar o
+				registrarse como Socio Cineplanet. Esta condición será obligatoria para que
+				los clientes Entel puedan acumular los beneficios propios del programa Socio
+				Cineplanet.""");
+		System.out.println("0. Regresar");
+	}
+	public void promocion2(){
+		System.out.println("""
+				Condiciones generales del beneficio JUEVES ENTEL S/10 dto en Combo 2 Mix – “Combo ENTEL”
+				• La promoción podrá ser solicitada enviando un SMS con la palabra CONFITERIA al 144 o
+				mediante el AppEntel el jueves 03/10/2024 (desde las 11:00:00 hasta 23:59:59).
+				• Válido para clientes Entel con líneas y servicios activos (Entel prepago, postpago,
+				empresa móvil, hogar y corporativas).
+				• Si eres Entel prepago, postpago o empresa móvil: por la App Entel o enviando un SMS
+				con la palabra CONFITERIA al 144 el 03/10/2024 (desde las 11:00 AM hasta las 23:59:59
+				hrs.).
+				• Si eres Entel Hogar: por la App Entel el 03/10/2024 (desde las 11:00 AM hasta las
+				23:59:59 hrs.).
+				• Si eres Entel empresas con servicios fijos BAM/BAFI deberás ingresar por la App Entel el
+				03/10/2024 (desde las 11:00 AM hasta las 23:59:59 hrs.).
+				• Si eres Entel empresas con servicios fijos TI, enlace de datos, servicios de seguridad,
+				Fibra y VAS deberás ingresar al link https://www.entel.pe/jsf que te deriva al WhatsApp
+				Entel 981002000 y tendrás que seleccionar la opción de CONFITERIA el 03/10/2024
+				(desde las 11:00 AM hasta las 23:59:59 hrs.).
+				• Cada cliente puede solicitar a Entel como máximo 1 código por línea celular y/o servicio
+				hogar contratado que equivale a S/10 dto en un Combo 2 Mix (1 Canchita Gigante Mixta
+				+ 2 Bebidas 32 oz) de Cineplanet. El descuento se aplica sobre el precio del Combo 2 Mix
+				según el cine elegido.
+				• Adicionalmente, por la compra del combo con el código de descuento, se le obsequiará
+				un vaso Entel.
+				• Para realizar el canje del código, primero el cliente deberá, al momento de realizar su
+				pedido, indicar que desea adquirir el “combo ENTEL” debiendo presentar el código o
+				dictar el código enviado por SMS o solicitado por el App ENTEL. De no indicar que desea
+				adquirir el combo ENTEL y/o no entregar el código activo y vigente, su pedido será
+				comandado a precio regular de cada local y no podrá ser modificado.
+				• No válido las capturas de pantallas para canjear el beneficio.
+				• Promoción no válida para compra por canales digitales, app o web de Cineplanet. La
+				redención del código es sólo de manera presencial en el área de Confitería del Cine
+				durante el horario de atención.
+				• Códigos son válidos sólo durante las fechas de vigencia de la campaña (desde las 11:00
+				am del 03 de octubre hasta las 23:59:59 horas del domingo 10 de noviembre).
+				• Para ver los locales que ingresan en la promoción ingresar a
+				https://www.cineplanet.com.pe/
+				• Los horarios de atención dependen de cada local de Cineplanet y podrán variar de
+				acuerdo con la coyuntura según disposiciones del gobierno y las entidades ediles.
+				• La entrega del bucket brandeado y vasos por aniversario está sujeto a disponibilidad del
+				local. El stock es limitado.
+				• Stock mínimo de códigos para la campaña: 1000.
+				• Stock máximo de vasos y cajas brandeadas por campaña: 37 000. Agotado este stock, se
+				entregará el Combo 2 Mix sin bucket brandeado y sin vaso Entel.
+				• Promoción válida de lunes a domingo incluido feriado.
+				• Códigos no ampliables, no renovables.
+				• No aplica Refil.
+				• Prohibido la reventa.
+				• Bebida a entregar sólo gaseosa.
+				• Válido sólo para pop corn mixto, no válido para opción salada o dulce.
+				• Cineplanet no se hace responsable por el mal manejo de los códigos.""");
+		System.out.println("0. Regresar");
+	}
+	//DULCERIA
+	public void dulceria(){
+		this.ciudades();
+		System.out.println("\nEscoga un cineplanet para comprar productos de nuestra dulceria");
+		cine = sc.nextInt();
+		switch (cine){
+			case 1:
+				this.cinesLima();
+				if(cine==0){
+					this.dulceria();
+				}
+				else {
+					this.dulceria1();
+				}
+				break;
+			case 2:
+				this.cinesArequipa();
+				if(cine==0){
+					this.dulceria();
+				}
+				else {
+					this.dulceria1();
+				}
+				break;
+			case 3:
+				this.cinesCajamarca();
+				if(cine==0){
+					this.dulceria();
+				}
+				else {
+					this.dulceria1();
+				}
+				break;
+			case 4:
+				this.cinesChiclayo();
+				if(cine==0){
+					this.dulceria();
+				}
+				else {
+					this.dulceria1();
+				}
+				break;
+			case 5:
+				this.cinesCusco();
+				if(cine==0){
+					this.dulceria();
+				}
+				else {
+					this.dulceria1();
+				}
+				break;
+			case 6:
+				this.cinesHuancayo();
+				if(cine==0){
+					this.dulceria();
+				}
+				else {
+					this.dulceria1();
+				}
+				break;
+			case 7:
+				this.cinesHuanuco();
+				if(cine==0){
+					this.dulceria();
+				}
+				else {
+					this.dulceria1();
+				}
+				break;
+			case 8:
+				this.cinesJuliaca();
+				if(cine==0){
+					this.dulceria();
+				}
+				else {
+					this.dulceria1();
+				}
+				break;
+			case 9:
+				this.cinesPiura();
+				if(cine==0){
+					this.dulceria();
+				}
+				else {
+					this.dulceria1();
+				}
+				break;
+			case 10:
+				this.cinesPucallpa();
+				if(cine==0){
+					this.dulceria();
+				}
+				else {
+					this.dulceria1();
+				}
+				break;
+			case 11:
+				this.cinesPuno();
+				if(cine==0){
+					this.dulceria();
+				}
+				else {
+					this.dulceria1();
+				}
+				break;
+			case 12:
+				this.cinesTacna();
+				if(cine==0){
+					this.dulceria();
+				}
+				else {
+					this.dulceria1();
+				}
+				break;
+			case 13:
+				this.cinesTrujllo();
+				if(cine==0){
+					this.dulceria();
+				}
+				else {
+					this.dulceria1();
+				}
+				break;
+			case 0:
+				this.menuprincipal();
+			default:
+				this.dulceria();
+		}
+	}
+	public void dulceria1(){
+		System.out.print("\n						1. PROMOCIONAL");
+		System.out.print("		2. COMBO");
+		System.out.print("		3. CANCHITA");
+		System.out.print("		4. BEBIDAS");
+		System.out.println("		5. GOLOSINAS");
+		System.out.println("\nSeleccione que quiere comprar:");
 		opcion= sc.nextInt();
 		switch (opcion){
 			case 1:
-				total = costo2d;
-				this.total();
+				this.dulceriapromocional();
 				break;
 			case 2:
-				total= costoviejos;
-				this.total();
+				this.dulceriacombo();
 				break;
 			case 3:
-				total = costoniños2d;
-				this.total();
+				this.dulceriacanchita();
 				break;
 			case 4:
-				total = costo3d;
-				this.total();
+				this.bebidas();
 				break;
 			case 5:
-				total = costoviejos3d;
-				this.total();
+				this.golosinas();
 				break;
-			case 6:
-				total = costoniños3d;
-				this.total();
-				break;
-			case 0:
-				this.asientos();
-				break;
+			default:
+					this.dulceria1();
+
 		}
-		return total;
 	}
-	public void cines(){
-		int cine;
-		do {
-			System.out.println("""
-                    Seleccionar Ciudad
-                    1) Juliaca
-                    2) Puno
-                    3) Lima
-                    4) Etc...
-                    0) Regresar...
-                    Ingrese una opcion:""");
-			cine = sc.nextInt();
-			switch (cine) {
-				case 1:
-					ciuJuliaca();
-					break;
-				case 2:
-					ciuPuno();
-					break;
-				case 3:
-					ciuLima();
-					break;
-				case 0:
-					System.out.println("Regresando");
-					this.menuprincipal();
-					break;
-				default:
-					System.out.println("Opcion no valida.");
-			}
-		}while (cine!=0);
+	public void dulceriapromocional(){
+		System.out.print("\nUsted escogio ");
+		System.out.println(ciudad + ", "+ cine1 +"\n");
+		System.out.println("Tenemos los siguientes combos: "+ "\n"+
+			"""
+					|-------------------------------|			|-------------------------------|			|-------------------------------|
+					|  (1)COMBO DOS SALADO + 2 M&M  |			|  (2)COMBO DOS DULCE + 2 M&M   |			|    (3)COMBO DOS MIX + 2 M&M   |
+					|                      			|			|                      			|			|                      			|
+					| 1 Canchita Gigante (Salada) + |			| 1 Canchita Gigante (Dulce) +  |			|   1 Canchita Gigante (Mix) +  |
+					|   2 Bebida (32oz) + 2 M&M's.  |			|   2 Bebida (32oz) + 2 M&M's.  |			|   2 Bebida (32oz) + 2 M&M's.  |
+					|                      			|			|                      			|			|                      			|
+					|                      S/. 47.00|			|                      S/. 51.00|			|                      S/. 51.00|
+					|-------------------------------|			|-------------------------------|			|-------------------------------|
+			""");
+		System.out.println("0. Regresar");
 	}
-	public void ciuLima() {}
-	public void ciuPuno() {}
-	public void ciuJuliaca() {
-		int cine;
-			this.peliculas();
+	public void dulceriacombo(){
+		System.out.print("\nUsted escogio ");
+		System.out.println(ciudad + ", "+ cine1 +"\n");
+		System.out.println("Tenemos los siguientes combos: "+ "\n"+
+				"""
+                        |-------------------------------|			|-------------------------------|			|-------------------------------|
+                        |  	 (1)COMBO 2 DULCE OL CC 	|			|  	 (2)COMBO 2 SALADO OL CC 	|			|  	   (3)COMBO 2 MIX OL CC 	|
+                        |                      			|			|                      			|			|                      			|
+                        |  1 Canchita Gigante (Dulce) + |			| 1 Canchita Gigante (Salado) + |			|  	1 Canchita Gigante (Mix) + 	|
+                        |   	  2 Bebida (32oz)   	|			|   	  2 Bebida (32oz)   	|			|   	  2 Bebida (32oz)   	|
+                        |                      			|			|                      			|			|                      			|
+                        |                      S/. 35.00|			|                      S/. 31.00|			|                      S/. 35.00|
+                        |-------------------------------|			|-------------------------------|			|-------------------------------|
+                """);
+		System.out.println("\n"+
+				"""
+                        |-------------------------------|			|-------------------------------|			|-------------------------------|
+                        | (4)COM. 2 SALADO DOB. GIG. OL |			| (5)COM. 2 DULCE DOB. GIG. OL  |			| 	(6)COM. 2 MIX DOB. GIG. OL  |
+                        |                      			|			|                      			|			|                      			|
+                        | 2 Canchita Gigante (Salado) + |			| 2 Canchita Gigante (Dulce) + |			|  	2 Canchita Gigante (Mix) + 	|
+                        |   	  2 Bebida (32oz)   	|			|   	  2 Bebida (32oz)   	|			|   	  2 Bebida (32oz)   	|
+                        |                      			|			|                      			|			|                      			|
+                        |                      S/. 40.00|			|                      S/. 44.00|			|                      S/. 44.00|
+                        |-------------------------------|			|-------------------------------|			|-------------------------------|
+                """);
+		System.out.println("0. Regresar");
 	}
-	public void peliculas() {
-			System.out.println("""
-Tenemos las siguientes peliculas:
-1)El Plan Del Asesino
-
-2)Hellboy: The Crooked Man
-                    
-3)La Chica del Alquile
-
-4)My Hero Academia : Ahora es tu Turno
-
-5)Guasón 2: Folie À Deux
-
-6)La Sustancia
-
-7)No Hables con Extraños
-
-8)Robot Salvaje
-
-9)Transformers Uno
-
-0)Regresar
-""");
-			pelicula1 = sc.nextInt();
-			switch (pelicula1) {
-				case 1:
-					pelicula ="El Plan del Asesino";
-					this.pelicula();
-					break;
-				case 2:
-					pelicula ="Hellboy: The Crooked Man";
-					this.pelicula();
-					break;
-				case 3:
-					pelicula ="My Hero Academia \n: Ahora es tu Turno";
-					this.pelicula();
-					break;
-				case 4:
-					pelicula ="El Plan del Asesino";
-					this.pelicula();
-					break;
-				case 5:
-					pelicula ="Guasón 2: Folie À Deux";
-					this.pelicula();
-					break;
-				case 6:
-					pelicula ="La Sustancia";
-					this.pelicula();
-				case 7:
-					pelicula ="No Hables con Extraños";
-					this.pelicula();
-				case 8:
-					pelicula ="Robot Salvaje";
-					this.pelicula();
-				case 9:
-					pelicula ="Transformers UNO";
-					this.pelicula();
-					break;
-				case 0:
-					this.menuprincipal();
-					break;
-				default:
-					System.out.println("\n");
-					this.peliculas();
-			}
-
+	public void dulceriacanchita(){
+		System.out.print("\nUsted escogio ");
+		System.out.println(ciudad + ", "+ cine1 +"\n");
+		System.out.println("Tenemos las siguientes canchitas: "+ "\n"+
+				"""
+                        |-------------------------------|			|-------------------------------|			|-------------------------------|
+                        |  	 (1)CANCHITA GIGANTE MIX	|			|  	(2)CANCHITA GIGANTE DULCE	|			|  	(3)CANCHITA GIGANTE SALADO	|
+                        |                      			|			|                      			|			|                      			|
+                        |  1 Canchita Gigante (Mix)  	|			|   1 Canchita Gigante (Dulce)	|			|  1 Canchita Gigante (Salado)  |
+                        |   							|			|   	   					   	|			|   	   					   	|
+                        |                      			|			|                      			|			|                      			|
+                        |                      S/. 24.50|			|                      S/. 24.50|			|                      S/. 20.50|
+                        |-------------------------------|			|-------------------------------|			|-------------------------------|
+                """);
+		System.out.println("\n"+
+				"""
+                        				|-------------------------------|			|-------------------------------|
+                        				|   (4)CANCHITA GRANDE SALADO	|			|  	 (5)CANCHITA GRANDE DULCE	|
+                        				|                      			|			|                      			|
+                        				|   1 Canchita Grande (Mix)  	|			|   1 Canchita Gigante (Dulce)	|
+                        				|   							|			|   	   					   	|
+                        				|                      			|			|                      			|
+                        				|                      S/. 14.00|			|                      S/. 17.00|
+                        				|-------------------------------|			|-------------------------------|
+                """);
+		System.out.println("\n"+
+				"""
+                        				|-------------------------------|			|-------------------------------|
+                        				|  (6)CANCHITA MEDIANA SALADO	|			|  	(7)CANCHITA MEDIANA DULCE	|
+                        				|                      			|			|                      			|
+                        				|   1 Canchita Grande (Mix)  	|			|   1 Canchita Gigante (Dulce)	|
+                        				|   							|			|   	   					   	|
+                        				|                      			|			|                      			|
+                        				|                      S/. 12.00|			|                      S/. 14.00|
+                        				|-------------------------------|			|-------------------------------|
+                """);
+		System.out.println("0. Regresar");
 	}
-	public void pelicula() {
-		this.contenido();
-		System.out.println("\n" +"""
-					Tenemos los siguientes horarios:
-					1) 05:20 pm
-					2) 10:20 pm
-					0) para regresar
-					Ingresar una opcion:""");
-		tiempo = sc.nextInt();
-		do {
-			switch (tiempo) {
-				case 1:
-					this.asientos();
-					break;
-				case 2:
-					this.asientos();
-					break;
-				case 0:
-					this.peliculas();
-					break;
-				default:
-					System.out.println("Opcion no valida.");
-			}
-		} while (Car1.equals("")) ;
+	public void bebidas(){
+		System.out.print("\nUsted escogio ");
+		System.out.println(ciudad + ", "+ cine1 +"\n");
+		System.out.println("Tenemos las siguientes bebidas: "+ "\n"+
+				"""
+                        |-------------------------------|			|-------------------------------|			|-------------------------------|
+                        |  	 (1)BEBIDA MEDIANA CC OL	|			|  	  (2)BEBIDA GRANDE CC OL	|			|  	(3) AGUA SAN LUIS SIN  GAS	|
+                        |                      			|			|                      			|			|                      			|
+                        |  1 Canchita Gigante (Mix)  	|			|   1 Canchita Gigante (Dulce)	|			|  1 Canchita Gigante (Salado)  |
+                        |   							|			|   	   					   	|			|   	   					   	|
+                        |                      			|			|                      			|			|                      			|
+                        |                      S/. 10.50|			|                      S/. 12.00|			|                       S/. 4.00|
+                        |-------------------------------|			|-------------------------------|			|-------------------------------|
+                """);
+		System.out.println("0. Regresar");
 	}
+	public void golosinas(){
+		System.out.print("\nUsted escogio ");
+		System.out.println(ciudad + ", "+ cine1 +"\n");
+		System.out.println("Tenemos las siguientes golosinas: "+ "\n"+
+				"""
+                        |-------------------------------|			|-------------------------------|			|-------------------------------|
+                        |  	(1)M&Ms MILK CHOCOLATE 45G	|			|  	  	(2)M&Ms PEANUT 45G		|			|  (3)CHOCOLATE BISCOLATA MOOD 	|
+                        |                      			|			|                      			|			|                      			|
+                        |  							  	|			|   							|			|  								 |
+                        |   							|			|   	   					   	|			|   	   					   	|
+                        |                      			|			|                      			|			|                      			|
+                        |                      	S/. 9.00|			|                       S/. 9.00|			|                       S/. 3.50|
+                        |-------------------------------|			|-------------------------------|			|-------------------------------|
+                """);
+		System.out.println("0. Regresar");
+	}
+
+
+	//DEISSY
+	//COORPORATIVO
 	public void coorporativo(){
 		System.out.println("---Corporativo---");
 		System.out.println("Conoce nuestros productos");
 		System.out.println("Seleccione el producto de su interes");
-		System.out.println("Opcion 1: Funciones especiales");
-		System.out.println("Opcion 2: Alquiler de salas");
+		System.out.println("Opcion 1: Eventos");
+		System.out.println("Opcion 2: Funciones Especiales");
 		System.out.println("Opcion 3: Entradas y Combos");
-		System.out.println("Opcion 4: At Work");
+		System.out.println("Opcion 4: Planet Fiesta");
 		System.out.println("Opcion 5: Publicidad");
-		System.out.println("Opcion 6: Planet Fiesta");
+		System.out.println("Opcion 6: At Work");
+		System.out.println("Opcion 0: Regresar");
 		int opcion=sc.nextInt();
 		sc.nextLine();
 		switch(opcion){
 			case 1:
-				System.out.println("Seleccione la funcion especial");
-				System.out.println("""
-                        Opcion 1: Corporativa
-                        Opcion 2: Institucional
-                        """);
-				int opcion_esp=sc.nextInt();
-				switch(opcion_esp){
+				this.eventos();
+				break;
+			case 2:
+				this.funciones_especiales();
+				break;
+			case 3:
+				this.entradas_y_combos();
+				break;
+			case 4:
+				this.planet_fiesta();
+				break;
+			case 5:
+				this.publicidad();
+				break;
+			case 6:
+				this.at_work();
+				break;
+			case 0:
+				this.menuprincipal();
+				break;
+			default:
+				this.coorporativo();
+		}
+	}
+	public void eventos(){
+		System.out.println("""
+				EVENTOS
+				
+				Cuéntanos un poco más sobre tu solicitud y nuestro equipo se pondrá en contacto contigo.
+				Por favor considerar los datos reales de empresa y contacto para atender tu solicitud.
+				
+						|-------------------------|				|-------------------------|
+						| Regresar a Productos(1) |				|   Iniciar Solicitud(2)  |
+						|-------------------------|				|-------------------------|
+				
+				Elija una opcion:""");
+		opcion = sc.nextInt();
+		switch(opcion){
+			case 1:
+				this.coorporativo();
+				break;
+			case 2:
+				this.solicitudevento();
+				break;
+			default:
+				this.eventos();
+
+		}
+	}
+	public void funciones_especiales(){
+		System.out.println("""
+				EVENTOS
+				
+				Cuéntanos un poco más sobre tu solicitud y nuestro equipo se pondrá en contacto contigo.
+				Por favor considerar los datos reales de empresa y contacto para atender tu solicitud.
+				
+						|-------------------------|				|-------------------------|
+						| Regresar a Productos(1) |				|   Iniciar Solicitud(2)  |
+						|-------------------------|				|-------------------------|
+				
+				Elija una opcion:""");
+		opcion = sc.nextInt();
+		switch(opcion){
+			case 1:
+				this.coorporativo();
+				break;
+			case 2:
+				this.solicitudevento();
+				break;
+			default:
+				this.eventos();
+
+		}
+	}
+	public void entradas_y_combos(){
+		System.out.println("""
+				EVENTOS
+				
+				Cuéntanos un poco más sobre tu solicitud y nuestro equipo se pondrá en contacto contigo.
+				Por favor considerar los datos reales de empresa y contacto para atender tu solicitud.
+				
+						|-------------------------|				|-------------------------|
+						| Regresar a Productos(1) |				|   Iniciar Solicitud(2)  |
+						|-------------------------|				|-------------------------|
+				
+				Elija una opcion:""");
+		opcion = sc.nextInt();
+		switch(opcion){
+			case 1:
+				this.coorporativo();
+				break;
+			case 2:
+				this.solicitudevento();
+				break;
+			default:
+				this.eventos();
+
+		}
+	}
+	public void planet_fiesta(){
+		System.out.println("""
+				EVENTOS
+				
+				Cuéntanos un poco más sobre tu solicitud y nuestro equipo se pondrá en contacto contigo.
+				Por favor considerar los datos reales de empresa y contacto para atender tu solicitud.
+				
+						|-------------------------|				|-------------------------|
+						| Regresar a Productos(1) |				|   Iniciar Solicitud(2)  |
+						|-------------------------|				|-------------------------|
+				
+				Elija una opcion:""");
+		opcion = sc.nextInt();
+		switch(opcion){
+			case 1:
+				this.coorporativo();
+				break;
+			case 2:
+				this.solicitudevento();
+				break;
+			default:
+				this.eventos();
+
+		}
+	}
+	public void publicidad(){
+		System.out.println("""
+				EVENTOS
+				
+				Cuéntanos un poco más sobre tu solicitud y nuestro equipo se pondrá en contacto contigo.
+				Por favor considerar los datos reales de empresa y contacto para atender tu solicitud.
+				
+						|-------------------------|				|-------------------------|
+						| Regresar a Productos(1) |				|   Iniciar Solicitud(2)  |
+						|-------------------------|				|-------------------------|
+				
+				Elija una opcion:""");
+		opcion = sc.nextInt();
+		switch(opcion){
+			case 1:
+				this.coorporativo();
+				break;
+			case 2:
+				this.solicitudevento();
+				break;
+			default:
+				this.eventos();
+
+		}
+	}
+	public void at_work(){
+		System.out.println("""
+				EVENTOS
+				
+				Cuéntanos un poco más sobre tu solicitud y nuestro equipo se pondrá en contacto contigo.
+				Por favor considerar los datos reales de empresa y contacto para atender tu solicitud.
+				
+						|-------------------------|				|-------------------------|
+						| Regresar a Productos(1) |				|   Iniciar Solicitud(2)  |
+						|-------------------------|				|-------------------------|
+				
+				Elija una opcion:""");
+		opcion = sc.nextInt();
+		switch(opcion){
+			case 1:
+				this.coorporativo();
+				break;
+			case 2:
+				this.solicitudevento();
+				break;
+			default:
+				this.eventos();
+
+		}
+	}
+	public void solicitudevento(){
+		System.out.println("TODOS LOS EVENTOS");
+		System.out.println("1. Zona Gamer");
+		System.out.println("2. Zona Reunion");
+		System.out.println("3. Conferencias");
+		System.out.println("4. Capacitacion");
+		System.out.println("5. Congreso");
+		System.out.println("6. Seminario");
+		System.out.println("7. Lanzamiento");
+		System.out.println("8. Presentaciones");
+		System.out.println("9. Club de Fans");
+		System.out.println("0. Regresar");
+		System.out.println("Escoga cual evento quiere cotizar");
+		opcion = sc.nextInt();
+		switch(opcion){
+			case 1:
+				evento = "Zona Gamer";
+				this.ciudades();
+				System.out.println("\nEscoga un cineplanet para poder reservar");
+				cine = sc.nextInt();
+				switch (cine){
 					case 1:
-						System.out.println("Nombre completo");
-						String nombre=sc.next();
-						System.out.println("Nombre:"+ nombre);
-						System.out.println("N° de DNI");
-						int Dni= sc.nextInt();
-						System.out.println("Dni:"+ Dni);
-						System.out.println("Correo");
-						String correo= sc.next();
-						System.out.println("Correo:"+ correo);
-						System.out.println("Telefono");
-						int telefono= sc.nextInt();
-						System.out.println("Telefono:"+telefono);
-						System.out.println("Cine");
-						System.out.println("""
-                                Opcion 1:
-                                """);
-						System.out.println("Pelicula");
-						String pelicula=sc.next();
-						System.out.println("Pelicula:"+ pelicula);
-						System.out.println("Fecha de la función");
-						int fecha=sc.nextInt();
-						System.out.println("Fecha:"+ fecha);
-						System.out.println("Horario-" +
-								"Preferible ingresar un horario mayor a 9:00 y menor a 11.00");
-						int horario= sc.nextInt();
-						System.out.println("Horario:"+ horario);
-						System.out.println("Cantidad de invitados");
-						int cant_corp= sc.nextInt();
-						System.out.println("Cantidad:"+ cant_corp);
-						System.out.println("Cantidad de combos");
-						int cant_cor=sc.nextInt();
-						System.out.println("Cantidad:"+ cant_cor);
+						this.cinesLima();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
 						break;
 					case 2:
-						System.out.println("Nombre  completo");
-						String nombre_ins=sc.next();
-						System.out.println("Nombre:"+ nombre_ins);
-						System.out.println("N° de DNI");
-						int Dni_ins= sc.nextInt();
-						System.out.println("Dni:"+ Dni_ins);
-						System.out.println("Correo");
-						String correo_ins= sc.next();
-						System.out.println("Correo:"+ correo_ins);
-						System.out.println("Telefono");
-						int telefono_ins= sc.nextInt();
-						System.out.println("Telefono:"+ telefono_ins);
-						System.out.println("Cine");
-						System.out.println("Pelicula");
-						String pelicula_ins=sc.next();
-						System.out.println("Pelicula:"+ pelicula_ins);
-						System.out.println("Fecha de la función");
-						int fecha_ins=sc.nextInt();
-						System.out.println("Fecha:"+ fecha_ins);
-						System.out.println("Horario-" +
-								"Preferible ingresar un horario mayor a 9:00 y menor a 11.00");
-						int horario_ins= sc.nextInt();
-						System.out.println("Horario:"+ horario_ins);
-						System.out.println("Cantidad de invitados");
-						int cant_corp_ins= sc.nextInt();
-						System.out.println("Invitados:"+ cant_corp_ins);
-						System.out.println("Cantidad de combos");
-						int cant_ins=sc.nextInt();
-						System.out.println("Combos:"+ cant_ins);
-						break;
-					default:
-						System.out.println("Opcion no valida");
-						break;
-				}
-				break;
-			case 2://alquiler de salas
-
-				System.out.println("Nombre completo");
-				String nombre_alq=sc.next();
-				System.out.println("Nombre:" +nombre_alq);
-				System.out.println("N° de DNI");
-				int Dni_alq= sc.nextInt();
-				System.out.println("Dni:" + Dni_alq);
-				System.out.println("Correo");
-				String correo_alq= sc.next();
-				System.out.println("Correo:" +correo_alq);
-				System.out.println("Telefono");
-				int telefono_alq= sc.nextInt();
-				System.out.println("Telefono:" + telefono_alq);
-				System.out.println("Cine");
-				System.out.println("Cantidad de invitados");
-				int cant_alq= sc.nextInt();
-				System.out.println("Invitados:" + cant_alq);
-				System.out.println("Fecha de la función");
-				int fecha_alq=sc.nextInt();
-				System.out.println("Fecha:" + fecha_alq);
-				System.out.println("Horario-" +
-						"Preferible ingresar un horario mayor a 9:00 y menor a 11.00");
-				int horario_alq= sc.nextInt();
-				System.out.println("Horario:" + horario_alq);
-				break;
-			case 3://entradas y combos
-
-				System.out.println("Nombre  completo");
-				String nombre_com=sc.next();
-				System.out.println("Nombre:"+ nombre_com);
-				System.out.println("N° de DNI");
-				int Dni_com= sc.nextInt();
-				System.out.println("Dni:" + Dni_com);
-				System.out.println("Correo");
-				String correo_com= sc.next();
-				System.out.println("Correo:" +correo_com);
-				System.out.println("Telefono");
-				int telefono_com= sc.nextInt();
-				System.out.println("Telefono:" + telefono_com);
-				System.out.println("Cantidad de entradas");
-				int cant_corp_com= sc.nextInt();
-				System.out.println("Invitados:"+ cant_corp_com);
-				System.out.println("Cantidad de combos");
-				int cant_com=sc.nextInt();
-				System.out.println("Combos:"+ cant_com);
-
-				break;
-			case 4: //at work
-
-				System.out.println("Nombre  completo");
-				String nombre_at=sc.next();
-				System.out.println("Nombre:"+ nombre_at);
-				System.out.println("N° de DNI");
-				int Dni_at= sc.nextInt();
-				System.out.println("Dni:" + Dni_at);
-				System.out.println("Correo");
-				String correo_at= sc.next();
-				System.out.println("Correo:" +correo_at);
-				System.out.println("Telefono");
-				int telefono_at= sc.nextInt();
-				System.out.println("Telefono:" + telefono_at);
-				System.out.println("Razon social");
-				String cine_at=sc.next();
-				System.out.println("Razón social:" + cine_at);
-				System.out.println("RUC");
-				String pelicula_at=sc.next();
-				System.out.println("RUC:" + pelicula_at);
-				System.out.println("Dirección de la empresa");
-				String fecha_at=sc.next();
-				System.out.println("Dirección:" + fecha_at);
-				System.out.println("Cantidad de colaboradores");
-				int cant_at=sc.nextInt();
-				System.out.println("Colaboradores:" + cant_at);
-
-				break;
-			case 5: //publicidad
-				System.out.println("Seleccione el tipo de publicidad");
-				System.out.println("""
-                        Opcion 1: Publicidad en pantallas
-                        Opcion 2: Publicidad en lobbies
-                        Opcion 3: Publicidad en elementos corpóreos
-                        """);
-				int opcion_publi= sc.nextInt();
-				switch (opcion_publi){
-					case 1:
-						System.out.println("Nombre  completo");
-						String nombre_publi=sc.next();
-						System.out.println("Nombre:"+ nombre_publi);
-						System.out.println("N° de DNI");
-						int Dni_publi= sc.nextInt();
-						System.out.println("Dni:" + Dni_publi);
-						System.out.println("Correo");
-						String correo_publi= sc.next();
-						System.out.println("Correo:" +correo_publi);
-						System.out.println("Telefono");
-						int telefono_publi= sc.nextInt();
-						System.out.println("Telefono:" + telefono_publi);
-						System.out.println("Razon social");
-						String razon_publi=sc.next();
-						System.out.println("Razón social:" + razon_publi);
-						System.out.println("RUC");
-						String RUC_publi=sc.next();
-						System.out.println("RUC:" + RUC_publi);
-						System.out.println("Direccion de la empresa");
-						String direccion_publi=sc.next();
-						System.out.println("Dirección:" + direccion_publi);
-						System.out.println("Cines de interes");
-						String cine_publi=sc.next();
-						System.out.println("Cines de interes:" + cine_publi);
-						System.out.println("Duración de publicidad");
-						double dura_publi= sc.nextLong();
-						System.out.println("Duración de publicidad:" + dura_publi);
-						System.out.println("Tiempo al aire");
-						String tiempo_publi= sc.next();
-						System.out.println("Tiempo al aire:" + tiempo_publi);
-						break;
-					case 2:
-
-						System.out.println("Nombre completo ");
-						String nombre_lob=sc.next();
-						System.out.println("Nombre:"+ nombre_lob);
-						System.out.println("N° de DNI");
-						int Dni_lob= sc.nextInt();
-						System.out.println("Dni:" + Dni_lob);
-						System.out.println("Correo");
-						String correo_lob= sc.next();
-						System.out.println("Correo:" +correo_lob);
-						System.out.println("Telefono");
-						int telefono_lob= sc.nextInt();
-						System.out.println("Telefono:" + telefono_lob);
-						System.out.println("Razon social");
-						String razon_lob=sc.next();
-						System.out.println("Razón social:" + razon_lob);
-						System.out.println("RUC");
-						String RUC_lob=sc.next();
-						System.out.println("RUC:" + RUC_lob);
-						System.out.println("Direccion de la empresa");
-						String direccion_lob=sc.next();
-						System.out.println("Dirección:" + direccion_lob);
-						System.out.println("Cines de interes");
-						String cine_lob=sc.next();
-						System.out.println("Cines de interes:" + cine_lob);
-						System.out.println("duración de publicidad");
-						double dura_lob= sc.nextLong();
-						System.out.println("Duración de publicidad:" + dura_lob);
-						System.out.println("Tiempo al aire");
-						String tiempo_lob= sc.next();
-						System.out.println("Tiempo al aire:" + tiempo_lob);
+						this.cinesArequipa();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
 						break;
 					case 3:
-						System.out.println("Nombre completo");
-						String nombre_ele=sc.next();
-						System.out.println("Nombre:"+ nombre_ele);
-						System.out.println("N° de DNI");
-						int Dni_ele= sc.nextInt();
-						System.out.println("Dni:" + Dni_ele);
-						System.out.println("Correo");
-						String correo_ele= sc.next();
-						System.out.println("Correo:" +correo_ele);
-						System.out.println("Telefono");
-						int telefono_ele= sc.nextInt();
-						System.out.println("Telefono:" + telefono_ele);
-						System.out.println("Razon social");
-						String razon_ele=sc.next();
-						System.out.println("Razón social:" + razon_ele);
-						System.out.println("RUC");
-						String RUC_ele=sc.next();
-						System.out.println("RUC:" + RUC_ele);
-						System.out.println("Direccion de la empresa");
-						String direccion_ele=sc.next();
-						System.out.println("Dirección:" + direccion_ele);
-						System.out.println("Cines de interes");
-						String cine_ele=sc.next();
-						System.out.println("Cines de interes:" + cine_ele);
-						System.out.println("duración de publicidad");
-						double dura_ele= sc.nextLong();
-						System.out.println("Duración de publicidad:" + dura_ele);
-						System.out.println("Tiempo al aire");
-						String tiempo_ele= sc.next();
-						System.out.println("Tiempo al aire:" + tiempo_ele);
-
+						this.cinesCajamarca();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 4:
+						this.cinesChiclayo();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 5:
+						this.cinesCusco();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 6:
+						this.cinesHuancayo();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 7:
+						this.cinesHuanuco();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 8:
+						this.cinesJuliaca();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 9:
+						this.cinesPiura();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 10:
+						this.cinesPucallpa();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 11:
+						this.cinesPuno();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 12:
+						this.cinesTacna();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 13:
+						this.cinesTrujllo();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 0:
+						this.eventos();
+					default:
+						this.solicitudevento();
 				}
 				break;
-			case 6: // planet fiesta
-				System.out.println("Nombre  completo");
-				String nombre_pla=sc.next();
-				System.out.println("Nombre:"+ nombre_pla);
-				System.out.println("N° de DNI");
-				int Dni_pla= sc.nextInt();
-				System.out.println("Dni:" + Dni_pla);
-				System.out.println("Correo");
-				String correo_pla= sc.next();
-				System.out.println("Correo:" +correo_pla);
-				System.out.println("Telefono");
-				int telefono_pla= sc.nextInt();
-				System.out.println("Telefono:" + telefono_pla);
-				System.out.println("Cine");
-				System.out.println("Pelicula");
-				String pelicula_pla=sc.next();
-				System.out.println("Pelicula:" + pelicula_pla);
-				System.out.println("Fecha del evento");
-				int fecha_pla=sc.nextInt();
-				System.out.println("Fecha:" + fecha_pla);
-				System.out.println("Horario-" +
-						"Preferible ingresar un horario mayor a 9:00 y menor a 11.00");
-				int horario_pla= sc.nextInt();
-				System.out.println("Horario:" + horario_pla);
-				System.out.println("Cantidad de invitados");
-				int cant_pla= sc.nextInt();
-				System.out.println("Invitados:" + cant_pla);
+			case 2:
+				evento = "Zona Reunion";
+				this.ciudades();
+				System.out.println("\nEscoga un cineplanet para poder reservar");
+				cine = sc.nextInt();
+				switch (cine){
+					case 1:
+						this.cinesLima();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 2:
+						this.cinesArequipa();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 3:
+						this.cinesCajamarca();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 4:
+						this.cinesChiclayo();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 5:
+						this.cinesCusco();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 6:
+						this.cinesHuancayo();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 7:
+						this.cinesHuanuco();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 8:
+						this.cinesJuliaca();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 9:
+						this.cinesPiura();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 10:
+						this.cinesPucallpa();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 11:
+						this.cinesPuno();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 12:
+						this.cinesTacna();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 13:
+						this.cinesTrujllo();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 0:
+						this.eventos();
+					default:
+						this.solicitudevento();
+				}
+				break;
+			case 3:
+				evento="Conferencias";
+				this.ciudades();
+				System.out.println("\nEscoga un cineplanet para poder reservar");
+				cine = sc.nextInt();
+				switch (cine){
+					case 1:
+						this.cinesLima();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 2:
+						this.cinesArequipa();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 3:
+						this.cinesCajamarca();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 4:
+						this.cinesChiclayo();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 5:
+						this.cinesCusco();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 6:
+						this.cinesHuancayo();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 7:
+						this.cinesHuanuco();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 8:
+						this.cinesJuliaca();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 9:
+						this.cinesPiura();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 10:
+						this.cinesPucallpa();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 11:
+						this.cinesPuno();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 12:
+						this.cinesTacna();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 13:
+						this.cinesTrujllo();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 0:
+						this.eventos();
+					default:
+						this.solicitudevento();
+				}
+				break;
+			case 4:
+				evento="Capacitacion";
+				this.ciudades();
+				System.out.println("\nEscoga un cineplanet para poder reservar");
+				cine = sc.nextInt();
+				switch (cine){
+					case 1:
+						this.cinesLima();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 2:
+						this.cinesArequipa();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 3:
+						this.cinesCajamarca();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 4:
+						this.cinesChiclayo();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 5:
+						this.cinesCusco();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 6:
+						this.cinesHuancayo();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 7:
+						this.cinesHuanuco();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 8:
+						this.cinesJuliaca();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 9:
+						this.cinesPiura();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 10:
+						this.cinesPucallpa();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 11:
+						this.cinesPuno();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 12:
+						this.cinesTacna();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 13:
+						this.cinesTrujllo();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 0:
+						this.eventos();
+					default:
+						this.solicitudevento();
+				}
+				break;
+			case 5:
+				evento="Congreso";
+				this.ciudades();
+				System.out.println("\nEscoga un cineplanet para poder reservar");
+				cine = sc.nextInt();
+				switch (cine){
+					case 1:
+						this.cinesLima();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 2:
+						this.cinesArequipa();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 3:
+						this.cinesCajamarca();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 4:
+						this.cinesChiclayo();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 5:
+						this.cinesCusco();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 6:
+						this.cinesHuancayo();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 7:
+						this.cinesHuanuco();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 8:
+						this.cinesJuliaca();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 9:
+						this.cinesPiura();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 10:
+						this.cinesPucallpa();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 11:
+						this.cinesPuno();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 12:
+						this.cinesTacna();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 13:
+						this.cinesTrujllo();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 0:
+						this.eventos();
+					default:
+						this.solicitudevento();
+				}
+				break;
+			case 6:
+				evento="Seminario";
+				this.ciudades();
+				System.out.println("\nEscoga un cineplanet para poder reservar");
+				cine = sc.nextInt();
+				switch (cine){
+					case 1:
+						this.cinesLima();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 2:
+						this.cinesArequipa();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 3:
+						this.cinesCajamarca();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 4:
+						this.cinesChiclayo();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 5:
+						this.cinesCusco();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 6:
+						this.cinesHuancayo();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 7:
+						this.cinesHuanuco();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 8:
+						this.cinesJuliaca();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 9:
+						this.cinesPiura();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 10:
+						this.cinesPucallpa();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 11:
+						this.cinesPuno();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 12:
+						this.cinesTacna();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 13:
+						this.cinesTrujllo();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 0:
+						this.eventos();
+					default:
+						this.solicitudevento();
+				}
+				break;
+			case 7:
+				evento="Lanzamiento";
+				this.ciudades();
+				System.out.println("\nEscoga un cineplanet para poder reservar");
+				cine = sc.nextInt();
+				switch (cine){
+					case 1:
+						this.cinesLima();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 2:
+						this.cinesArequipa();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 3:
+						this.cinesCajamarca();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 4:
+						this.cinesChiclayo();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 5:
+						this.cinesCusco();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 6:
+						this.cinesHuancayo();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 7:
+						this.cinesHuanuco();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 8:
+						this.cinesJuliaca();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 9:
+						this.cinesPiura();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 10:
+						this.cinesPucallpa();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 11:
+						this.cinesPuno();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 12:
+						this.cinesTacna();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 13:
+						this.cinesTrujllo();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 0:
+						this.eventos();
+					default:
+						this.solicitudevento();
+				}
+				break;
+			case 8:
+				evento="Presentaciones";
+				this.ciudades();
+				System.out.println("\nEscoga un cineplanet para poder reservar");
+				cine = sc.nextInt();
+				switch (cine){
+					case 1:
+						this.cinesLima();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 2:
+						this.cinesArequipa();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 3:
+						this.cinesCajamarca();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 4:
+						this.cinesChiclayo();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 5:
+						this.cinesCusco();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 6:
+						this.cinesHuancayo();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 7:
+						this.cinesHuanuco();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 8:
+						this.cinesJuliaca();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 9:
+						this.cinesPiura();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 10:
+						this.cinesPucallpa();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 11:
+						this.cinesPuno();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 12:
+						this.cinesTacna();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 13:
+						this.cinesTrujllo();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 0:
+						this.eventos();
+					default:
+						this.solicitudevento();
+				}
+				break;
+			case 9:
+				evento="Club de Fans";
+				this.ciudades();
+				System.out.println("\nEscoga un cineplanet para poder reservar");
+				cine = sc.nextInt();
+				switch (cine){
+					case 1:
+						this.cinesLima();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 2:
+						this.cinesArequipa();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 3:
+						this.cinesCajamarca();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 4:
+						this.cinesChiclayo();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 5:
+						this.cinesCusco();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 6:
+						this.cinesHuancayo();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 7:
+						this.cinesHuanuco();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 8:
+						this.cinesJuliaca();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 9:
+						this.cinesPiura();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 10:
+						this.cinesPucallpa();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 11:
+						this.cinesPuno();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 12:
+						this.cinesTacna();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 13:
+						this.cinesTrujllo();
+						if(cine==0){
+							this.solicitudevento();
+						}
+						else {
+							this.detalles();
+						}
+						break;
+					case 0:
+						this.eventos();
+					default:
+						this.solicitudevento();
+				}
+				break;
+			case 0:
+				this.eventos();
 				break;
 			default:
-				System.out.println("No es valida esa opcion");
-				break;
+			this.solicitudevento();
 		}
 	}
-	public void recogerDatosPublicitario(){
-		System.out.println("Nombre completo");
-		String nombre = sc.next();
-		System.out.println("Nombre: " + nombre);
-
-	}
-	public void Menucoorporativo() {
-		int opcion_publi;
-
-		do {
-			System.out.println("Seleccione una opción:");
-			System.out.println("1. Opción 1 (Publicidad)");
-			System.out.println("2. Opción 2 (Publicidad)");
-			System.out.println("3. Opción 3 (Publicidad)");
-			System.out.println("6. Planet Fiesta");
-			System.out.println("0. Salir");
-			opcion_publi = sc.nextInt();
-
-			switch (opcion_publi) {
-				case 1:
-				case 2:
-				case 3:
-					recogerDatosPublicitario1();
-					break;
-				case 6:
-					recogerDatosEvento();
-					break;
-				case 0:
-					System.out.println("Saliendo del programa...");
-					break;
-				default:
-					System.out.println("No es válida esa opción, intente de nuevo.");
-					break;
-			}
-		} while (opcion_publi != 0);
-	}
-	public void recogerDatosPublicitario1() {
-		System.out.println("Nombre completo:");
-		String nombre_publi = sc.next();
-		System.out.println("Nombre: " + nombre_publi);
-
-		System.out.println("N° de DNI:");
-		int dni_publi = sc.nextInt();
-		System.out.println("DNI: " + dni_publi);
-
-		System.out.println("Correo:");
-		String correo_publi = sc.next();
-		System.out.println("Correo: " + correo_publi);
-
-		System.out.println("Teléfono:");
-		int telefono_publi = sc.nextInt();
-		System.out.println("Teléfono: " + telefono_publi);
-
-		System.out.println("Razón social:");
-		String razon_publi = sc.next();
-		System.out.println("Razón social: " + razon_publi);
-
-		System.out.println("RUC:");
-		String ruc_publi = sc.next();
-		System.out.println("RUC: " + ruc_publi);
-
-		System.out.println("Dirección de la empresa:");
-		String direccion_publi = sc.next();
-		System.out.println("Dirección: " + direccion_publi);
-
-		System.out.println("Cines de interés:");
-		String cine_publi = sc.next();
-		System.out.println("Cines de interés: " + cine_publi);
-
-		System.out.println("Duración de publicidad:");
-		double dura_publi = sc.nextDouble();
-		System.out.println("Duración de publicidad: " + dura_publi);
-
-		System.out.println("Tiempo al aire:");
-		String tiempo_publi = sc.next();
-		System.out.println("Tiempo al aire: " + tiempo_publi);
-	}
-	public void recogerDatosEvento() {
-		System.out.println("Nombre completo:");
-		String nombre_pla = sc.next();
-		System.out.println("Nombre: " + nombre_pla);
-
-		System.out.println("N° de DNI:");
-		int dni_pla = sc.nextInt();
-		System.out.println("DNI: " + dni_pla);
-
-		System.out.println("Correo:");
-		String correo_pla = sc.next();
-		System.out.println("Correo: " + correo_pla);
-
-		System.out.println("Teléfono:");
-		int telefono_pla = sc.nextInt();
-		System.out.println("Teléfono: " + telefono_pla);
-
-		System.out.println("Película:");
-		String pelicula_pla = sc.next();
-		System.out.println("Película: " + pelicula_pla);
-
-		System.out.println("Fecha del evento:");
-		String fecha_pla = sc.next(); // Cambiado a String para permitir formatos de fecha
-		System.out.println("Fecha: " + fecha_pla);
-
-		System.out.println("Horario (Preferible ingresar un horario mayor a 9:00 y menor a 11.00):");
-		int horario_pla = sc.nextInt();
-		System.out.println("Horario: " + horario_pla);
-
-		System.out.println("Cantidad de invitados:");
-		int cant_pla = sc.nextInt();
-		System.out.println("Invitados: " + cant_pla);
-	}
-	public void promociones(){
-		Scanner scanner = new Scanner(System.in);
-		String[] productos = {"Popcorn", "Gaseosa", "Nachos", "Caramelos", "Hot Dog"};
-		double[] precios = {12.50, 7.00, 10.00, 5.50, 8.00};
-		System.out.println("---- Dulcería Cineplanet Juliaca ----");
-		System.out.println("Productos disponibles:");
-		for (int i = 0; i < productos.length; i++) {
-			System.out.println((i + 1) + ". " + productos[i] + " - S/ " + precios[i]);
-		}
-		int[] cantidades = new int[productos.length];
-		for (int i = 0; i < productos.length; i++) {
-			System.out.print("Ingrese la cantidad de " + productos[i] + " que desea comprar: ");
-			cantidades[i] = scanner.nextInt();
-		}
-		double totalSinPromocion = 0;
-		System.out.println("\nResumen de compra:");
-		for (int i = 0; i < productos.length; i++) {
-			if (cantidades[i] > 0) {
-				double subtotal = cantidades[i] * precios[i];
-				System.out.println(productos[i] + " x " + cantidades[i] + " = S/ " + subtotal);
-				totalSinPromocion += subtotal;
-			}
-		}
-		double descuento = 0;
-		System.out.print("\nIngrese el día de la semana (Lunes, Martes, etc.): ");
-		String diaSemana = scanner.next().toLowerCase();
-		switch (diaSemana) {
-			case "lunes":
-				System.out.println("Promoción Lunes: 20% de descuento en toda la compra.");
-				descuento = totalSinPromocion * 0.20;
-				break;
-			case "miércoles":
-				System.out.println("Promoción Miércoles: 2x1 en Popcorn.");
-				if (cantidades[0] >= 2) {
-					descuento = precios[0];
-				}
-				break;
-			case "viernes":
-				System.out.println("Promoción Viernes: 15% de descuento si el total supera S/ 50.");
-				if (totalSinPromocion > 50) {
-					descuento = totalSinPromocion * 0.15;
-				}
-				break;
-			default:
-				System.out.println("No hay promociones disponibles para este día.");
-		}
-		double totalConPromocion = totalSinPromocion - descuento;
-		System.out.println("\nTotal sin descuento: S/ " + totalSinPromocion);
-		System.out.println("Descuento aplicado: S/ " + descuento);
-		System.out.println("Total a pagar: S/ " + totalConPromocion);
-		System.out.println("\n¡Gracias por su compra en Cineplanet Juliaca!");
-	}
-	public void dulceria(){
-		System.out.print("\n						1. PROMOCIONAL");
-		System.out.print("		2. COMBO");
-		System.out.print("		3. CANCHITA/HD/NACHOS");
-		System.out.print("		4. BEBIDAS");
-		System.out.print("		5. GOLOSINAS");
-		System.out.print("Seleccione que quiere comprar:");
-		opcion= sc.nextInt();
-	}
-	public void dulceriapromocional(){
+	public void detalles(){
+		System.out.println("Capacidad de la sala");
 		System.out.println("""
-                |-------------------------------|
-                |   COMBO DOS SALADO + 2 M&M    |
-                | 1 Canchita Gigante (Salada) + |
-                |   2 Bebida (32oz) + 2 M&M's.  |
-                |                      			|
-                |                      			|
-                |                      S/. 47.00|
-                |-------------------------------|
-                """);
+				1. Hasta 200 butacas
+				2. Mas de 200 butacas
+				3. Mas de 300 butacas
+				4. Mas de 400 butacas
+				5. Hasta 100 butacas(Prime)
+				""");
+		opcion= sc.nextInt();
+		switch (opcion){
+			case 1:
+				capacidad = "Hasta 200 butacas";
+				break;
+			case 2:
+				capacidad = "Mas de 200 butacas";
+				break;
+			case 3:
+				capacidad = "Mas de 300 butacas";
+				break;
+			case 4:
+				capacidad = "Mas de 400 butacas";
+				break;
+			case 5:
+				capacidad = "Hasta 100 butacas(Prime)";
+				break;
+			default:
+				this.detalles();
+		}
+		System.out.println("Cuantos combos desea adquirir:");
+		comboscoorporativo = sc.nextInt();
+		this.fecha();
+	}
+	public void fecha(){
+		System.out.println("FECHA DE RESERVACION DE LA SALA");
+		System.out.println("Ingrese el dia");
+		dia = sc.nextInt();
+		System.out.println("Ingrese el mes");
+		mes = sc.nextInt();
+		System.out.println("Ingrese el año");
+		año = sc.nextInt();
+		this.contacto();
+	}
+	public void contacto(){
+		System.out.println("Nombre completo");
+		String nombre=sc.nextLine();
+		System.out.println("N° de DNI");
+		String Dni= sc.nextLine();
+		if(Dni.length()<8){
+			System.out.println("Digitos Incorrectos");
+			System.out.println("Ingrese otra vez:");
+			Dni= sc.nextLine();
+			if(Dni.length()<8){
+				System.out.println("Digitos Incorrectos");
+				System.out.println("Hasta luego.");
+			}
+			else{
+				System.out.println("N° de RUC");
+				String RUC = sc.nextLine();
+				System.out.println("Correo");
+				String correo= sc.nextLine();
+				System.out.println("Celular");
+				String celular= sc.nextLine();
+				this.resumen();
+			}
+		}else {
+			System.out.println("N° de RUC");
+			String RUC = sc.nextLine();
+			System.out.println("Correo");
+			String correo= sc.nextLine();
+			System.out.println("Celular");
+			String celular= sc.nextLine();
+			this.resumen();
+		}
 
 	}
-	public static void main(String[] args) {
-		Cinep obj = new Cinep();
-		obj.menuprincipal();
-	}
+	public void resumen() {
+		System.out.println("Valida los datos de tu solicitud");
+		System.out.println("EVENTO: " + evento + " CINES: " + cine1);
+		System.out.println("CAPACIDAD: " + capacidad + " COMBOS:" + comboscoorporativo);
+		System.out.println("FECHA: "+ dia +"-"+mes+"-"+año);
+
+}
+	//CONTACTANOS
 	public void contactanos() {
 		System.out.println("---Contactanos---");
 		System.out.println("Atención de Consultas o Incidencias");
@@ -1116,4 +2915,437 @@ Tenemos las siguientes peliculas:
 				break;
 		}
 	}
+
+
+	//GENERAL IOSEF
+	public void ciudades(){
+		System.out.println("TODAS LAS CIUDADES");
+		System.out.println("1. Lima");
+		System.out.println("2. Arequipá");
+		System.out.println("3. Cajamarca");
+		System.out.println("4. Chiclayo");
+		System.out.println("5. Cusco");
+		System.out.println("6. Huancayo");
+		System.out.println("7. Huanuco");
+		System.out.println("8. Juliaca");
+		System.out.println("9. Piura");
+		System.out.println("10. Pucallpa");
+		System.out.println("11. Puno");
+		System.out.println("12. Tacna");
+		System.out.println("13. Trujillo");
+		System.out.println("0. Regresar");
+	}
+	public void cinesLima() {
+		ciudad = "Lima";
+		System.out.println("""
+				
+					|-------------------------------|					|-------------------------------|
+					|                      			|					|                      			|
+					|   	  CP Alcazar (1)		|					|   		CP Brasil (2)		|
+					|	 Av. Santa Cruz 814 - 816	|					|	 Av. Brasil 714 - 792		|
+					|    2D, REGULAR, 3D         	|					|    2D, REGULAR, 3D         	|
+					|                      			|					|                      			|
+					|-------------------------------|					|-------------------------------|
+				
+					|-------------------------------|					|-------------------------------|
+					|                      			|					|                      			|
+					|    CP Caminos del Inca (3)    |					|   	CP El Polo (4)			|
+					|	 Av. Inca 241 				|					|	 Av. El Polo 695			|
+					|    2D, REGULAR, 3D         	|					|    2D, REGULAR, 3D         	|
+					|                      			|					|                      			|
+					|-------------------------------|					|-------------------------------|
+				
+				0. Regresar
+				
+				ELIJA UN CINE:	
+				""");
+		cine = sc.nextInt();
+		switch (cine) {
+			case 1:
+				cine1 = "CP Alcazar";
+				break;
+			case 2:
+				cine1 = "CP Brasil";
+				break;
+			case 3:
+				cine1 = "CP Caminos del Inca";
+				break;
+			case 4:
+				cine1 = "CP El Polo";
+				break;
+			case 0:
+				break;
+			default:
+				this.cinesLima();
+		}
+	}
+	public void cinesArequipa(){
+		ciudad = "Arequipa";
+		System.out.println("""
+					
+					|-------------------------------|					|-------------------------------|
+					|                      			|					|                      			|
+					|   CP Arequipa Mall Plaza (1)	|					|    CP Paseo Central (2)		|
+					|	Av. Ejercito 814 - 816		|					|	 Av. Arturo Ibañez s/n		|
+					|   2D, REGULAR, 3D         	|					|    2D, REGULAR	        	|
+					|                      			|					|                      			|
+					|-------------------------------|					|-------------------------------|
+					
+											|-------------------------------|					
+											|                      			|					
+											|  CP Real Plaza Arequipa (3)   |					
+											|  Av. Ejercito 1009 			|					
+											|  2D, REGULAR, 3D        	 	|					
+											|                      			|					
+											|-------------------------------|					
+					
+				0. Regresar
+				
+				ELIJA UN CINE:	
+				""");
+		cine = sc.nextInt();
+		switch (cine) {
+			case 1:
+				cine1 = "CP Arequipa Mall Plaza";
+				break;
+			case 2:
+				cine1 = "CP Paseo Central";
+				break;
+			case 3:
+				cine1 = "CP Real Plaza Arequipa";
+				break;
+			case 0:
+				break;
+			default:
+				this.cinesArequipa();
+		}
+	}
+	public void cinesCajamarca(){
+		ciudad = "Cajamarca";
+		System.out.println("""
+					
+					
+											|-------------------------------|					
+											|                      			|					
+											|  		CP Cajamarca (1) 		|					
+											|  Av. Via de Evitamiento		|					
+											|  2D, REGULAR, 3D        	 	|					
+											|                      			|					
+											|-------------------------------|					
+					
+				0. Regresar
+				
+				ELIJA UN CINE:	
+				""");
+		cine = sc.nextInt();
+		switch (cine){
+			case 1:
+				cine1= "CP Cajamarca";
+				break;
+			case 0:
+				break;
+			default:
+				this.cinesCajamarca();
+		}
+	}
+	public void cinesChiclayo() {
+		ciudad = "Chiclayo";
+		System.out.println("""
+					
+					|-------------------------------|					|-------------------------------|
+					|                      			|					|                      			|
+					|   CP Chiclayo Mall Plaza (1)	|					|  CP Chiclayo Real Plaza (2)	|
+					|	Av. Panamericana 814 - 816	|					|  Av. Miguel Cervantes 300		|
+					|   2D, REGULAR, 3D         	|					|  2D, REGULAR, 3D	        	|
+					|                      			|					|                      			|
+					|-------------------------------|					|-------------------------------|
+									
+					
+				0. Regresar
+				
+				ELIJA UN CINE:	
+				""");
+		cine = sc.nextInt();
+		switch (cine){
+			case 1:
+				cine1= "CP Chiclayo Mall Plaza";
+				break;
+			case 2:
+				cine1= "CP Chiclayo Real Plaza";
+				break;
+			case 0:
+				break;
+			default:
+				this.cinesChiclayo();
+		}
+	}
+	public void cinesCusco() {
+		ciudad = "Cusco";
+		System.out.println("""
+					
+					
+											|-------------------------------|					
+											|                      			|					
+											|  			CP Cusco(1) 		|					
+											|  Av. Collasuyo 2964			|					
+											|  2D, REGULAR		       	 	|					
+											|                      			|					
+											|-------------------------------|					
+					
+				0. Regresar
+				
+				ELIJA UN CINE:	
+				""");
+		cine = sc.nextInt();
+		switch (cine){
+			case 1:
+				cine1= "CP Cusco";
+				break;
+			case 0:
+				break;
+			default:
+				this.cinesCusco();
+		}
+	}
+	public void cinesHuancayo() {
+		ciudad = "Huancayo";
+		System.out.println("""
+					
+					
+											|-------------------------------|					
+											|                      			|					
+											|  	CP Huancayo Real PLaza (1) 	|					
+											|  	Av. Ferrocarril s/n			|					
+											|  	2D, REGULAR, 3D        	 	|					
+											|                      			|					
+											|-------------------------------|					
+					
+				0. Regresar
+				
+				ELIJA UN CINE:	
+				""");
+		cine = sc.nextInt();
+		switch (cine){
+			case 1:
+				cine1= "CP Huancayo Real PLaza";
+				break;
+			case 0:
+				break;
+			default:
+				this.cinesHuancayo();
+		}
+
+
+	}
+	public void cinesHuanuco() {
+		ciudad = "Huanuco";
+		System.out.println("""
+					
+					
+											|-------------------------------|					
+											|                      			|					
+											|  	CP Huanuco Real PLaza (1) 	|					
+											|  	Av. Independencia s/n		|					
+											|  	2D, REGULAR, 3D        	 	|					
+											|                      			|					
+											|-------------------------------|					
+					
+				0. Regresar
+				
+				ELIJA UN CINE:	
+				""");
+		cine = sc.nextInt();
+		switch (cine) {
+			case 1:
+				cine1 = "CP Huanuco Real PLaza";
+				break;
+			case 0:
+				break;
+			default:
+				this.cinesHuanuco();
+		}
+	}
+	public void cinesJuliaca() {
+		ciudad = "Juliaca";
+		System.out.println("""
+					
+					
+											|-------------------------------|					
+											|                      			|					
+											|  		  CP Juliaca (1) 		|					
+											|  	Calle Tumbes 395			|					
+											|  	2D, REGULAR, 3D        	 	|					
+											|                      			|					
+											|-------------------------------|					
+					
+				0. Regresar
+				
+				ELIJA UN CINE:	
+				""");
+		cine = sc.nextInt();
+		switch (cine){
+			case 1:
+				cine1= "CP Juliaca";
+				break;
+			case 0:
+				break;
+			default:
+				this.cinesJuliaca();
+		}
+	}
+	public void cinesPiura() {
+		ciudad = "Piura";
+		System.out.println("""
+					
+					|-------------------------------|					|-------------------------------|
+					|                      			|					|                      			|
+					|   		CP Piura(1)			|					|  	CP Piura Real Plaza (2)		|
+					|	Jr. Huancavelica 537		|					|  	Av. Sanchez Cerro 234		|
+					|   2D, REGULAR		        	|					|  	2D, REGULAR		        	|
+					|                      			|					|                      			|
+					|-------------------------------|					|-------------------------------|
+									
+					
+				0. Regresar
+				
+				ELIJA UN CINE:	
+				""");
+		cine = sc.nextInt();
+		switch (cine){
+			case 1:
+				cine1= "CP Piura";
+				break;
+			case 2:
+				cine1= "CP Piura Real Plaza";
+				break;
+			case 0:
+				break;
+			default:
+				this.cinesPiura();
+		}
+
+
+	}
+	public void cinesPucallpa() {
+		ciudad = "Pucallpa";
+		System.out.println("""
+					
+					
+											|-------------------------------|					
+											|                      			|					
+											|  		  CP Pucallpa (1) 		|					
+											|  	Av.Centenario 395			|					
+											|  	2D, REGULAR, 3D        	 	|					
+											|                      			|					
+											|-------------------------------|					
+					
+				0. Regresar
+				
+				ELIJA UN CINE:	
+				""");
+		cine = sc.nextInt();
+		switch (cine){
+			case 1:
+				cine1= "CP Pucallpa";
+				break;
+			case 0:
+				break;
+			default:
+				this.cinesPucallpa();
+		}
+	}
+	public void cinesPuno() {
+		ciudad = "Puno";
+		System.out.println("""
+					
+					
+											|-------------------------------|					
+											|                      			|					
+											|  		  	CP Puno (1) 		|					
+											|  	Av.Los Incas s/n			|					
+											|  	2D, REGULAR		       	 	|					
+											|                      			|					
+											|-------------------------------|					
+					
+				0. Regresar
+				
+				ELIJA UN CINE:	
+				""");
+		cine = sc.nextInt();
+		switch (cine){
+			case 1:
+				cine1= "CP Puno";
+				break;
+			case 0:
+				break;
+			default:
+				this.cinesPuno();
+		}
+	}
+	public void cinesTacna() {
+		ciudad = "Tacna";
+		System.out.println("""
+					
+					
+											|-------------------------------|					
+											|                      			|					
+											|  		  	CP Tacna (1) 		|					
+											|  	Av.Cuzco 36					|					
+											|  	2D, REGULAR, 3D	       	 	|					
+											|                      			|					
+											|-------------------------------|					
+					
+				0. Regresar
+				
+				ELIJA UN CINE:	
+				""");
+		cine = sc.nextInt();
+		switch (cine){
+			case 1:
+				cine1= "CP Tacna";
+				break;
+			case 0:
+				break;
+			default:
+				this.cinesTacna();
+		}
+	}
+	public void cinesTrujllo() {
+		ciudad = "Trujllo";
+		System.out.println("""
+					
+					|-------------------------------|					|-------------------------------|
+					|                      			|					|                      			|
+					|   	CP Trujillo(1)			|					|  	CP Trujillo Real Plaza (2)	|
+					|	Jr. Marisacal 537			|					|  	Av. Cesar Vallejo 1345		|
+					|   2D, REGULAR		        	|					|  	2D, REGULAR, 3D	        	|
+					|                      			|					|                      			|
+					|-------------------------------|					|-------------------------------|
+									
+					
+				0. Regresar
+				
+				ELIJA UN CINE:	
+				""");
+		cine = sc.nextInt();
+		switch (cine){
+			case 1:
+				cine1= "CP Trujillo";
+				break;
+			case 2:
+				cine1= "CP Trujillo Real Plaza";
+				break;
+			case 0:
+				break;
+			default:
+				this.cinesTrujllo();
+		}
+
+	}
+	public static void main(String[] args) {
+		Cinep obj = new Cinep();
+		obj.menuprincipal();
+	}
 }
+
+
