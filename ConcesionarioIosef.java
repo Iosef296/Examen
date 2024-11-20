@@ -6,8 +6,8 @@ import java.util.*;
 public class ConcesionarioIosef {
     Scanner sc = new Scanner(System.in);
     Random random = new Random();
-    String departamento,letras,placa="",sedefinal="",codigo="",nombres,dni ,correo,telefono,tarjeta;
-    int opcion,i,numero,cantidad,vehiculo,opcion_sede,cantidadPlacas=20,numeros,cotizar=0;
+    String departamento,letras,placa="",sedefinal="",nombres,dni ,correo,telefono,tarjeta,codigo_nuevo;
+    int opcion,i,numero,cantidad,vehiculo,opcion_sede,cantidadPlacas=20,numeros,cotizar=0,codigo=0;
     double totalcamionetas,totaldeportivos,totalseminuevos, igv,subtotal, total,pago,cantidadvehiculos;
     ArrayList<Integer> compra_camioneta = new ArrayList<>();
     ArrayList<Integer> compra_deportivo = new ArrayList<>();
@@ -327,12 +327,12 @@ public class ConcesionarioIosef {
                 System.out.println("Volviendo a la sección de camionetas");
                 this.camionetas();
             } else if (opcion == 2) {
-             if(sedefinal=="") {
-                 this.sedes_1();
-            }
-             else  {
-                 this.boleta();
-             }
+                if(sedefinal=="") {
+                    this.sedes_1();
+                }
+                else  {
+                    this.boleta();
+                }
             } else if (opcion == 3) {
                 this.menuPrincipal();
             } else {
@@ -416,6 +416,37 @@ public class ConcesionarioIosef {
         }
     }
     public void postventa() {
+        sc.nextLine();
+        System.out.println("Ingrese el codigo de su boleta para acceder a este apartado");
+        codigo_nuevo=sc.nextLine();
+        if(codigo_nuevo.equals(codigo)){
+            for (int i = 0; i < camionetas.size(); i++) {
+                int cantidad = compra_camioneta.get(i);
+                if (cantidad > 0) {
+                    System.out.println("Bienvenidos a post-venta");
+                    System.out.println("Su vehiculo es un: " + camionetas.get(i));
+                    }
+                }
+            for (int i = 0; i < deportivos.size(); i++) {
+                int cantidad = compra_deportivo.get(i);
+                if (cantidad > 0) {
+                    System.out.println("Bienvenidos a post-venta");
+                    System.out.println("Su vehiculo es un: " + deportivos.get(i));
+                    }
+                }
+
+            for (int i = 0; i < seminuevos.size(); i++) {
+                int cantidad = compra_seminuevo.get(i);
+                if (cantidad > 0) {
+                    System.out.println("Bienvenidos a post-venta");
+                    System.out.println("Su vehiculo es un: " + seminuevos.get(i));
+                }
+            }
+        }
+        else{
+            System.out.println("Codigo invalido");
+            this.menuPrincipal();
+        }
     }
     public void cotizar() {
         System.out.println("¿Que tipo de vehiculo desea cotizar?");
@@ -427,15 +458,15 @@ public class ConcesionarioIosef {
             case 1:
                 this.camionetas();
                 break;
-                case 2:
-                    this.deportivos();
-                    break;
-                    case 3:
-                        this.seminuevos();
-                        break;
-                        default:
-                            System.out.println("Regresando al menu principal");
-                            this.menuPrincipal();
+            case 2:
+                this.deportivos();
+                break;
+            case 3:
+                this.seminuevos();
+                break;
+            default:
+                System.out.println("Regresando al menu principal");
+                this.menuPrincipal();
         }
         this.datos();
         System.out.println("""
@@ -452,7 +483,7 @@ public class ConcesionarioIosef {
         this.contenido();
     }
     public void contenido(){
-         cantidadvehiculos = 0;
+        cantidadvehiculos = 0;
         this.placa();
         System.out.println("\t\t\tRUC: 20768778081 - SEDE:" + sedefinal);
         System.out.println("\t\t\tNOMBRES Y APELLIDOS: "+nombres);
@@ -526,11 +557,12 @@ public class ConcesionarioIosef {
             case 1:
                 this.menuPrincipal();
                 break;
-                case 2:
-                    break;
+            case 2:
+                break;
         }
     }
     public void datos(){
+        sc.nextLine();
         System.out.println("Ingrese sus nombres y apellidos");
         nombres = sc.nextLine();
         while (true) {
@@ -583,15 +615,10 @@ public class ConcesionarioIosef {
                 """);
         System.out.println("\t\t\t--------- BOLETA DE VENTA ---------     ");
         this.contenido();
-        letras = "";
-        for (int i = 0; i < 3; i++) {
-            char letra = (char) ('A' + random.nextInt(26)); // Letras de A a Z
-            letras += letra;
-        }
-        numeros = random.nextInt(9000) + 1000;
-        codigo = letras + "-" + numeros;
+
     }
     public void imprimir_boleta(){
+        codigo = random.nextInt(9000) + 1000;
         try (FileWriter fileWriter = new FileWriter("boleta.txt")) {
             fileWriter.write("""
                 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -634,6 +661,7 @@ public class ConcesionarioIosef {
             fileWriter.write(String.format("\n\t\t\t\tSUBTOTAL:     %.2f\n", subtotal));
             fileWriter.write(String.format("\t\t\t       %s\t\t%.2f\n","IGV:", igv));
             fileWriter.write(String.format("\t\t\t   TOTAL A PAGAR: %.2f\n", total));
+            fileWriter.write("CODIGO UNICO DE VENTA: "+ codigo);
             System.out.println("La boleta ha sido guardada en 'boleta.txt'.");
 
         } catch (IOException e) {
@@ -641,23 +669,22 @@ public class ConcesionarioIosef {
         }
     }
     public void placa() {
-    while (placas.size() < cantidadPlacas) {
-        letras = "";
-        for (int i = 0; i < 3; i++) {
-            char letra = (char) ('A' + random.nextInt(26)); // Letras de A a Z
-            letras += letra;
+        while (placas.size() < cantidadPlacas) {
+            letras = "";
+            for (int i = 0; i < 3; i++) {
+                char letra = (char) ('A' + random.nextInt(26)); // Letras de A a Z
+                letras += letra;
+            }
+            numeros = random.nextInt(900) + 100;
+            placa = letras + "-" + numeros;
+            placas.add(placa);
         }
-        numeros = random.nextInt(900) + 100;
-        placa = letras + "-" + numeros;
-        placas.add(placa);
     }
-}
     public static void main(String[] args) {
         ConcesionarioIosef concesionarioIosef = new ConcesionarioIosef();
         concesionarioIosef.menuPrincipal();
     }
 }
-
 
 
 
