@@ -1,68 +1,41 @@
-import java.util.ArrayList;
-import java.util.Scanner;
-import java.util.HashMap;
-import java.util.Map;
-import java.io.*;
-import java.util.Random;
+import javax.swing.plaf.synth.SynthOptionPaneUI;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.*;
+
 public class ConcesionarioIosef {
     Scanner sc = new Scanner(System.in);
-    String departamento;
-    int opcion, i,vehiculoc,vehiculod,vehiculos,cantidad,vehiculofinal;
-    double igv,subtotal, total,pago,vuelto,resto;
-    ArrayList<String> compra = new ArrayList<>();
+    Random random = new Random();
+    String departamento,letras,placa="",sedefinal="",codigo="",nombres,dni ,correo,telefono,tarjeta;
+    int opcion,i,numero,cantidad,vehiculo,opcion_sede,cantidadPlacas=20,numeros,cotizar=0;
+    double totalcamionetas,totaldeportivos,totalseminuevos, igv,subtotal, total,pago,cantidadvehiculos;
+    ArrayList<Integer> compra_camioneta = new ArrayList<>();
+    ArrayList<Integer> compra_deportivo = new ArrayList<>();
+    ArrayList<Integer> compra_seminuevo = new ArrayList<>();
+    ArrayList<Double> subtotal_camioneta = new ArrayList<>();
+    ArrayList<Double> subtotal_deportivo = new ArrayList<>();
+    ArrayList<Double> subtotal_seminuevo = new ArrayList<>();
+    ArrayList<String> camionetas = new ArrayList<>();
+    ArrayList<Double> precioscamionetas = new ArrayList<>();
+    ArrayList<String> deportivos = new ArrayList<>();
+    ArrayList<Double> preciosdeportivos = new ArrayList<>();
+    ArrayList<String> seminuevos = new ArrayList<>();
+    ArrayList<Double> preciosseminuevos = new ArrayList<>();
     String[] departamentos = {"Amazonas", "Áncash", "Apurímac", "Arequipa", "Ayacucho", "Cajamarca", "Callao", "Cusco", "Huancavelica", "Huánuco", "Ica", "Junín", "La Libertad", "Lambayeque", "Lima", "Loreto", "Madre de Dios", "Moquegua", "Pasco", "Piura", "Puno", "San Martín", "Tacna", "Tumbes", "Ucayali"};
     String[] sedes = {"Sede Arequipa", "Sede Chincha", "Sede Cusco", "Sede Ica", "Sede Juliaca", "Sede Piura", "Sede Puno", "Sede Trujillo"};
-    //String[] marcas = {"Toyota", "Honda", "Ford", "Chevrolet", "Nissan", "Volkswagen", "BMW", "Mercedes-Benz", "Audi", "Kia", "Hyundai", "Mazda", "Subaru", "Tesla", "Ferrari", "Lamborghini", "Porsche", "Jaguar", "Land Rover", "Mitsubishi", "Volvo", "Peugeot", "Renault", "Fiat", "Suzuki"};
-    String[] camionetas = {"Wrangler - Jeep (SUV)", "Cherokee - Jeep (SUV)" , "Altima - Nissan (SUV en algunos modelos)" , "Outlander - Mitsubishi (SUV)" , "Land Cruiser - Toyota (SUV)" , "Explorer - Ford (SUV)" , "X5 - BMW (SUV)" , "Soul - Kia (SUV compacto)" , "Siena - Toyota (SUV/Minivan)" , "Tucson - Hyundai (SUV)" , "Tundra - Toyota (Pick-up)" , "Wrangler Unlimited - Jeep (SUV)" , "Range Rover - Land Rover (SUV)" , "Pacifica - Chrysler (SUV/Minivan)" , "Mokka - Opel (SUV)" , "Q5 - Audi (SUV)"};
+    String[] camioneta = {"Wrangler - Jeep (SUV)", "Cherokee - Jeep (SUV)" , "Altima - Nissan (SUV en algunos modelos)" , "Outlander - Mitsubishi (SUV)" , "Land Cruiser - Toyota (SUV)" , "Explorer - Ford (SUV)" , "X5 - BMW (SUV)" , "Soul - Kia (SUV compacto)" , "Siena - Toyota (SUV/Minivan)" , "Tucson - Hyundai (SUV)" , "Tundra - Toyota (Pick-up)" , "Wrangler Unlimited - Jeep (SUV)" , "Range Rover - Land Rover (SUV)" , "Pacifica - Chrysler (SUV/Minivan)" , "Mokka - Opel (SUV)" , "Q5 - Audi (SUV)"};
     String[] deportivo = {"Mustang - Ford (Deportivo)" , "Camaro - Chevrolet (Deportivo)" , "Model S - Tesla (Deportivo, aunque es eléctrico)" , "Vantage - Aston Martin (Deportivo)" , "Civic Type R - Honda (Deportivo compacto)" , "Cayenne - Porsche (Deportivo / SUV de alto rendimiento)" , "3 Series - BMW (Deportivo)" , "C-Class - Mercedes-Benz (Deportivo / Sedan deportivo)" , "Golf - Volkswagen (Deportivo en algunas versiones como el GTI)" , "A4 - Audi (Deportivo / Sedan)" , "Q7 - Audi (SUV deportivo)" , "E-Class - Mercedes-Benz (Deportivo / Sedan)" , "F-150 - Ford"};
-    String[] seminuevos = {"Honda Civic (2017)" , "Toyota Corolla (2016)" , "Ford Mustang (2015)" , "Chevrolet Camaro (2016)" , "BMW 3 Series (2014)" , "Audi A4 (2017)" , "Hyundai Elantra (2016)" , "Mazda CX-5 (2015)" , "Jeep Grand Cherokee (2016)" , "Nissan Altima (2017)" , "Subaru Impreza (2015)" , "Volkswagen Golf (2017)" , "Kia Optima (2016)" , "Ford Explorer (2016)" , "Toyota Camry (2017)" , "Chevrolet Silverado 1500 (2014)" , "Ram 1500 (2015)" , "Honda Accord (2014)" , "Audi Q5 (2015)" , "Mazda 6 (2014)"};
-    double[] precioscamionetas = {35000, 28000, 20000, 22000, 75000, 30000, 45000, 18000, 30000, 24000, 40000, 40000, 80000, 35000, 20000, 40000};
-    double[] preciosdeportivos = {70000, 70000, 10000, 150000, 45000, 100000, 60000, 80000, 45000, 60000, 75000, 90000, 60000};
-    double[] preciosseminuevos = {12000, 10000, 18000, 20000, 15000, 20000, 10000, 14000, 22000, 12000, 12000, 16000, 12000, 20000, 18000, 22000, 18000, 12000, 20000, 12000};
-    //Map<String, String[]> provinciasPeru = new HashMap<>();
+    String[] seminuevo = {"Honda Civic (2017)" , "Toyota Corolla (2016)" , "Ford Mustang (2015)" , "Chevrolet Camaro (2016)" , "BMW 3 Series (2014)" , "Audi A4 (2017)" , "Hyundai Elantra (2016)" , "Mazda CX-5 (2015)" , "Jeep Grand Cherokee (2016)" , "Nissan Altima (2017)" , "Subaru Impreza (2015)" , "Volkswagen Golf (2017)" , "Kia Optima (2016)" , "Ford Explorer (2016)" , "Toyota Camry (2017)" , "Chevrolet Silverado 1500 (2014)" , "Ram 1500 (2015)" , "Honda Accord (2014)" , "Audi Q5 (2015)" , "Mazda 6 (2014)"};
+    double[] precioscamioneta = {35000, 28000, 20000, 22000, 75000, 30000, 45000, 18000, 30000, 24000, 40000, 40000, 80000, 35000, 20000, 40000};
+    double[] preciosdeportivo = {70000, 70000, 10000, 150000, 45000, 100000, 60000, 80000, 45000, 60000, 75000, 90000, 60000};
+    double[] preciosseminuevo = {12000, 10000, 18000, 20000, 15000, 20000, 10000, 14000, 22000, 12000, 12000, 16000, 12000, 20000, 18000, 22000, 18000, 12000, 20000, 12000};
     Map<String, String> departamentoSede = new HashMap<>();
     Map<String, String> carrosMarcas = new HashMap<>();
+    ArrayList<String> placas = new ArrayList<>();
     public ConcesionarioIosef() {
-        /*provinciasPeru.put("Amazonas", new String[]{"Bagua", "Bongará", "Chachapoyas", "Condorcanqui", "Luya", "Rodríguez de Mendoza", "Utcubamba"});
-        provinciasPeru.put("Áncash", new String[]{"Aija", "Antonio Raymondi", "Asunción", "Bolognesi", "Carhuaz", "Carlos Fermín Fitzcarrald",
-                "Casma", "Corongo", "Huaraz", "Huari", "Huarmey", "Huaylas", "Mariscal Luzuriaga", "Ocros",
-                "Pallasca", "Pomabamba", "Recuay", "Santa", "Sihuas", "Yungay"});
-        provinciasPeru.put("Apurímac", new String[]{"Abancay", "Andahuaylas", "Antabamba", "Aymaraes", "Cotabambas", "Chincheros", "Grau"});
-        provinciasPeru.put("Arequipa", new String[]{"Arequipa", "Camaná", "Caravelí", "Castilla", "Caylloma", "Condesuyos", "Islay", "La Unión"});
-        provinciasPeru.put("Ayacucho", new String[]{"Cangallo", "Huamanga", "Huanca Sancos", "Huanta", "La Mar", "Lucanas", "Parinacochas",
-                "Páucar del Sara Sara", "Sucre", "Víctor Fajardo", "Vilcas Huamán"});
-        provinciasPeru.put("Cajamarca", new String[]{"Cajabamba", "Cajamarca", "Celendín", "Chota", "Contumazá", "Cutervo", "Hualgayoc", "Jaén",
-                "San Ignacio", "San Marcos", "San Miguel", "San Pablo", "Santa Cruz"});
-        provinciasPeru.put("Callao", new String[]{"Prov. Constitucional del Callao"});
-        provinciasPeru.put("Cusco", new String[]{"Acomayo", "Anta", "Calca", "Canas", "Canchis", "Chumbivilcas", "Cusco", "Espinar", "La Convención",
-                "Paruro", "Paucartambo", "Quispicanchi", "Urubamba"});
-        provinciasPeru.put("Huancavelica", new String[]{"Acobamba", "Angaraes", "Castrovirreyna", "Churcampa", "Huancavelica", "Huaytará", "Tayacaja"});
-        provinciasPeru.put("Huánuco", new String[]{"Ambo", "Dos de Mayo", "Huacaybamba", "Huamalíes", "Huánuco", "Lauricocha", "Leoncio Prado",
-                "Marañón", "Pachitea", "Puerto Inca", "Yarowilca"});
-        provinciasPeru.put("Ica", new String[]{"Chincha", "Ica", "Nazca", "Palpa", "Pisco"});
-        provinciasPeru.put("Junín", new String[]{"Chanchamayo", "Chupaca", "Concepción", "Huancayo", "Jauja", "Junín", "Satipo", "Tarma", "Yauli"});
-        provinciasPeru.put("La Libertad", new String[]{"Ascope", "Bolívar", "Chepén", "Gran Chimú", "Julcán", "Otuzco", "Pacasmayo", "Pataz",
-                "Sánchez Carrión", "Santiago de Chuco", "Trujillo", "Virú"});
-        provinciasPeru.put("Lambayeque", new String[]{"Chiclayo", "Ferreñafe", "Lambayeque"});
-        provinciasPeru.put("Lima", new String[]{"Barranca", "Cajatambo", "Canta", "Cañete", "Huaral", "Huarochirí", "Huaura", "Lima",
-                "Oyón", "Yauyos"});
-        provinciasPeru.put("Loreto", new String[]{"Alto Amazonas", "Datem del Marañón", "Loreto", "Mariscal Ramón Castilla", "Maynas",
-                "Putumayo", "Requena", "Ucayali"});
-        provinciasPeru.put("Madre de Dios", new String[]{"Manu", "Tahuamanu", "Tambopata"});
-        provinciasPeru.put("Moquegua", new String[]{"General Sánchez Cerro", "Ilo", "Mariscal Nieto"});
-        provinciasPeru.put("Pasco", new String[]{"Daniel Alcides Carrión", "Oxapampa", "Pasco"});
-        provinciasPeru.put("Piura", new String[]{"Ayabaca", "Huancabamba", "Morropón", "Paita", "Piura", "Sechura", "Sullana", "Talara"});
-        provinciasPeru.put("Puno", new String[]{"Azángaro", "Carabaya", "Chucuito", "El Collao", "Huancané", "Lampa", "Melgar", "Moho",
-                "Puno", "San Antonio de Putina", "San Román", "Sandia", "Yunguyo"});
-        provinciasPeru.put("San Martín", new String[]{"Bellavista", "El Dorado", "Huallaga", "Lamas", "Mariscal Cáceres", "Moyobamba", "Picota",
-                "Rioja", "San Martín", "Tocache"});
-        provinciasPeru.put("Tacna", new String[]{"Candarave", "Jorge Basadre", "Tacna", "Tarata"});
-        provinciasPeru.put("Tumbes", new String[]{"Contralmirante Villar", "Tumbes", "Zarumilla"});
-        provinciasPeru.put("Ucayali", new String[]{"Atalaya", "Coronel Portillo", "Padre Abad", "Purús"});
-        */
         //SEDES
         departamentoSede.put("Amazonas", "Sede Trujillo");
-        departamentoSede.put("Áncash", "Sede Trujillo");
+        departamentoSede.put("Ancash", "Sede Trujillo");
         departamentoSede.put("Apurímac", "Sede Cusco");
         departamentoSede.put("Arequipa", "Sede Arequipa");
         departamentoSede.put("Ayacucho", "Sede Cusco");
@@ -70,9 +43,9 @@ public class ConcesionarioIosef {
         departamentoSede.put("Callao", "Sede Ica");
         departamentoSede.put("Cusco", "Sede Cusco");
         departamentoSede.put("Huancavelica", "Sede Ica");
-        departamentoSede.put("Huánuco", "Sede Trujillo");
+        departamentoSede.put("Huanuco", "Sede Trujillo");
         departamentoSede.put("Ica", "Sede Ica");
-        departamentoSede.put("Junín", "Sede Ica");
+        departamentoSede.put("Junin", "Sede Ica");
         departamentoSede.put("La Libertad", "Sede Trujillo");
         departamentoSede.put("Lambayeque", "Sede Piura");
         departamentoSede.put("Lima", "Sede Ica");
@@ -82,7 +55,7 @@ public class ConcesionarioIosef {
         departamentoSede.put("Pasco", "Sede Ica");
         departamentoSede.put("Piura", "Sede Piura");
         departamentoSede.put("Puno", "Sede Puno");
-        departamentoSede.put("San Martín", "Sede Trujillo");
+        departamentoSede.put("San Martin", "Sede Trujillo");
         departamentoSede.put("Tacna", "Sede Arequipa");
         departamentoSede.put("Tumbes", "Sede Piura");
         departamentoSede.put("Ucayali", "Sede Trujillo");
@@ -134,43 +107,74 @@ public class ConcesionarioIosef {
         carrosMarcas.put("Q5", "Audi");
         carrosMarcas.put("Model S", "Tesla");
         carrosMarcas.put("Camaro", "Chevrolet");
+        //DATOS EXTRA
+        for (String elemento : camioneta) {
+            camionetas.add(elemento);
+        }
+        for (double num : precioscamioneta) {
+            precioscamionetas.add(num);
+        }
+        for (String elemento : deportivo) {
+            deportivos.add(elemento);
+        }
+        for (double num : preciosdeportivo) {
+            preciosdeportivos.add(num);
+        }
+        for (String elemento : seminuevo) {
+            seminuevos.add(elemento);
+        }
+        for (double num : preciosseminuevo) {
+            preciosseminuevos.add(num);
+        }
+        for (int i = 0; i < camionetas.size(); i++) {
+            compra_camioneta.add(0);
+            subtotal_camioneta.add(0.0);
+        }
+        for (int i = 0; i < deportivos.size(); i++) {
+            compra_deportivo.add(0);
+            subtotal_deportivo.add(0.0);
+        }
+        for (int i = 0; i < seminuevos.size(); i++) {
+            compra_seminuevo.add(0);
+            subtotal_seminuevo.add(0.0);
+        }
     }
     public void menuPrincipal() {
         System.out.println("""
-                                                                 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@:
-                                                                 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@:
-                                                                 @@@@@@@@@@@@@@@@@@@@@@@@@@@@   :       =@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@:
-                                                                 @@@@@@@@@@@@@@@@@@@@@@@@@  @@-@@@@@@@@@@@@@@@@+@@  @@@@@@@  @@@@@@@@@@@@@:
-                                                                 @@@@@@@@@@@@@@@@@@@@@@@ @@ @@@@              #@@@ @@  @@@ @@  @@@@@@@@@@@:
-                                                                 @@@@@@@@@@@@@@@@@@@@@ =@ @@*   @@@@@@@@@@@@@@-   @@@@@ @@  @  @@@@@@@@@@@:
-                                                                 @@@@@@@@@@@@@@@@@@@@ @ @@   @@@              @@@   @@ @ @@@@@@@@@@@@@@@@@:
-                                                                 @@@@@@@@@@@@@@@@@@  @@@.  @@   @@@@@@@@@@@@@@   @@   @=@.=@@@@@@@@@@@@@@@:
-                                                                 @@@@@@@@@@@@@@@@@@ @@@  @@=  @@@ @@@@@@@@-@@@@@  @@@  @@@-@@       @@@@@@:
-                                                                 @@@@@@@@@@@@@@@@  @@@  @@  @@@@            @@@@@@  @@  @ @ @@@@@@@@@    @:
-                                                                 @@@@@@@@@@@@@@@@ @@  @@  @@ @@  @@@@@@@@@@  @@@@@ @@  @@ @@@@@@@@@@@@@@@@:
-                                                                 @@@@@@@@@@@@@@@@ @@  @@ @@@@@ @@@@@@@@@@@@@@ @@@@  @@ ,@ @ @@@@@@@@@@@@@@:
-                                                                 @@@@@@@@@@@@@@@@ @@=  @ @@@@                   @@@@  @@  @@@ @@@:*@###@@@#
-                                                                 @@@@@@@@@@@@@@@@ @@@@%@ @@@  @@@@@@@@@@@@@@@@   @@@ @@@@@@@ @@@@@@@@@@@@@*
-                                                                 @@@@@@@@@@@@@@@@ @@@  @  @@@     @@@@@@@@@@    @@@ @@@  @@@ @@@*+-=+*-+-%.
-                                                                 @@@@@@@@@@@@@@@@@ @@  @@  @@ @@@           @@@ @@  @@ @@  @@ @@@%@@@@@@@@*
-                                                                 @@@@@@@@@@@@@@@@@ @@@  @@  @@   @@@@@@@@@@@@   @@  @@  @=@ @@@@@@@@@@@@@@#
-                                                                 @@@@@@@@@@@@@@@@@# @@@  @@  @@@@@@@@@@@@@@=@@@@  @@@  @@ @ @@@@@@@%*-:.+#-
-                                                                 @@@@@@@@@@@@@@@@@@  @@@  @@@   @@@@@  @@@@@@    @@   @@ @ @@@@@@@@@@@@@@@+
-                                                                 @@@@@@@@@@@@@@@@@@@  @@@@  @@@%    +-        @@@@  @@ @  @         %@@@@@:
-                                                                 @@@@@@@@@@@@@@@@@@@@@ @@@@@   @@@@@#  -@@@@@@@   @@*:@ @@@@@@@@@@@@@@@@@@=
-                                                                 @@@@@@@@@@@@@@@@@@@@@@  @@@@@@    #@@@@@@     @@@@:@ #@@@@@@@@#@@@@@@@@@@*
-                                                                 @@@@@@@@@@@@@@@@@@@@@@@@@  @@@@@@@@@ @@-@@@@@@@@@  @@@@@@@@@@@%@@@@@@@@@@+
-                                                                 @@@@@@@@@@@@@@%#@#%#@@@@@@@*   @@@@@@@@@@@@@    @@@@@@@@@@@@@@@@@@@@@@@@@:
-                                                                 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  @@@@@@    @@@@@@@@@@@@@%@@@@@@@@@@@@@@@=
-                                                                 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%@@@@@@@@@@@@@@@=
-                                                                 @@@@@@   @@@@@@@       @@@@@@@         @@@@@         @@@@@@         @@@@@=
-                                                                 @@@@@@   @@@@@@  @@@@@  @@@@@   @@@@@@@@@@@@   @@@@@@@@@@@@   @@@@@@@@@@@=
-                                                                 @@@@@@   @@@@@   @@@@@   @@@@@         @@@@@         @@@@@@        @@@@@@
-                                                                 @@@@@@   @@@@@%  @@@@@  @@@@@@@@@@@@@  @@@@@   @@@@@@@@@@@@   @@@@@@@@@@@*
-                                                                 @@@@@@   @@@@@@@       @@@@@@         @@@@@@         @@@@@@   @@@@@@@@@@@=
-                                                                 @@@@@@@@@@@@@@@@@@@@@@@@@@@@%#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@:
+                                                                @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@:
+                                                                @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@:
+                                                                @@@@@@@@@@@@@@@@@@@@@@@@@@@@   :       =@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@:
+                                                                @@@@@@@@@@@@@@@@@@@@@@@@@  @@-@@@@@@@@@@@@@@@@+@@  @@@@@@@  @@@@@@@@@@@@@:
+                                                                @@@@@@@@@@@@@@@@@@@@@@@ @@ @@@@              #@@@ @@  @@@ @@  @@@@@@@@@@@:
+                                                                @@@@@@@@@@@@@@@@@@@@@ =@ @@*   @@@@@@@@@@@@@@-   @@@@@ @@  @  @@@@@@@@@@@:
+                                                                @@@@@@@@@@@@@@@@@@@@ @ @@   @@@              @@@   @@ @ @@@@@@@@@@@@@@@@@:
+                                                                @@@@@@@@@@@@@@@@@@  @@@.  @@   @@@@@@@@@@@@@@   @@   @=@.=@@@@@@@@@@@@@@@:
+                                                                @@@@@@@@@@@@@@@@@@ @@@  @@=  @@@ @@@@@@@@-@@@@@  @@@  @@@-@@       @@@@@@:
+                                                                @@@@@@@@@@@@@@@@  @@@  @@  @@@@            @@@@@@  @@  @ @ @@@@@@@@@    @:
+                                                                @@@@@@@@@@@@@@@@ @@  @@  @@ @@  @@@@@@@@@@  @@@@@ @@  @@ @@@@@@@@@@@@@@@@:
+                                                                @@@@@@@@@@@@@@@@ @@  @@ @@@@@ @@@@@@@@@@@@@@ @@@@  @@ ,@ @ @@@@@@@@@@@@@@:
+                                                                @@@@@@@@@@@@@@@@ @@=  @ @@@@                   @@@@  @@  @@@ @@@:*@###@@@#
+                                                                @@@@@@@@@@@@@@@@ @@@@%@ @@@  @@@@@@@@@@@@@@@@   @@@ @@@@@@@ @@@@@@@@@@@@@*
+                                                                @@@@@@@@@@@@@@@@ @@@  @  @@@     @@@@@@@@@@    @@@ @@@  @@@ @@@*+-=+*-+-%.
+                                                                @@@@@@@@@@@@@@@@@ @@  @@  @@ @@@           @@@ @@  @@ @@  @@ @@@%@@@@@@@@*
+                                                                @@@@@@@@@@@@@@@@@ @@@  @@  @@   @@@@@@@@@@@@   @@  @@  @=@ @@@@@@@@@@@@@@#
+                                                                @@@@@@@@@@@@@@@@@# @@@  @@  @@@@@@@@@@@@@@=@@@@  @@@  @@ @ @@@@@@@%*-:.+#-
+                                                                @@@@@@@@@@@@@@@@@@  @@@  @@@   @@@@@  @@@@@@    @@   @@ @ @@@@@@@@@@@@@@@+
+                                                                @@@@@@@@@@@@@@@@@@@  @@@@  @@@%    +-        @@@@  @@ @  @         %@@@@@:
+                                                                @@@@@@@@@@@@@@@@@@@@@ @@@@@   @@@@@#  -@@@@@@@   @@*:@ @@@@@@@@@@@@@@@@@@=
+                                                                @@@@@@@@@@@@@@@@@@@@@@  @@@@@@    #@@@@@@     @@@@:@ #@@@@@@@@#@@@@@@@@@@*
+                                                                @@@@@@@@@@@@@@@@@@@@@@@@@  @@@@@@@@@ @@-@@@@@@@@@  @@@@@@@@@@@%@@@@@@@@@@+
+                                                                @@@@@@@@@@@@@@%#@#%#@@@@@@@*   @@@@@@@@@@@@@    @@@@@@@@@@@@@@@@@@@@@@@@@:
+                                                                @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  @@@@@@    @@@@@@@@@@@@@%@@@@@@@@@@@@@@@=
+                                                                @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%@@@@@@@@@@@@@@@=
+                                                                @@@@@@   @@@@@@@       @@@@@@@         @@@@@         @@@@@@         @@@@@=
+                                                                @@@@@@   @@@@@@  @@@@@  @@@@@   @@@@@@@@@@@@   @@@@@@@@@@@@   @@@@@@@@@@@=
+                                                                @@@@@@   @@@@@   @@@@@   @@@@@         @@@@@         @@@@@@        @@@@@@
+                                                                @@@@@@   @@@@@%  @@@@@  @@@@@@@@@@@@@  @@@@@   @@@@@@@@@@@@   @@@@@@@@@@@*
+                                                                @@@@@@   @@@@@@@       @@@@@@         @@@@@@         @@@@@@   @@@@@@@@@@@=
+                                                                @@@@@@@@@@@@@@@@@@@@@@@@@@@@%#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@:
                 """);
-        System.out.println("1.Nuestros Locales          2.Camionetas         3.Deportivos          4.Seminuevos            5.Servicio PostVenta         6.Cotizar           7.Tallers           0.Salir");
+        System.out.println("1.Nuestros Locales          2.Camionetas         3.Deportivos          4.Seminuevos            5.Servicio PostVenta         6.Cotizar                0.Salir");
         opcion = sc.nextInt();
         switch (opcion) {
             case 1:
@@ -191,9 +195,6 @@ public class ConcesionarioIosef {
             case 6:
                 this.cotizar();
                 break;
-            case 7:
-                this.talleres();
-                break;
             case 0:
                 System.out.println("Saliendo del programa.");
                 break;
@@ -201,17 +202,28 @@ public class ConcesionarioIosef {
                 this.menuPrincipal();
         }
     }
-    /*public void autos() {
-        for (String auto : carrosMarcas.keySet()) {
+    public void sedes_1(){
+        System.out.println("Tenemos las siguientes sedes 1");
+        for(String sede:sedes){
             i++;
-            System.out.println(i);
-            System.out.println("Auto: " + auto);
-            System.out.println("Marca: " + carrosMarcas.get(auto));
-            System.out.println();
+            System.out.println(i+ ". " +sede);
+        }
+        System.out.println("9.Elegir por ubicacion");
+        System.out.println("Elija una sede:");
+        opcion_sede=sc.nextInt();
+        opcion_sede= opcion_sede -1;
+        switch (opcion_sede) {
+            case 0, 1, 2, 3,4, 5, 6, 7:
+                sedefinal= sedes[opcion_sede];
+                this.boleta();
+                break;
+            case 8:
+                sedefinal="";
+                this.locales_1();
+                break;
+            default:
         }
     }
-
-     */
     public void sedes(){
         System.out.println("Tenemos las siguientes sedes");
         for(String sede:sedes){
@@ -220,61 +232,148 @@ public class ConcesionarioIosef {
         }
         System.out.println("9.Elegir por ubicacion");
         System.out.println("Elija una sede:");
-        opcion=sc.nextInt();
-        switch (opcion) {
-            case 1,2,3,4,5,6,7,8:
+        opcion_sede=sc.nextInt();
+        opcion_sede= opcion_sede -1;
+        switch (opcion_sede) {
+            case 0, 1, 2, 3,4, 5, 6, 7:
+                sedefinal= sedes[opcion_sede];
+                System.out.println("¿Que tipo de vehiculo desea comprar?");
+                System.out.println("1. Camionetas");
+                System.out.println("2. Deportivos");
+                System.out.println("3. Seminuevos");
+                opcion = sc.nextInt();
+                switch (opcion) {
+                    case 1:
+                        this.camionetas();
+                        break;
+                    case 2:
+                        this.deportivos();
+                        break;
+                    case 3:
+                        this.seminuevos();
+                        break;
+                    default:
+                        System.out.println("Regresando al MenuPrincipal");
+                        this.menuPrincipal();
+                }
                 break;
-            case 9:
+            case 8:
+                sedefinal= "";
                 this.locales();
                 break;
             default:
         }
     }
-    public void locales() {
-        i = 0;
+    public void locales_1(){
         sc.nextLine();
-        for (String depa : departamentos) {
-            System.out.println(depa);
-        }
         System.out.println("Elija el departamento para ver la sede mas cercana");
+        for (String depa : departamentos) {
+            System.out.println("*. " + depa);
+        }
         departamento = sc.nextLine();
         System.out.println("Departamento: " + departamento + " -> Sede más cercana: " + departamentoSede.get(departamento));
+        sedefinal= departamentoSede.get(departamento);
+        this.boleta();
+    }
+    public void locales() {
+        sc.nextLine();
+        System.out.println("Elija el departamento para ver la sede mas cercana");
+        for (String depa : departamentos) {
+            System.out.println("*. " + depa);
+        }
+        departamento = sc.nextLine();
+        System.out.println("Departamento: " + departamento + " -> Sede más cercana: " + departamentoSede.get(departamento));
+        sedefinal= departamentoSede.get(departamento);
+        System.out.println("¿Que tipo de vehiculo desea comprar?");
+        System.out.println("1. Camionetas");
+        System.out.println("2. Deportivos");
+        System.out.println("3. Seminuevos");
+        opcion = sc.nextInt();
+        switch (opcion) {
+            case 1:
+                this.camionetas();
+                break;
+            case 2:
+                this.deportivos();
+                break;
+            case 3:
+                this.seminuevos();
+                break;
+            default:
+                System.out.println("Regresando al MenuPrincipal");
+                this.menuPrincipal();
+        }
+
     }
     public void camionetas() {
-        for (String camioneta: camionetas) {
-            System.out.println((i+1)+ "." +camioneta);
-            System.out.println(precioscamionetas[i]);
-            i++;
+        numero=0;
+        for (String camioneta : camionetas) {
+            System.out.println((numero + 1) + "." + camioneta);
+            System.out.println(precioscamionetas.get(numero));
+            numero++;
             System.out.println();
         }
         System.out.println("Elija el vehiculo a comprar:");
-        vehiculoc =sc.nextInt();
-        if(vehiculoc<=16&&vehiculoc>0) {
-            total= precioscamionetas[vehiculoc-1];
-            compra.add(camionetas[vehiculoc]);
-            cantidad +=1;
-            this.boleta();
+        vehiculo = sc.nextInt();
+        cantidad = 1;
+        sc.nextLine();
+        if (vehiculo <= 16 && vehiculo > 0) {
+            compra_camioneta.set(vehiculo - 1, compra_camioneta.get(vehiculo - 1) + cantidad);
+            System.out.println("Ud ha elegido " + compra_camioneta.get(vehiculo - 1)+ " "+ camionetas.get(vehiculo-1) + "con un precio de : " + precioscamionetas.get(vehiculo - 1));
+            subtotal_camioneta.set(vehiculo - 1, compra_camioneta.get(vehiculo - 1) * precioscamionetas.get(vehiculo - 1));
+            System.out.println("¿Desea comprar más camionetas? \n 1. SI\n 2. NO  \n 3. Menu Principal");
+            opcion = sc.nextInt();
+            if (opcion == 1) {
+                System.out.println("Volviendo a la sección de camionetas");
+                this.camionetas();
+            } else if (opcion == 2) {
+             if(sedefinal=="") {
+                 this.sedes_1();
+            }
+             else  {
+                 this.boleta();
+             }
+            } else if (opcion == 3) {
+                this.menuPrincipal();
+            } else {
+                System.out.println("Opcion no válida, regresando al menu principal");
+                this.menuPrincipal();
+            }
         }
         else{
             System.out.println("Rango invalido");
             this.camionetas();
         }
-
     }
     public void deportivos() {
+        numero=0;
         for (String depor: deportivo) {
-            System.out.println((i+1)+ "." +depor);
-            System.out.println(preciosdeportivos[i]);
-            i++;
+            System.out.println((numero+1)+ "." +depor);
+            System.out.println(preciosdeportivos.get(numero));
+            numero++;
             System.out.println();
         }
         System.out.println("Elija el vehiculo a comprar:");
-        vehiculod =sc.nextInt();
-        if(vehiculos<14&&vehiculos>0) {
-            total= preciosdeportivos[vehiculod];
-            compra.add(deportivo[vehiculod]);
-            cantidad +=1;
-            this.boleta();
+        vehiculo =sc.nextInt();
+        cantidad = 1;
+        sc.nextLine();
+        if(vehiculo<=14&&vehiculo>0) {
+            compra_deportivo.set(vehiculo - 1, compra_deportivo.get(vehiculo - 1) + cantidad);
+            System.out.println("Ud ha elegido " + deportivos.get(vehiculo - 1)+ "con un precio de : " + preciosdeportivos.get(vehiculo - 1));
+            subtotal_deportivo.set(vehiculo - 1, compra_deportivo.get(vehiculo - 1) * preciosdeportivos.get(vehiculo - 1));
+            System.out.println("¿Desea comprar más autos deportivos? \n 1. SI\n 2. NO  \n 3. Menu Principal");
+            opcion = sc.nextInt();
+            if (opcion == 1) {
+                System.out.println("Volviendo a la sección de deportivos");
+                this.camionetas();
+            } else if (opcion == 2) {
+                this.sedes_1();
+            } else if (opcion == 3) {
+                this.menuPrincipal();
+            } else {
+                System.out.println("Opcion no válida, regresando al menu principal");
+                this.menuPrincipal();
+            }
         }
         else{
             System.out.println("Rango invalido");
@@ -282,19 +381,34 @@ public class ConcesionarioIosef {
         }
     }
     public void seminuevos() {
+        numero=0;
         for (String semi: seminuevos) {
-            System.out.println((i+1)+ "." +semi);
-            System.out.println(preciosseminuevos[i]);
-            i++;
+            System.out.println((numero+1)+ "." +semi);
+            System.out.println(preciosseminuevos.get(numero));
+            numero++;
             System.out.println();
         }
         System.out.println("Elija el vehiculo a comprar:");
-        vehiculos =sc.nextInt();
-        if(vehiculos<20&&vehiculos>0) {
-            total= preciosseminuevos[vehiculos];
-            compra.add(seminuevos[vehiculos]);
-            cantidad +=1;
-            this.boleta();
+        vehiculo =sc.nextInt();
+        cantidad = 1;
+        sc.nextLine();
+        if(vehiculo<=20&&vehiculo>0) {
+            compra_seminuevo.set(vehiculo - 1, compra_seminuevo.get(vehiculo - 1) + cantidad);
+            System.out.println("Ud ha elegido " + seminuevos.get(vehiculo - 1)+ "con un precio de : " + preciosseminuevos.get(vehiculo - 1));
+            subtotal_seminuevo.set(vehiculo - 1, compra_seminuevo.get(vehiculo - 1) * preciosseminuevos.get(vehiculo - 1));
+            System.out.println("¿Desea comprar más vehiculos seminuevos? \n 1. SI\n 2. NO  \n 3. Menu Principal");
+            opcion = sc.nextInt();
+            if (opcion == 1) {
+                System.out.println("Volviendo a la sección de vehiculos seminuevos");
+                this.camionetas();
+            } else if (opcion == 2) {
+                this.sedes_1();
+            } else if (opcion == 3) {
+                this.menuPrincipal();
+            } else {
+                System.out.println("Opcion no válida, regresando al menu principal");
+                this.menuPrincipal();
+            }
         }
         else{
             System.out.println("Rango invalido");
@@ -304,92 +418,218 @@ public class ConcesionarioIosef {
     public void postventa() {
     }
     public void cotizar() {
+        System.out.println("¿Que tipo de vehiculo desea cotizar?");
+        System.out.println("1. Camionetas");
+        System.out.println("2. Deportivos");
+        System.out.println("3. Seminuevos");
+        opcion = sc.nextInt();
+        switch (opcion) {
+            case 1:
+                this.camionetas();
+                break;
+                case 2:
+                    this.deportivos();
+                    break;
+                    case 3:
+                        this.seminuevos();
+                        break;
+                        default:
+                            System.out.println("Regresando al menu principal");
+                            this.menuPrincipal();
+        }
+        this.datos();
+        System.out.println("""
+                @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+                @@@@@@   @@@@@@@       @@@@@@@         @@@@@         @@@@@@         @@@@
+                @@@@@@   @@@@@@  @@@@@  @@@@@   @@@@@@@@@@@@   @@@@@@@@@@@@   @@@@@@@@@@
+                @@@@@@   @@@@@   @@@@@   @@@@@         @@@@@         @@@@@@        @@@@@
+                @@@@@@   @@@@@%  @@@@@  @@@@@@@@@@@@@  @@@@@   @@@@@@@@@@@@   @@@@@@@@@@
+                @@@@@@   @@@@@@@       @@@@@@         @@@@@@         @@@@@@   @@@@@@@@@@
+                @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+                """);
+        System.out.println("\t\t\t--------- COTIZACION ---------     ");
+        cotizar=1;
+        this.contenido();
     }
-    public void talleres() {
-    }
-
-    public void AgendarCitaenTaller() {
-    }
-    public void promociones() {
-    }
-    public double total(){
-        igv = total * 0.18;
-        subtotal = total - igv;
-        System.out.println("SUBTOTAL " + subtotal);
-        System.out.println("IGV " + igv);
-        System.out.println("TOTAL A PAGAR " + total);
-        System.out.println("");
-        return total;
-    }
-    public double vuelto(){
-        System.out.println("Ingrese la cantidad a pagar:");
-        pago = sc.nextDouble();
-        vuelto = pago - total;
-        if (vuelto < 0){
-            System.out.println("Falta pagar " + -(vuelto));
-            System.out.println("Completa el monto a pagar");
-            resto = sc.nextDouble();
-            if(-(vuelto) == resto){
-                System.out.println("Pago Completo");
-                this.imprimir_boleta();
-            }
-            else if (-(vuelto)<resto) {
-                System.out.println("Usted tiene de vuelto: " + (resto + vuelto));
-            }
-            else{
-                System.out.println("No tiene dinero, deje ese objeto en su lugar. ");
+    public void contenido(){
+         cantidadvehiculos = 0;
+        this.placa();
+        System.out.println("\t\t\tRUC: 20768778081 - SEDE:" + sedefinal);
+        System.out.println("\t\t\tNOMBRES Y APELLIDOS: "+nombres);
+        System.out.println("\t\t\tDNI: "+dni);
+        System.out.println("\t\t\tCORREO: "+correo);
+        System.out.println("\t\t\tTELEFONO: "+telefono);
+        System.out.println("\t\t\tTARJETA: "+tarjeta);
+        if(cotizar==0) {
+            System.out.println("CANTIDAD\tVEHICULO\t\t\t\t\t\t\t\tPLACA\t\t\tTOTAL\n");
+        }else if (cotizar==1) {
+            System.out.println("CANTIDAD\tVEHICULO\t\t\t\t\t\t\t\tTOTAL\n");
+        }
+        //VENTA CAMIONETAS
+        for (int i = 0; i < camionetas.size(); i++) {
+            int cantidad = compra_camioneta.get(i);
+            if (cantidad > 0) {
+                if(cotizar==0) {
+                    totalcamionetas = subtotal_camioneta.get(i);
+                    System.out.printf("%d\t\t\t%s\t\t\t\t\t%s\t\t\t%.2f\n", cantidad, camionetas.get(i), placas.get(i), totalcamionetas);
+                    cantidadvehiculos += totalcamionetas;
+                }
+                else if (cotizar==1) {
+                    totalcamionetas = subtotal_camioneta.get(i);
+                    System.out.printf("%d\t\t\t%s\t\t\t\t\t%.2f\n", cantidad, camionetas.get(i), totalcamionetas);
+                    cantidadvehiculos += totalcamionetas;
+                }
             }
         }
-        else if (vuelto > 0){
-            System.out.println("Su vuelto es: " + vuelto);
+        for (int i = 0; i < deportivos.size(); i++) {
+            int cantidad = compra_deportivo.get(i);
+            if (cantidad > 0) {
+                if(cotizar==0) {
+                    totaldeportivos = subtotal_deportivo.get(i);
+                    System.out.printf("%d\t\t\t%s\t\t\t\t\t%s\t\t\t%.2f\n", cantidad, deportivos.get(i),placas.get(i), totaldeportivos);
+                    cantidadvehiculos += totaldeportivos;
+                }
+                else if (cotizar==1) {
+                    totaldeportivos = subtotal_deportivo.get(i);
+                    System.out.printf("%d\t\t\t%s\t\t\t\t\t%.2f\n", cantidad, deportivos.get(i), totaldeportivos);
+                    cantidadvehiculos += totaldeportivos;
+                }
+            }
         }
-        else {
-            System.out.println("Pago completo");
-            this.imprimir_boleta();
+        for (int i = 0; i < seminuevos.size(); i++) {
+            int cantidad = compra_seminuevo.get(i);
+            if (cantidad > 0) {
+                if(cotizar==0) {
+                    totalseminuevos = subtotal_seminuevo.get(i);
+                    System.out.printf("%d\t\t\t%s\t\t\t\t\t%s\t\t\t%.2f\n", cantidad, seminuevos.get(i),placas.get(i), totalseminuevos);
+                    cantidadvehiculos += totalseminuevos;}
+                else if (cotizar==1) {
+                    totalseminuevos = subtotal_seminuevo.get(i);
+                    System.out.printf("%d\t\t\t%s\t\t\t\t\t%.2f\n", cantidad, seminuevos.get(i), totalseminuevos);
+                    cantidadvehiculos += totalseminuevos;
+                }
+            }
         }
-        return vuelto;
+        igv = cantidadvehiculos * 0.18;
+        subtotal= cantidadvehiculos-igv;
+        pago = subtotal + igv;
+        System.out.printf("\nSUBTOTAL: %.2f\n", subtotal);
+        System.out.printf("IGV: %.2f\n", igv);
+        System.out.printf("TOTAL A PAGAR: %.2f\n", pago);
+        System.out.println("GRACIAS POR SU COMPRA");
+        this.imprimir_boleta();
+        System.out.println("¿Regresar al menu principal?");
+        System.out.println("1.Si");
+        System.out.println("2.No");
+        opcion= sc.nextInt();
+        switch (opcion) {
+            case 1:
+                this.menuPrincipal();
+                break;
+                case 2:
+                    break;
+        }
+    }
+    public void datos(){
+        System.out.println("Ingrese sus nombres y apellidos");
+        nombres = sc.nextLine();
+        while (true) {
+            System.out.println("Ingrese su DNI");
+            dni = sc.nextLine();
+            if (dni.length()==8) {
+                break;
+            } else {
+                System.out.println("DNI inválido. Debe contener exactamente 8 dígitos.");
+            }
+        }
+        while (true) {
+            System.out.println("Ingrese su correo");
+            correo = sc.nextLine();
+            if (correo.contains("@")) {
+                break;
+            } else {
+                System.out.println("Correo invalido.");
+            }
+        }
+        while (true) {
+            System.out.println("Ingrese su telefono");
+            telefono = sc.nextLine();
+            if (telefono.length()==9) {
+                break;
+            } else {
+                System.out.println("Telefono invalido.");
+            }
+        }
+        while (true) {
+            System.out.println("Ingrese su tarjeta");
+            tarjeta = sc.nextLine();
+            if (tarjeta.length()==16) {
+                break;
+            } else {
+                System.out.println("Tarjeta invalida.");
+            }
+        }
     }
     public void boleta(){
-        if(vehiculoc != 0) {
-            System.out.println("Usted quiere comprar: " +camionetas[vehiculoc-1] + "con un costo de: " + precioscamionetas[vehiculoc-1]);
-            vehiculofinal=vehiculoc-1;
-            this.total();
-            this.vuelto();
+        this.datos();
+        System.out.println("""
+                @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+                @@@@@@   @@@@@@@       @@@@@@@         @@@@@         @@@@@@         @@@@
+                @@@@@@   @@@@@@  @@@@@  @@@@@   @@@@@@@@@@@@   @@@@@@@@@@@@   @@@@@@@@@@
+                @@@@@@   @@@@@   @@@@@   @@@@@         @@@@@         @@@@@@        @@@@@
+                @@@@@@   @@@@@%  @@@@@  @@@@@@@@@@@@@  @@@@@   @@@@@@@@@@@@   @@@@@@@@@@
+                @@@@@@   @@@@@@@       @@@@@@         @@@@@@         @@@@@@   @@@@@@@@@@
+                @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+                """);
+        System.out.println("\t\t\t--------- BOLETA DE VENTA ---------     ");
+        this.contenido();
+        letras = "";
+        for (int i = 0; i < 3; i++) {
+            char letra = (char) ('A' + random.nextInt(26)); // Letras de A a Z
+            letras += letra;
         }
-        else if(vehiculod != 0) {
-            System.out.println("Usted quiere comprar: " +deportivo[vehiculod-1] + "con un costo de: " + preciosdeportivos[vehiculod-1]);
-            vehiculofinal= vehiculod-1;
-            this.total();
-            this.vuelto();
-
-        }
-        else if(vehiculos != 0) {
-            System.out.println("Usted quiere comprar: " +seminuevos[vehiculos-1] + "con un costo de: " + preciosseminuevos[vehiculos-1]);
-            vehiculofinal= vehiculos-1;
-            this.total();
-            this.vuelto();
-
-        }
-        else{
-            System.out.println("Aun no escogio nada para comprar");
-            this.menuPrincipal();
-        }
+        numeros = random.nextInt(9000) + 1000;
+        codigo = letras + "-" + numeros;
     }
     public void imprimir_boleta(){
         try (FileWriter fileWriter = new FileWriter("boleta.txt")) {
             fileWriter.write("""
-                       @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@%@@@@@@@@@@@@@@@=
-                       @@@@@@   @@@@@@@       @@@@@@@         @@@@@         @@@@@@         @@@@@=
-                       @@@@@@   @@@@@@  @@@@@  @@@@@   @@@@@@@@@@@@   @@@@@@@@@@@@   @@@@@@@@@@@=
-                       @@@@@@   @@@@@   @@@@@   @@@@@         @@@@@         @@@@@@        @@@@@@
-                       @@@@@@   @@@@@%  @@@@@  @@@@@@@@@@@@@  @@@@@   @@@@@@@@@@@@   @@@@@@@@@@@*
-                       @@@@@@   @@@@@@@       @@@@@@         @@@@@@         @@@@@@   @@@@@@@@@@@=
-                       @@@@@@@@@@@@@@@@@@@@@@@@@@@@%#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@:
+                @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+                @@@@@@   @@@@@@@       @@@@@@@         @@@@@         @@@@@@         @@@@
+                @@@@@@   @@@@@@  @@@@@  @@@@@   @@@@@@@@@@@@   @@@@@@@@@@@@   @@@@@@@@@@
+                @@@@@@   @@@@@   @@@@@   @@@@@         @@@@@         @@@@@@        @@@@@
+                @@@@@@   @@@@@%  @@@@@  @@@@@@@@@@@@@  @@@@@   @@@@@@@@@@@@   @@@@@@@@@@
+                @@@@@@   @@@@@@@       @@@@@@         @@@@@@         @@@@@@   @@@@@@@@@@
+                @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
                         """);
-            fileWriter.write("                   --------- BOLETA DE VENTA ---------     \n");
-            fileWriter.write("CANTIDAD\tVEHICULO\t\t\t  TOTAL\n");
-            for (int i = 0; i < compra.size(); i++) {
-                    fileWriter.write(String.format("%s\t\t%s\t\t  %.2f\n", cantidad, compra.get(vehiculofinal), precioscamionetas[vehiculofinal]));
+            fileWriter.write("\t\t\t--------- BOLETA DE VENTA ---------     \n");
+            fileWriter.write("\t\t\tRUC: 20768778081 - SEDE:" + sedefinal +"\n");
+            fileWriter.write("\t\t\tNOMBRES Y APELLIDOS:     \n"+nombres +"\n");
+            fileWriter.write("\t\t\tDNI: "+dni +"\n");
+            fileWriter.write("\t\t\tCORREO: "+correo +"\n");
+            fileWriter.write("\t\t\tTELEFONO: "+telefono +"\n");
+            fileWriter.write("\t\t\tTARJETA: "+tarjeta+"\n");
+            fileWriter.write("CANTIDAD\tVEHICULO\t\t\t\t\t\t\t\tPLACA\t\t\tTOTAL\n");
+            for (int i = 0; i < compra_camioneta.size(); i++) {
+                int cantidad = compra_camioneta.get(i);
+                if (cantidad > 0) {
+                    double totalcamionetas = cantidad * subtotal_camioneta.get(i);
+                    fileWriter.write(String.format("%d\t\t\t%s\t\t\t\t\t%s\t\t\t%.2f\n", cantidad, camionetas.get(i), placas.get(i), totalcamionetas));
+                }
+            }
+            for (int i = 0; i < compra_deportivo.size(); i++) {
+                int cantidad = compra_deportivo.get(i);
+                if (cantidad > 0) {
+                    double totaldeportivos = cantidad * subtotal_deportivo.get(i);
+                    fileWriter.write(String.format("%d\t\t\t%s\t\t\t\t\t%s\t\t\t%.2f\n", cantidad, deportivos.get(i), placas.get(i), totaldeportivos));
+                }
+            }
+            for (int i = 0; i < compra_seminuevo.size(); i++) {
+                int cantidad = compra_seminuevo.get(i);
+                if (cantidad > 0) {
+                    double totalvehiculos = cantidad * subtotal_seminuevo.get(i);
+                    fileWriter.write(String.format("%d\t\t\t%s\t\t\t\t\t%s\t\t\t%.2f\n", cantidad, seminuevos.get(i), placas.get(i), totalvehiculos));
+                }
             }
             fileWriter.write(String.format("\n\t\t\t\tSUBTOTAL:     %.2f\n", subtotal));
             fileWriter.write(String.format("\t\t\t       %s\t\t%.2f\n","IGV:", igv));
@@ -400,12 +640,23 @@ public class ConcesionarioIosef {
             System.out.println("Ocurrió un error al escribir la boleta: " + e.getMessage());
         }
     }
+    public void placa() {
+    while (placas.size() < cantidadPlacas) {
+        letras = "";
+        for (int i = 0; i < 3; i++) {
+            char letra = (char) ('A' + random.nextInt(26)); // Letras de A a Z
+            letras += letra;
+        }
+        numeros = random.nextInt(900) + 100;
+        placa = letras + "-" + numeros;
+        placas.add(placa);
+    }
+}
     public static void main(String[] args) {
         ConcesionarioIosef concesionarioIosef = new ConcesionarioIosef();
         concesionarioIosef.menuPrincipal();
     }
 }
-
 
 
 
